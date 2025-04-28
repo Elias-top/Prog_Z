@@ -1,0 +1,33 @@
+#! /bin/bash -
+#
+#COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2017 Xilinx, Inc. All Rights Reserved.
+#
+
+if [ "`uname`" = Linux ]; then
+  if [ -z "$BASH" ]; then
+    exec /bin/bash "$0" "$@"
+    exit $?
+  fi
+# Detect a Windows environment and automatically switch to the .bat file
+elif [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$0.bat" "$@"
+  exit $?
+fi
+
+LOADER=$(readlink -f $0)
+BIN_DIR=$(dirname ${LOADER})
+
+export LD_LIBRARY_PATH=${BIN_DIR}/../lib/lnx64.o:$LD_LIBRARY_PATH
+
+exec ${BIN_DIR}/unwrapped/lnx64.o/xmllint "$@"
+

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "NOC Constraints schema",
+  "id": "ConstraintsSpecification",
+  "definitions": {},
+  "type" : "object",
+  "additionalProperties": false,
+  "properties" : {
+    "version" :  { "type" : "string" },
+    "Placement" : { "type" : "array", 
+      "items" : {
+        "type" : "object",
+        "additionalProperties": false,
+        "properties" : {
+          "LogicalInstance" :  {"type" : "string"},
+          "PhysicalInstance" : {"type" : "array", "items" : { "type" : "string" } },
+          "IsSoft" :           {"type" : "boolean" }
+        }
+      }
+    }
+  }
+}
+

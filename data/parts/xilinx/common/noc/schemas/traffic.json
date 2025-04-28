@@ -1,0 +1,163 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "NOC Traffic Specification Schema",
+  "id": "TrafficSpecification",
+  "type": "object",
+  "definitions": {},
+  "additionalProperties": false,
+  "properties" : {
+    "SystemProperties" : { 
+      "type" : "object",
+      "properties" : {
+        "DeviceName" : { "type" : "string" },
+        "Frequency" : { "type" : "integer" }, 
+                "DfxPaths"  : { 
+                  "type"  : "array", 
+                  "items" : { "type" : "string" }
+                },
+        "SECURE_SLR_PMC_TRAFFIC" : { "type" : "boolean" }
+      }
+    },
+    "LogicalInstances" : {
+      "type" : "array",
+      "items" : {
+        "type": "object",
+        "additionalProperties": false,
+        "properties" : {
+          "Name"     : { "type" : "string"},
+          "DesignName" : { "type" : "string"},
+          "IsMaster" : { "type" : "boolean"},
+          "HasParityAddr" : { "type" : "boolean"},
+          "HasParityData" : { "type" : "boolean"},
+          "CompType" : { "type" : "string" },
+          "Firewall" : { "type" : "boolean", "default" : false },
+          "Ports"     : { "type" : "array", "items" : {"type" : "string"}},
+          "Protocol"  : { "type" : "string", "enum" : ["AXI_MM", "AXI_STRM"] },
+          "ReadTC" : { "type" : "string", "enum" : ["LL", "BE", "ISOC"] },
+          "WriteTC" : { "type" : "string", "enum" : ["LL", "BE", "ISOC"] },
+          "SysAddress" : { "type" : "integer" },
+          "SysAddressSize" : { "type" : "integer" },
+          "SysAddresses" : {
+            "type" : "array",
+            "items" : {
+              "type":"object",
+              "additionalProperties": false,
+              "properties" : {
+                 "Base" : { "type" : ["integer", "string"] },
+                 "Size" : { "type" : ["integer", "string"] }
+              },
+              "required" : ["Base", "Size" ]
+            }
+          },
+          "Remap" : {
+            "type" : "array",
+            "items" : {
+              "type":"object",
+              "additionalProperties": false,
+              "properties" : {
+                 "Logical" : { "type" : "string" },
+                 "Physical" : { "type" : "string" },
+                 "Range" : { "type" : "string" }
+              },
+              "required" : ["Logical", "Physical", "Range" ]
+            }
+          },
+          "MemoryParams" : {
+            "type" : ["array", "object"]
+          },
+          "ConfigParams" : {
+            "type" : ["array", "object"]
+          },
+          "AxiDataWidth" : { "type" : "integer" },
+          "NumReadOutstanding" : { "type" : "integer", "minimum" : 0, "maximum" : 64  },
+          "NumWriteOutstanding" : { "type" : "integer", "minimum" : 0, "maximum" : 64  },
+          "ReadRateLimiter" : { "type" : "integer" },
+          "WriteRateLimiter" : { "type" : "integer" },
+          "InterleaveSize" : { "type" : "integer" },
+          "InterleaveSel" : { "type" : "integer", "minimum" : 0, "maximum" : 64  },
+          "ExternalConn" : { "type" : "string" },
+          "IsVirtual"  : { "type" : "boolean", "default" : false },
+          "DestId" : {"type" : "integer"},
+          "UseDestIdIdx" : { "type" : "boolean" },
+          "SimMetaData" : {
+            "type":"object",
+            "additionalProperties": false,
+            "properties" : {
+               "IPName" : { "type" : "string" }
+            }
+          }
+        },
+        "required" : ["Name", "CompType", "Protocol"]
+      }
+    },
+    "Paths" : {
+      "type" : "array",
+      "items" : {
+        "type": "object",
+        "additionalProperties": false,
+        "properties" : {
+          "Phase" : { "type" : "integer" },
+          "From" : { "type" : "string" },
+          "To" : { "type" : "string" },
+          "Port" : {"type" : "string"},
+          "CommType" : { "type" : "string", "enum" : ["MM_ReadWrite", "STRM", "MM_ReadOnly", "MM_WriteOnly"] },
+          "ReadTC" : { "type" : "string", "enum" : ["LL", "BE", "ISOC"] },
+          "WriteTC" : { "type" : "string", "enum" : ["LL", "BE", "ISOC"] },
+          "WriteBurstSize" : { "type" : "integer", "minimum" : 1, "maximum" : 256 },
+          "ReadBurstSize"  : { "type" : "integer", "minimum" : 1, "maximum" : 256 },
+          "ReadBW" : { "type" : "integer", "minimum" : 0, "maximum" : 19200},
+          "WriteBW" : { "type" : "integer", "minimum" : 0, "maximum" : 19200},
+          "WriteOrder" : { "type" : "string" },
+          "ReadLatency" : { "type" : "integer", "minimum" : 0},
+          "WriteLatency" : {"type" : "integer", "minimum" : 0},
+          "ReadAvgBurst" : { "type" : "integer", "minimum" : 0},
+          "WriteAvgBurst" : { "type" : "integer", "minimum" : 0},
+          "ExclusiveGroup" : {"type" : "string"}, 
+          "SeparateRoutingGroup" : {"type" : "string"},
+          "DestIdIndex" : {"type" : "integer", "minimum" : 0, "maximum" : 7},
+          "DestIdIdx" : {
+            "type" : "array",
+            "items" : {
+              "type":"object",
+              "additionalProperties": false,
+              "properties" : {
+                 "start_idx" : { "type" : "integer", "minimum" : 0, "maximum" : 15},
+                 "end_idx" : { "type" : "integer", "minimum" : 0, "maximum" : 15}
+              },
+              "required" : ["start_idx", "end_idx" ]
+            }
+          },
+          "SocBoot" : { "type" : "boolean"},
+          "InitialBoot" : { "type" : "boolean"},
+          "HighPriorityRouting" : { "type" : "boolean" },
+          "PhaseGroups" : {
+            "type" : "array",
+            "items" : {
+              "type":"object",
+              "additionalProperties": false,
+              "properties" : {
+                 "Name"    : { "type" : "string"},
+                 "Phases" : {
+                   "type" : "array",
+                   "items": {
+                     "type":"object",
+                     "additionalProperties": false,
+                     "properties" : {
+                        "Name"    : { "type" : "string"},
+                        "ReadBW" : { "type" : "integer", "minimum" : 0, "maximum" : 19200},
+                        "WriteBW" : { "type" : "integer", "minimum" : 0, "maximum" : 19200},
+                        "ReadAvgBurst" : { "type" : "integer", "minimum" : 0},
+                        "WriteAvgBurst" : { "type" : "integer", "minimum" : 0}
+                     },
+                     "required" : ["Name", "ReadBW", "WriteBW", "ReadAvgBurst", "WriteAvgBurst"]
+                   }
+                 }
+              },
+              "required" : ["Name", "Phases" ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

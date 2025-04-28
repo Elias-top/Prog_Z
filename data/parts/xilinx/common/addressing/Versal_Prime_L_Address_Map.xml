@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:addressSpaces xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+  <spirit:addressSpace>
+    <spirit:name>Data</spirit:name>
+    <spirit:displayName>Data</spirit:displayName>
+    <spirit:range spirit:format="bitString">0x10000000000000000</spirit:range>
+    <spirit:width spirit:format="long">64</spirit:width>
+    <spirit:segments>
+      <spirit:segment>
+        <spirit:name>DDR_CH0_LEGACY</spirit:name>
+        <spirit:displayName>DDR_CH0_LEGACY</spirit:displayName>
+        <spirit:description>2GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000080000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>LPD_AFI_FS</spirit:name>
+        <spirit:displayName>LPD_AFI_FS</spirit:displayName>
+        <spirit:description>512MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000080000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000020000000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI/PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_AFI_0</spirit:name>
+        <spirit:displayName>FPD_AFI_0</spirit:displayName>
+        <spirit:description>192MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000A4000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x00000C000000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_AFI_1</spirit:name>
+        <spirit:displayName>FPD_AFI_1</spirit:displayName>
+        <spirit:description>256MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000B0000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000010000000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>QSPI</spirit:name>
+        <spirit:displayName>QSPI</spirit:displayName>
+        <spirit:description>512MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000C0000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000020000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PMC</spirit:name>
+        <spirit:displayName>PMC</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000F0000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>STM_CORESIGHT</spirit:name>
+        <spirit:displayName>STM_CORESIGHT</spirit:displayName>
+        <spirit:description>16MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000F8000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000001000000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>GIC</spirit:name>
+        <spirit:displayName>GIC</spirit:displayName>
+        <spirit:description>1MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000F9000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000000100000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_SLAVES</spirit:name>
+        <spirit:displayName>FPD_SLAVES</spirit:displayName>
+        <spirit:description>16MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000FD000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000001000000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>LPD_SLAVES</spirit:name>
+        <spirit:displayName>LPD_SLAVES</spirit:displayName>
+        <spirit:description>32MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000FE000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000002000000</spirit:range>
+        <spirit:category>PS_CCI/PS_NCI/PS_PMC</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PMC_ALIAS_REGION0</spirit:name>
+        <spirit:displayName>PMC_ALIAS_REGION0</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000100000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PMC_ALIAS_REGION1</spirit:name>
+        <spirit:displayName>PMC_ALIAS_REGION1</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000108000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PMC_ALIAS_REGION2</spirit:name>
+        <spirit:displayName>PMC_ALIAS_REGION2</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000110000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PMC_ALIAS_REGION3</spirit:name>
+        <spirit:displayName>PMC_ALIAS_REGION3</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000118000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PS_TO_PL_0</spirit:name>
+        <spirit:displayName>PS_TO_PL_0</spirit:displayName>
+        <spirit:description>8GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000400000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000200000000</spirit:range>
+        <spirit:category>PL</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH0_MED</spirit:name>
+        <spirit:displayName>DDR_CH0_MED</spirit:displayName>
+        <spirit:description>32GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x000800000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000800000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH0_HIGH_0</spirit:name>
+        <spirit:displayName>DDR_CH0_HIGH_0</spirit:displayName>
+        <spirit:description>256GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x00C000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x004000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH0_HIGH_1</spirit:name>
+        <spirit:displayName>DDR_CH0_HIGH_1</spirit:displayName>
+        <spirit:description>734GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x010000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x00B780000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PL_VIA_NOC</spirit:name>
+        <spirit:displayName>PL_VIA_NOC</spirit:displayName>
+        <spirit:description>2044GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020100000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x01FF00000000</spirit:range>
+        <spirit:category>PL</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH1</spirit:name>
+        <spirit:displayName>DDR_CH1</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x050000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH1A</spirit:name>
+        <spirit:displayName>DDR_CH1A</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x058000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH2</spirit:name>
+        <spirit:displayName>DDR_CH2</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x060000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH2A</spirit:name>
+        <spirit:displayName>DDR_CH2A</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x068000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH3</spirit:name>
+        <spirit:displayName>DDR_CH3</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x070000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH3A</spirit:name>
+        <spirit:displayName>DDR_CH3A</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x078000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PL_VIA_NOC_HIGH</spirit:name>
+        <spirit:displayName>PL_VIA_NOC_HIGH</spirit:displayName>
+        <spirit:description>8TB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x080000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x080000000000</spirit:range>
+        <spirit:category>PL</spirit:category>
+        <spirit:remap>YES</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>DDR_CH4</spirit:name>
+        <spirit:displayName>DDR_CH4</spirit:displayName>
+        <spirit:description>512GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x180000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x008000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>NO</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PCIE_REGION0</spirit:name>
+        <spirit:displayName>PCIE_REGION0</spirit:displayName>
+        <spirit:description>256MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000A0000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000010000000</spirit:range>
+        <spirit:category>PS_PCIE</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PS_FPD_AFI_FS</spirit:name>
+        <spirit:displayName>PS_FPD_AFI_FS</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000B0000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_CCI/PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>OCM</spirit:name>
+        <spirit:displayName>OCM</spirit:displayName>
+        <spirit:description>64MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000B8000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000004000000</spirit:range>
+        <spirit:category>PS_CCI/PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_STM_CORESIGHT</spirit:name>
+        <spirit:displayName>FPD_STM_CORESIGHT</spirit:displayName>
+        <spirit:description>16MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000E0000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000001000000</spirit:range>
+        <spirit:category>PS_CCI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_GIC</spirit:name>
+        <spirit:displayName>FPD_GIC</spirit:displayName>
+        <spirit:description>4MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000E2000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000000400000</spirit:range>
+        <spirit:category>PS_CCI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>CPM_REPEAT_1</spirit:name>
+        <spirit:displayName>CPM_REPEAT_1</spirit:displayName>
+        <spirit:description>16MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000E4000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000001000000</spirit:range>
+        <spirit:category>CPM5N/PS_CCI/PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>HNIC</spirit:name>
+        <spirit:displayName>HNIC</spirit:displayName>
+        <spirit:description>8MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000E6000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000000800000</spirit:range>
+        <spirit:category>HNIC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>MULTIMEDIA_TILES</spirit:name>
+        <spirit:displayName>MULTIMEDIA_TILES</spirit:displayName>
+        <spirit:description>8MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000E8000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000000800000</spirit:range>
+        <spirit:category>MMD/MMI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>LPD_SLAVES_REPEAT_1</spirit:name>
+        <spirit:displayName>LPD_SLAVES_REPEAT_1</spirit:displayName>
+        <spirit:description>32MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000EA000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000002000000</spirit:range>
+        <spirit:category>PS_CCI/PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_SLAVES_REPEAT_1</spirit:name>
+        <spirit:displayName>FPD_SLAVES_REPEAT_1</spirit:displayName>
+        <spirit:description>16MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000EC000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000001000000</spirit:range>
+        <spirit:category>PS_CCI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PS_FPD_CMN</spirit:name>
+        <spirit:displayName>PS_FPD_CMN</spirit:displayName>
+        <spirit:description>64MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x0000F8000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000004000000</spirit:range>
+        <spirit:category>PSX</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>HBM3_0_REPEAT_1</spirit:name>
+        <spirit:displayName>HBM3_0_REPEAT_1</spirit:displayName>
+        <spirit:description>64GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x004000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x001000000000</spirit:range>
+        <spirit:category>PL_HBM</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>HBM3_1_REPEAT_1</spirit:name>
+        <spirit:displayName>HBM3_1_REPEAT_1</spirit:displayName>
+        <spirit:description>64GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x005000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x001000000000</spirit:range>
+        <spirit:category>PL_HBM</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>HBM3_2_REPEAT_1</spirit:name>
+        <spirit:displayName>HBM3_2_REPEAT_1</spirit:displayName>
+        <spirit:description>64GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x006000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x001000000000</spirit:range>
+        <spirit:category>PL_HBM</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>HBM3_3_REPEAT_1</spirit:name>
+        <spirit:displayName>HBM3_3_REPEAT_1</spirit:displayName>
+        <spirit:description>64GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x007000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x001000000000</spirit:range>
+        <spirit:category>PL_HBM</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>ME_PROGRAMMING_REPEAT_1</spirit:name>
+        <spirit:displayName>AIE_REPEAT_1</spirit:displayName>
+        <spirit:description>4GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000100000000</spirit:range>
+        <spirit:category>AIE</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PS_FPD_AFI_FS_CONFIG_REPEAT_1</spirit:name>
+        <spirit:displayName>PS_FPD_AFI_FS_CONFIG_REPEAT_1</spirit:displayName>
+        <spirit:description>2GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020200000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000080000000</spirit:range>
+        <spirit:category>PS_CCI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PL_VIA_NOC_CONFIG_REPEAT_1</spirit:name>
+        <spirit:displayName>PL_VIA_NOC_CONFIG_REPEAT_1</spirit:displayName>
+        <spirit:description>2GB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020300000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000080000000</spirit:range>
+        <spirit:category>PL</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PSX_PMC_ALIAS_REGION0_REPEAT_1</spirit:name>
+        <spirit:displayName>PSX_PMC_ALIAS_REGION0_REPEAT_1</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020380000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PSX_PMC_ALIAS_REGION1_REPEAT_1</spirit:name>
+        <spirit:displayName>PSX_PMC_ALIAS_REGION1_REPEAT_1</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020388000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PSX_PMC_ALIAS_REGION2_REPEAT_1</spirit:name>
+        <spirit:displayName>PSX_PMC_ALIAS_REGION2_REPEAT_1</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020390000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PSX_PMC_ALIAS_REGION3_REPEAT_1</spirit:name>
+        <spirit:displayName>PSX_PMC_ALIAS_REGION3_REPEAT_1</spirit:displayName>
+        <spirit:description>128MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020398000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000008000000</spirit:range>
+        <spirit:category>PS_PMC</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>FPD_PKI_REPEAT_1</spirit:name>
+        <spirit:displayName>FPD_PKI_REPEAT_1</spirit:displayName>
+        <spirit:description>8MB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x020400000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x000000800000</spirit:range>
+        <spirit:category>PS_CCI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>PS_FPD_AFI_FS_HIGH_REPEAT_1</spirit:name>
+        <spirit:displayName>PS_FPD_AFI_FS_HIGH_REPEAT_1</spirit:displayName>
+        <spirit:description>1TB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x040000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x010000000000</spirit:range>
+        <spirit:category>PS_CCI</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>CPM_CDX_DPU_HIGH_REPEAT_1</spirit:name>
+        <spirit:displayName>CPM_CDX_DPU_HIGH_REPEAT_1</spirit:displayName>
+        <spirit:description>8TB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x100000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x080000000000</spirit:range>
+        <spirit:category>PS_PCIE</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+      <spirit:segment>
+        <spirit:name>C2C_HIGH_REPEAT_1</spirit:name>
+        <spirit:displayName>C2C_HIGH_REPEAT_1</spirit:displayName>
+        <spirit:description>16TB</spirit:description>
+        <spirit:addressOffset spirit:format="bitString" spirit:bitStringLength="48">0x200000000000</spirit:addressOffset>
+        <spirit:range spirit:format="bitString" spirit:bitStringLength="48">0x100000000000</spirit:range>
+        <spirit:category>DDR</spirit:category>
+        <spirit:remap>NO</spirit:remap>
+        <spirit:disabled>YES</spirit:disabled>
+      </spirit:segment>
+    </spirit:segments>
+  </spirit:addressSpace>
+</spirit:addressSpaces>

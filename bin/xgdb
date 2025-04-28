@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# This gdb wrapper script that sets the required environment before launching gdb-11.2
+
+XILINX_VITIS=${XILINX_VITIS:=$(echo $(dirname "$(dirname "$(readlink -f "$0")")"))}
+MY_LIBRARY_PATH="$("$XILINX_VITIS/bin/ldlibpath.sh" "$XILINX_VITIS/lib/lnx64.o")"
+if [ -z "$LD_LIBRARY_PATH" ]; then
+    LD_LIBRARY_PATH="$MY_LIBRARY_PATH:$XILINX_VITIS/tps/lnx64/python-3.8.3/lib"
+else
+    LD_LIBRARY_PATH="$MY_LIBRARY_PATH:$XILINX_VITIS/tps/lnx64/python-3.8.3/lib:$LD_LIBRARY_PATH"
+fi
+
+export PYTHONPATH=$XILINX_VITIS/tps/lnx64/python-3.8.3/lib/python3.8/lib-dynload/:$XILINX_VITIS/tps/lnx64/python-3.8.3/lib/python3.8/
+export PYTHONHOME=$XILINX_VITIS/tps/lnx64/python-3.8.3/
+exec $XILINX_VITIS/lnx64/tools/gdb/gdb-11.2/bin/gdb -ex "source $XILINX_XRT/share/appdebug/appdebug.py" "${@:1}" 

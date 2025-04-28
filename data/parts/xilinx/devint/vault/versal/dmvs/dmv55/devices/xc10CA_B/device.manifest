@@ -1,0 +1,17 @@
+include_manifests = [ "versal/dmvs/dmv55/arch.manifest" ];
+arch_rtd = "versal/data/rtd/devices/xc10CA_B/versal.v2.rtd";
+device_Groups_HDOGTileTypeGroups_ClockRegions_cfg = "versal/data/device_cfg/xc10CA_B/Groups/HDOGTileTypeGroups_ClockRegions.v1.cfg";
+device_belContextMap = "versal/data/device_misc/xc10CA_B/xc10CA_B.v1.belContextMap";
+device_netContextMap = "versal/data/device_misc/xc10CA_B/xc10CA_B.v1.netContextMap";
+device_noConnectPins = "versal/data/device_misc/xc10CA_B/xc10CA_B.v1.noConnectPins";
+device_rtd = "versal/data/rtd/devices/xc10CA_B/xc10CA_B.v2.rtd";
+device_xng = "versal/data/xng/devices/xc10CA_B.v2.xng";
+tileData_cfg = "versal/data/device_cfg/xc10CA_B/tileData.v2.cfg";
+device_die_xml = "versal/data/device_pkgs/xc10CA_B/die/Package.v1.xml";
+sysmonQuad_cfg = "versal/data/device_cfg/xc10CA_B/sysmonQuad.v1.cfg";
+device_bramTileSites = "versal/data/device_misc/xc10CA_B/xc10CA_B.v1.bramTileSites";
+ClockRegion_xml = "versal/data/device_misc/xc10CA_B/ClockRegion.v2.xml";
+idcMap_xml = "versal/data/device_misc/xc10CA_B/idcMap.v1.xml";
+device_dxt = "versal/data/device_misc/xc10CA_B/xc10CA_B.v1.dxt";
+device_LCBEMgr_cfg = "versal/data/device_cfg/xc10CA_B/xc10CA_B_LCBEMgr.v1.cfg";
+device_preplace = "versal/data/place/xc10CA_B/xc10CA_B.v1.preplace";

@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "AIE/IPI Logical Architecture Specification",
+  "id": "LogicalArchSchema-0.1",
+  "compatible": [ "LogicalArchSchema-0.1" ],
+
+  "definitions": {
+        "ArrayString": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "LogicalConnection": {
+           "type": "object",
+           "properties": {
+                "type"      : { "type" : "string", "enum": [ "stream", "mem", "event" ] },
+ 		"direction" : { "type" : "string", "enum": [ "aie_to_pl", "pl_to_aie", "aie_to_noc", "noc_to_aie", "noc_to_pl", "pl_to_noc", "noc_to_noc", "pl_to_pl"] },
+                "srcPort"   : { 
+                   "type" : "object",
+                   "properties": {
+                      "instName" : { "type" : "string" },
+                      "portName" : { "type" : "string" }
+                   },
+                   "additionalProperties": false,
+                   "required": [ "instName", "portName" ]
+                },
+                "dstPorts" : {
+                   "type"  : "array",
+                   "items" : {
+                      "type": "object",
+                      "properties": {
+                         "instName" : { "type" : "string" },
+                         "portName" : { "type" : "string" }
+                      },
+                      "additionalProperties": false,
+                      "required": [ "instName", "portName" ]
+                   }
+                },
+                "memMode"   : { "type" : "string", "enum": [ "read-only", "write-only", "read-write" ] },
+                "addrType"  : { "type" : "string", "enum": [ "virtual", "physical" ] }
+           },
+           "additionalProperties": false,
+          "required": [ "type", "direction", "srcPort", "dstPorts"  ]
+        },
+        "LogicalPort": {
+           "type": "object",
+           "properties": {
+                "type"      : { "type" : "string", "enum": [ "stream", "mem", "event" ] },
+                "direction" : { "type" : "string", "enum": [ "master", "slave" ] },
+                "busWidth" : { "type" : "integer", "minimum" : 1 },
+                "registeredInterface" : { "type": "bool" },
+                "tracedInterface" : { "type": "bool" },
+                "parameterIndex" : { "type" : "integer", "minimum" : 0 },
+                "dataWidth" : { "type" : "integer", "minimum" : 1 },
+                "busWidth"  : { "type" : "integer", "minimum" : 1 },
+                "clkFreq"   : { "type" : "number" },
+                "traceFile" : { "type" : "string" },
+                "annotation": { "$ref": "#/definitions/ArrayString" },
+                "hw_annotation": { "type" : "string" },
+                "sdfioName":  { "$ref": "#/definitions/ArrayString" },
+                "vlnvName"  : { "type" : "string" },
+                "aiechannel" : { "type" : "string" }
+           },
+           "additionalProperties": false,
+          "required": [ "type", "direction", "busWidth", "dataWidth", "clkFreq"  ]
+        },
+        "MEIP": {
+           "type": "object",
+           "properties": {
+                "logical_device" : {"type" : "string"},
+                "vlnvName"  : { "type" : "string" },
+                "annotation": { "type" : "string" },
+                "hw_annotation": { "type" : "string" },
+                "aieshimPorts" : { 
+                     "type" : "object",
+                     "properties" : { "$ref": "#/definitions/LogicalPort"  }
+                }
+           },
+          "additionalProperties": false,
+          "required": [ "aieshimPorts", "annotation" ]
+        },              
+        "NoCIP": {
+          "type": "object",
+          "properties": {
+                "type"     : { "type" : "string", "enum": [ "stream", "mem"] },
+                "vlnvName" : { "type": "string" },
+                "annotation": { "type" : "string" },
+                "hw_annotation": { "type" : "string" },
+                "nocPorts" : { 
+                     "type" : "object",
+                     "properties" : { "$ref": "#/definitions/LogicalPort"  }
+                }
+          },
+          "additionalProperties": false,
+          "required": [ "nocPorts", "annotation" ]
+        },
+        "PLIP": {
+          "type": "object",
+          "properties": {
+                "ckernelName" : { "type" : "string" },
+                "sdfinstName" : { "type" : "string" },
+                "vlnvName"    : { "type" : "string" },
+                "annotation": { "type" : "string" },
+                "hw_annotation": { "type" : "string" },
+                "plPorts"   : { 
+                     "type" : "object",
+                     "properties" : { "$ref": "#/definitions/LogicalPort"  }
+                }
+          },
+          "additionalProperties": false,
+          "required": [ "plPorts", "annotation" ]
+        }
+    },
+    "type": "object",
+    "properties": {
+        "appId"     : { "type": "string" },
+        "schema"    : { "type": "string" },
+        "device"    : { "type": "string" },
+        "platform"  : { "type": "string" },
+        "connections"  : {
+            "type": "object",
+            "properties": { "$ref": "#/definitions/LogicalConnection"  },
+            "minProperties": 0
+        },
+
+        "AIE": {
+            "type": "object",
+            "properties": { "$ref": "#/definitions/MEIP" },
+            "minProperties": 0
+        },
+
+        "PL": {
+            "type": "object",
+            "properties": { "$ref": "#/definitions/PLIP" },
+            "minProperties": 0
+        },
+
+        "NoC": {
+            "type": "object",
+            "properties": { "$ref": "#/definitions/NoCIP" },
+            "minProperties": 0
+        }
+    },
+    "required": [
+        "appId"
+    ]
+}

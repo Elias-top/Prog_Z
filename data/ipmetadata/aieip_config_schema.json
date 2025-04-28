@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "aieip_config_schema-0.1",
+  "definitions": {
+    "param_value": {
+      "oneOf": [
+        { "$ref": "#/definitions/scalar_param_value" },
+        { "$ref": "#/definitions/vector_param_value" }
+        ]
+    },
+    "scalar_param_value": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "number" },
+        { "type": "boolean" }
+        ]
+    },
+    "vector_param_value": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/scalar_param_value" }
+    }
+  },
+  "description": "IP Meta data parameter",
+  "type": "object",
+  "properties": {
+    "spec": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/param_value" }
+    },
+    "outdir": {
+      "type": "string"
+    },
+    "updated_parameter": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "parameters"
+  ]
+}

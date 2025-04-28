@@ -1,0 +1,13 @@
+include_manifests = [ "versal/dmvs/dmv24/devices/xcvp1202/device.manifest" ];
+device_cfg = "versal/data/device_cfg/xcvm2502/xcvm2502.v2.cfg";
+device_Features_HDOracle_Pblock_cfg = "versal/data/device_cfg/Features/Pblock/HDOracle_Pblock.v62.cfg";
+device_LCBEMgr_cfg = "versal/data/device_cfg/xcvm2502/xcvm2502_LCBEMgr.v2.cfg";
+device_vsvi1760_xml = "versal/data/device_pkgs/xcvm2502/vsvi1760/Package.v2.xml";
+Features_HDOracle_DeviceData_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_DeviceData.v31.cfg";
+Features_HDOracle_PartStatsData_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_PartStatsData.v2.cfg";
+Features_HDOracle_ClockRegionData_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_ClockRegionData.v11.cfg";
+Features_HDOracle_NocData_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_NocData.v5.cfg";
+Features_HDOracle_HSRData_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_HSRData.v1.cfg";
+Features_HDOracle_SpeedData_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_SpeedData.v4.cfg";
+Features_HDOracle_DeviceLevel_cfg = "versal/data/device_cfg/xcvm2502/Features/HDOracle_DeviceLevel.v1.cfg";
+deviceAdditional_cfg = "versal/data/device_cfg/xcvm2502/deviceAdditional.v3.cfg";

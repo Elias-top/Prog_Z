@@ -1,0 +1,6 @@
+HARC_drd_cfg = "versal/data/arch_cfg/HARC.drd.v32.cfg";
+drc-logicalrules_cfg = "versal/data/arch_cfg/drc-logicalrules.v21.cfg";
+drc-logicalrules_drd_cfg = "versal/data/arch_cfg/drc-logicalrules.drd.v26.cfg";
+drc-physrules_cfg = "versal/data/arch_cfg/drc-physrules.v11.cfg";
+drc-physrules_drd_cfg = "versal/data/arch_cfg/drc-physrules.drd.v8.cfg";
+

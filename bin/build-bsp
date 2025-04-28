@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -e "_sdk/bsp/system.mss" ]; then
+	echo "make: Nothing to be done for 'bsp-build'."
+else
+	xsct $XILINX_VITIS/scripts/vitis/util/genbsp.tcl $2 $3
+	cd _sdk/bsp
+	make
+fi
+

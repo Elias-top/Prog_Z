@@ -1,0 +1,85 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+if [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$0.bat" "$@"
+  exit $?
+fi
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+XIL_NO_OVERRIDE=0
+XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+
+export RDI_NO_JRE=1
+export XIL_NO_OVERRIDE XIL_SUPPRESS_OVERRIDE_WARNINGS
+
+if [ -z "$XILINX_VIVADO" ]; then
+  export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+
+# clears if VITIS_IPREPO is not set
+export MYVIVADO=$VITIS_IPREPO
+
+MY_LIBRARY_PATH="$("$RDI_APPROOT/bin/ldlibpath.sh" "$RDI_APPROOT/lib/lnx64.o")"
+
+if [ -z "$LD_LIBRARY_PATH" ]; then
+  LD_LIBRARY_PATH="$MY_LIBRARY_PATH"
+else
+  LD_LIBRARY_PATH="$MY_LIBRARY_PATH:$LD_LIBRARY_PATH"
+fi
+export LD_LIBRARY_PATH
+
+[ -z "$XILINX_VITIS_HLS_ENCAPSULATED" ] && export XILINX_VITIS_HLS_ENCAPSULATED=1
+if [ "$XILINX_VITIS_HLS_ENCAPSULATED" = "1" ]; then
+  # Set XILINX_HLS if not defined to HDI_APPROOT (don't use RDI_APPROOT, it may be a PATH)
+  if [ -z "$XILINX_HLS" ]; then
+    export XILINX_HLS=$HDI_APPROOT
+  elif [ ! -d "$XILINX_HLS/bin/unwrapped" ]; then
+    export XILINX_HLS=$HDI_APPROOT
+  fi
+  export RDI_DEPENDENCY=""
+else
+  export RDI_DEPENDENCY="XILINX_HLS"
+fi
+
+# variable is set in dev environment, this needs to be removed after 2014.3_sdaccel branch
+#if [ -z "$HDI_PROCESSOR" ]; then
+#  export HDI_PROCESSOR=`uname -m`
+#fi
+
+RDI_PROG=`basename "$0"`
+# Launch batch app
+"$RDI_BINROOT"/loader -exec $RDI_PROG "$@"

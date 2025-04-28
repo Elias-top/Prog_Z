@@ -1,0 +1,41 @@
+#! /bin/bash -
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2017 Xilinx, Inc. All Rights Reserved.
+#
+
+if [ "`uname`" = Linux ]; then
+  if [ -z "$BASH" ]; then
+    exec /bin/bash "$0" "$@"
+    exit $?
+  fi
+# Detect a Windows environment and automatically switch to the .bat file
+elif [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$0.bat" "$@"
+  exit $?
+fi
+
+LOADER=$(readlink -f $0)
+BIN_DIR=$(dirname ${LOADER})
+
+script_path=$XILINX_VITIS/scripts/noc_perfmon
+echo "vperf has moved to $script_path"
+echo "please install Python >= 3.8 and libraries listed in $script_path/requirements.txt"
+echo "read $script_path/README.md for more info"
+
+echo Calling: python $script_path/noc_perfmon.py "$@"
+if command -v python3 &> /dev/null
+then
+    python3 $script_path/noc_perfmon.py "$@"
+else
+    python $script_path/noc_perfmon.py "$@"
+fi

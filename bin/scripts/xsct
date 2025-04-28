@@ -1,0 +1,277 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2014 Xilinx, Inc. All Rights Reserved.
+#
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+#RDI_PROG=`basename "$0"`
+RDI_NO_JRE=yes
+export RDI_NO_JRE
+
+RDI_NEED_OLD_JRE=yes
+export RDI_NEED_OLD_JRE
+
+export RDI_PLATFORM=lnx32
+case `uname -m` in
+  x86_64) 
+    export RDI_PLATFORM=lnx64
+    ;;
+esac
+
+RDI_OPT_EXT=.o
+argSize=0
+RDI_ARGS=()
+LOAD_SCW=0
+LOG_FILE="$HOME"/.xsctcmdhistory
+NO_DISP=0
+DBUS_EXISTS=0
+interactive_mode=0
+use_rlwrap=1
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -dbg)
+      RDI_OPT_EXT=.g
+      RDI_ARGS[$argSize]="$1"
+      argSize=$(($argSize + 1))
+      shift
+      ;;
+    -history)
+      # Do not pass -history to loader, i.e., don't add it to RDI_ARGS
+      echo ""
+      echo "WARNING: \"-history\" option is deprecated and no longer used."
+      echo "XSCT commandline history and line editing are enabled by default."
+      shift
+      ;;
+    -log)
+      LOG_FILE="$2"
+      if [ "$LOG_FILE" == "" ]; then
+		echo "ERROR: File name is not specified."
+		exit 1
+      fi
+      shift
+      shift	
+      ;;
+    -sdx)
+      shift
+      ;;	
+    -nodisp)      
+      NO_DISP=1
+      use_rlwrap=0
+      export NO_DISP
+      shift
+      ;;
+    -norlwrap)      
+      use_rlwrap=0
+      shift
+      ;;
+    -interactive)
+      interactive_mode="1"
+      RDI_ARGS[$argSize]="$1"
+      argSize=$(($argSize + 1))
+      shift
+      ;;
+    *)
+     #If options are not parsed correctly, we will end up disabling rlwrap incorrectly
+      if [ "${1:0:1}" != "-" ]; then 
+          use_rlwrap=0
+      fi 
+      RDI_ARGS[$argSize]="$1"
+      argSize=$(($argSize + 1))
+      shift
+      ;;
+   esac
+done
+
+function cleanup {
+
+	if [ "$IS_XVFB_SET" = "1" ]; then
+		$RDI_BINROOT/../scripts/xsct/setup-xvfb.sh stop $randIndex
+	fi
+	exit
+}
+
+[ -n "$XSCT_FAST_TRAP" ] && trap "trap - SIGTERM && kill -0 $$ && kill -- -$$" SIGINT SIGHUP SIGTERM SIGQUIT SIGABRT SIGBUS
+
+IS_XVFB_SET=0
+
+if [ "$NO_DISP" = "0" ]; then
+    XLSCLIENTS=`which xlsclients`
+    if [ $? -ne 0 ]; then
+        echo "ERROR: xlsclients is not available on the system, please make sure xlsclients is available on the system."
+        exit 1
+    fi
+    if [ ! -x $XLSCLIENTS ]; then
+        echo "ERROR: xlsclients is not available on the system, please make sure xlsclients is available on the system."
+        exit 1
+    fi
+    
+    if [ "$DISPLAY" != "" ]; then
+	$XLSCLIENTS  > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+	    echo "NOTE: DISPLAY is currently set to a an invalid value. $XLSCLIENTS detected this $DISPLAY as invalid display."
+	    echo "	Trying to set the DISPLAY to a dummy display by staring Xvfb."
+	    export DISPLAY=""
+	fi	
+    fi
+    if [ "$DISPLAY" = "" ]; then
+        timespent=0
+        XVFB=`which Xvfb`
+	if [ $? -ne 0 ]; then
+	    echo "ERROR: Xvfb is not available on the system, please make sure Xvfb is available on the system."
+	    exit 1
+	fi
+	if [ ! -x $XVFB ]; then
+            echo "ERROR: Xvfb is not available on the system, please make sure Xvfb is available on the system."
+            exit 1
+        fi       
+	DBUS_LAUNCH=`which dbus-launch`
+	if [ $? -ne 0 ]; then
+	    echo "WARNING: dbus-launch is not available on the system, please make sure dbus-launch is available on the system."
+	    DBUS_EXISTS=0
+	else
+	    DBUS_EXISTS=1
+	fi	
+        
+        randomIndex1=$[100 + $[ RANDOM % 100 ]]
+        randomIndex2=$[100 + $[ RANDOM % 100 ]]
+        randIndex=$randomIndex1$randomIndex2
+        XVFB_DISP_FILE=/tmp/X.xvfb-display_$randIndex.txt		
+	rm -f $XVFB_DISP_FILE
+        $RDI_BINROOT/../scripts/xsct/setup-xvfb.sh start $randIndex &
+
+        #
+        # Need to insure Xvfb was started correctly, look for 
+        # a valid lock file to proceed or exit 1 if not found
+        #
+        RC=1
+        # Loop for approx 120s, highly loaded hosts may take 
+        # a long time to startup xvfb.
+        for ((i=0;i<120;i++)); do
+                if [ ! -f $XVFB_DISP_FILE ] ; then
+                        sleep 1
+                        continue
+                else
+                        XVFB_DISPLAY=`cat $XVFB_DISP_FILE`
+                        if [ -f /tmp/.X${XVFB_DISPLAY}-lock ] ; then
+                                RC=0
+                                break
+                        fi
+                fi
+        done 				
+        
+        #
+        # Start dbus-daemon
+        #
+        export DISPLAY=:$XVFB_DISPLAY
+        echo "Display is $DISPLAY"
+        IS_XVFB_SET=1
+        $XLSCLIENTS  > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            echo "Could not start Dummy XServer, please make sure Xvfb is available on the system"
+            exit
+        fi
+	if [ "$DBUS_EXISTS" = "1" ]; then
+	    #echo "Starting dbus-daemon at " `date`
+	    DBUS_INFO=`$DBUS_LAUNCH --sh-syntax  --exit-with-session`        
+	    DBUS_LAUNCH_RC=$?
+	    if [ "$DBUS_LAUNCH_RC" -ne 0 ] ; then
+		    echo 'WARNING: dbus-launch failed to start at ' `date`
+		    RC=1
+	    fi
+	    #
+	    # Get the dbus-launch pid, it should be within this shell's process list
+	    #
+	    ps -ef -u $USER | grep dbus-launch | grep $USER | grep -v grep | awk '{print $2}' > /tmp/dbus-launch-pid_$randIndex.txt
+    
+	    echo $DBUS_INFO > /tmp/dbus-info_$randIndex.txt
+	    . /tmp/dbus-info_$randIndex.txt
+	fi
+        #echo " DBUS INFO "
+        #cat /tmp/dbus-info_$randIndex.txt
+        #echo "DBUS PID "
+        #cat /tmp/dbus-launch-pid_$randIndex.txt   
+    fi
+    [ -z "$XSCT_FAST_TRAP" ] && trap cleanup SIGINT SIGHUP SIGTERM SIGQUIT SIGABRT SIGBUS    
+fi
+# Add toolchain path to $PATH
+if [ -n "${PATH}" ]; then
+  export PATH=$RDI_APPROOT/gnu/microblaze/lin/bin:$RDI_APPROOT/gnu/arm/lin/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_be/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_le/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-linux/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-none/bin:$RDI_APPROOT/gnu/armr5/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/riscv/lin/riscv64-unknown-elf/bin:$PATH
+else
+  export PATH=$RDI_APPROOT/gnu/microblaze/lin/bin:$RDI_APPROOT/gnu/arm/lin/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_be/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_le/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-linux/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-none/bin:$RDI_APPROOT/gnu/armr5/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/riscv/lin/riscv64-unknown-elf/bin
+fi
+
+ PATH=$RDI_APPROOT/tps/lnx64/cmake-3.24.2/bin:$PATH
+
+ if [ -z "$LD_LIBRARY_PATH" ]; then
+    LD_LIBRARY_PATH=$($RDI_APPROOT/bin/ldlibpath.sh $RDI_APPROOT/tps/lnx64/cmake-3.24.2/libs)
+  else
+    LD_LIBRARY_PATH=$($RDI_APPROOT/bin/ldlibpath.sh $RDI_APPROOT/tps/lnx64/cmake-3.24.2/libs):$LD_LIBRARY_PATH
+  fi
+  export LD_LIBRARY_PATH
+
+# In Scout, xsct is by default, SDx - XSCT.
+
+    export XILINX_VITIS="$HDI_APPROOT"    
+    
+VITIS_NO_CONSOLE_FILTER=true
+export VITIS_NO_CONSOLE_FILTER
+# Use rlwrap to invoke XSCT
+if [[ "$interactive_mode" = "0" && "$use_rlwrap" = "0" ]]; then
+    "$RDI_BINROOT"/loader -exec rdi_xsct "${RDI_ARGS[@]}"
+else 
+    "$RDI_BINROOT"/unwrapped/"$RDI_PLATFORM$RDI_OPT_EXT"/rlwrap -rc -b "(){}[],+= & ^%$#@"";|\\" -f "$HDI_APPROOT"/scripts/xsct/xsdb/cmdlist -H "$LOG_FILE" "$RDI_BINROOT"/loader -exec rdi_xsct "${RDI_ARGS[@]}"
+fi
+
+RET_VAL=$?
+
+WAIT_TIMEOUT=3
+
+if [ "$XSCT_WAIT_TIMEOUT" != "" ]; then    
+    WAIT_TIMEOUT=$XSCT_WAIT_TIMEOUT
+    echo "XSCT_WAIT_TIMEOUT is set to $XSCT_WAIT_TIMEOUT"
+fi
+
+if [ "$IS_XVFB_SET" = "1" ]; then
+    #echo " Doing clean exit of xvfb "
+    sleep $WAIT_TIMEOUT
+    SETUP_PID=`ps -ef -u $USER | grep setup-xvfb | grep -v grep | grep $randIndex | awk '{print $2}'`
+    #echo " KIlling the start script"
+    #echo $SETUP_PID
+    if [ -n "$XSCT_FAST_TRAP" ] ; then
+        $RDI_BINROOT/../scripts/xsct/setup-xvfb.sh stop $randIndex
+    else
+        kill $SETUP_PID
+    fi
+else
+    sleep $WAIT_TIMEOUT
+fi
+
+    
+exit $RET_VAL

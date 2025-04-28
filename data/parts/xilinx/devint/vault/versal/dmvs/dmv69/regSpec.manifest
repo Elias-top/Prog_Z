@@ -1,0 +1,6 @@
+arch_MMI_UDH_DP_regspec_xml : "versal/data/regSpecs/MMI_UDH_DP.v1.xml"
+arch_aie2_npi_regspec_xml : "versal/data/regSpecs/aie2_npi.v1.xml"
+arch_aie2p_s_npi_regspec_xml : "versal/data/regSpecs/aie2p_s_npi.v1.xml"
+arch_aie2p_npi_regspec_xml : "versal/data/regSpecs/aie2p_npi.v1.xml"
+arch_aie4_npi_regspec_xml : "versal/data/regSpecs/aie4_npi.v1.xml"
+arch_aie4_npi_dfll_regspec_xml : "versal/data/regSpecs/aie4_npi_dfll.v1.xml"

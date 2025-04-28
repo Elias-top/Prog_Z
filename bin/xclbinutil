@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Detect a Windows environment and automatically switch to the .bat file
+if [[ "`uname`" == windows32* ]] || [[ "`uname`" == CYGWIN* ]] ; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+fi
+
+. "`dirname \"$0\"`/setupEnv.sh"
+
+tempArgSize=0
+RDI_TEMP_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -version|--version)
+      RDI_ONLY_PRINT_VERSION=1
+      if [[ -n "${XILINX_XRT}" ]]; then
+        RDI_TEMP_ARGS[$tempArgSize]="$1"
+        tempArgSize=$(($tempArgSize + 1))
+      fi
+      shift
+      ;;
+    *)
+      RDI_TEMP_ARGS[$tempArgSize]="$1"
+      tempArgSize=$(($tempArgSize + 1))
+      shift
+      ;;
+  esac
+done
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+
+export RDI_NO_JRE=1
+export XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+RDI_PROG=xclbinutil
+
+# Determine if the XRT version of xclbinutil should be used
+if [[ -z "${XILINX_XRT}" ]]; then
+  # Use Vitis version of xclbinutil
+  if [ "$RDI_ONLY_PRINT_VERSION" == "1" ]; then
+    "$RDI_BINROOT"/loader -print_version $RDI_PROG
+    "$RDI_BINROOT"/loader -exec $RDI_PROG --version
+  else
+    "$RDI_BINROOT"/loader -exec $RDI_PROG "${RDI_TEMP_ARGS[@]}"
+  fi
+else
+  # Use the version shipped with XRT
+  "${XILINX_XRT}/bin/${RDI_PROG}" "${RDI_TEMP_ARGS[@]}"
+fi
+
+
+
+

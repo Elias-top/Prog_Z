@@ -1,0 +1,97 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2011, 2019 Xilinx, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+if [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$0.bat" "$@"
+  exit $?
+fi
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+tempArgSize=0
+RDI_TEMP_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -version|--version)
+      RDI_ONLY_PRINT_VERSION=1
+      shift
+      ;;
+    *)
+      RDI_TEMP_ARGS[$tempArgSize]="$1"
+      tempArgSize=$(($tempArgSize + 1))
+      shift
+      ;;
+  esac
+done
+XIL_NO_OVERRIDE=0
+XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+export RDI_NO_JRE=1
+export XIL_NO_OVERRIDE XIL_SUPPRESS_OVERRIDE_WARNINGS RDI_VERBOSE
+
+if [ -z "$XILINX_VIVADO" ]; then
+  export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+
+if [ -z "$XILINX_VIVADO_HLS" ]; then
+  export XILINX_VIVADO_HLS="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+
+# clears if VITIS_IPREPO is not set
+export MYVIVADO=$VITIS_IPREPO
+
+MY_LIBRARY_PATH="$("$RDI_APPROOT/bin/ldlibpath.sh" "$RDI_APPROOT/lib/lnx64.o")"
+
+if [ -z "$LD_LIBRARY_PATH" ]; then
+  LD_LIBRARY_PATH="$MY_LIBRARY_PATH"
+else
+  LD_LIBRARY_PATH="$MY_LIBRARY_PATH:$LD_LIBRARY_PATH"
+fi
+export LD_LIBRARY_PATH
+
+#export PATH=$XILINX_VIVADO/bin:$PATH
+#export PATH=$XILINX_VIVADO_HLS/bin:$PATH
+
+# variable is set in dev environment, this needs to be removed after 2014.3_sdaccel branch
+if [ -z "$HDI_PROCESSOR" ]; then
+  export HDI_PROCESSOR=`uname -m`
+fi
+
+RDI_PROG=`basename "$0"`
+# Launch batch app
+if [ "$RDI_ONLY_PRINT_VERSION" == "1" ]; then
+  "$RDI_BINROOT"/loader -print_version $RDI_PROG
+else
+  "$RDI_BINROOT"/loader -exec $RDI_PROG "${RDI_TEMP_ARGS[@]}"
+fi

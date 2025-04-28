@@ -1,0 +1,280 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "vitis_library_api_spec_schema-1.0",
+	"description": "Vitis Library API Specification 1.0",
+	"type": "object",
+	"properties": {
+		"schema": {
+			"description": "The reference schema name.",
+			"type": "string"
+		},
+		"api_name": {
+			"description": "The API name.",
+			"type": "string"
+		},
+		"display_name": {
+			"description": "The display name.",
+			"type": "string"
+		},
+		"header_file_name": {
+			"description": "The header file name.",
+			"type": "string"
+		},
+		"search_paths": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		},
+		"parameters": {
+			"description": "The parameters that need to be set for configuring the IP.",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/parameter"
+			},
+			"minItems": 1
+		},
+		"ports": {
+			"description": "Function to get port information.",
+			"$ref": "#/definitions/function"
+		},
+		"metrics": {
+			"descrition": "Function to get performance/cost",
+			"type": "object",
+			"properties": {
+				"number_of_aie_cores": {
+					"description": "Function to get number of aie cores.",
+					"$ref": "#/definitions/function"
+				},
+				"peak_samples_per_clock": {
+					"description": "Function to get peak samples per clock.",
+					"$ref": "#/definitions/function"
+				}
+			}
+		},
+		"generator": {
+			"description": "Function to get instantiation.",
+			"$ref": "#/definitions/function"
+		}
+	},
+	"required": [
+		"api_name",
+		"display_name",
+		"header_file_name",
+		"search_paths",
+		"parameters",
+		"ports",
+		"generator"
+	],
+	"additionalProperties": false,
+	"definitions": {
+		"array_type": {
+			"description": "An array type whose size is a constant",
+			"type": "object",
+			"properties": {
+				"element_type": {
+					"type": "object",
+					"additionalItems": false,
+					"additionalProperties": false,
+					"$ref": "#/definitions/basic_or_dependent_type"
+				},
+				"size": {
+					"description": "Number of array elements",
+					"type": "integer"
+				},
+				"type_kind": {
+					"type": "string",
+					"enum": [
+						"array_type"
+					]
+				}
+			},
+			"required": [
+				"element_type",
+				"size",
+				"type_kind"
+			],
+			"additionalProperties": false
+		},
+		"basic_or_dependent_type": {
+			"oneOf": [{
+					"$ref": "#/definitions/basic_type"
+				},
+				{
+					"$ref": "#/definitions/dependent_type"
+				}
+			]
+		},
+		"basic_type": {
+			"description": "An basic type",
+			"type": "object",
+			"properties": {
+				"type_kind": {
+					"description": "This property serves as a tag to discriminate types.",
+					"type": "string",
+					"enum": [
+						"basic_type"
+					]
+				},
+				"basic_type_kind": {
+					"type_kind": {
+						"type": "string",
+						"enum": [
+							"dependent_sized_array_type"
+						]
+					},
+					"size": {
+						"description": "A C expression over the names of the template parameters that evaluates to a positive integer",
+						"type": "string"
+					},
+					"element_type": {
+						"type": "object",
+						"additionalItems": false,
+						"additionalProperties": false,
+						"$ref": "#/definitions/basic_or_dependent_type"
+					}
+				},
+				"required": [
+					"type_kind",
+					"size",
+					"element_type"
+				],
+				"additionalProperties": false
+			}
+                },
+		"dependent_type": {
+			"description": "A type specified by a (template) parameter",
+			"type": "object",
+			"properties": {
+				"type_kind": {
+					"type": "string",
+					"enum": [
+						"dependent_type"
+					]
+				},
+				"typename": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"type_kind",
+				"typename"
+			],
+			"additionalItems": false,
+			"additionalProperties": false
+		},
+		"any_type": {
+			"oneOf": [{
+					"$ref": "#/definitions/basic_type"
+				},
+				{
+					"$ref": "#/definitions/dependent_type"
+				},
+				{
+					"$ref": "#/definitions/array_type"
+				},
+				{
+					"$ref": "#/definitions/dependent_sized_array_type"
+				}
+			]
+		},
+		"enum_string": {
+			"description": "Specifies the set of legal values for a name parameter.",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1
+		},
+		"enum_integer": {
+			"description": "Specifies the set of legal values for a name parameter.",
+			"type": "array",
+			"items": {
+				"type": "integer"
+			},
+			"minItems": 1
+		},
+		"function": {
+			"decription": "Reference to python function.",
+			"type": "object",
+			"properties": {
+				"file": {
+					"description": "filename conataining the python function.",
+					"type": "string"
+				},
+				"function": {
+					"description": "python function name.",
+					"type": "string"
+				},
+				"args": {
+					"description": "List of optional arguments.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"file",
+				"function"
+			]
+		},
+		"parameter": {
+			"description": "This describes the attributes of a parameter.",
+			"type": "object",
+			"properties": {
+				"name": {
+					"description": "Description of the parameter.",
+					"type": "string"
+				},
+				"description": {
+					"description": "Description of the parameter.",
+					"type": "string"
+				},
+				"type": {
+					"description": "The type of the parameter. For int/int64 the legal values can be restricted via the minimum and maximum attributes of the parameter.  For 'name' parameters, the legal set can be restricted via the 'enum' attribute of the parameter. A 'vector' parameter can be restricted via the 'vector_length' and 'element_type' attributes.",
+					"type": "string"
+				},
+				"minimum": {
+					"description": "Specifies the minimum value for a int or int64 parameter.",
+					"type": "integer"
+				},
+				"maximum": {
+					"description": "Specifies the maxiumum value for a int or int64 parameter.",
+					"type": "integer"
+				},
+				"default": {
+					"description": "Specifies the maxiumum value for a int or int64 parameter."
+				},
+				"enum": {
+					"description": "Specifies the set of legal values for a name parameter.",
+					"oneOf": [{
+							"$ref": "#/definitions/enum_string"
+						},
+						{
+							"$ref": "#/definitions/enum_integer"
+						}
+					]
+				},
+				"element_type": {
+					"description": "Specifies the element type for a vector parameter.",
+					"type": "string"
+				},
+				"validator": {
+					"description": "Reference to python function for validation",
+					"$ref": "#/definitions/function"
+				},
+				"updater": {
+					"description": "Reference to python function for GUI updation",
+					"$ref": "#/definitions/function"
+				}
+			},
+			"required": [
+				"name",
+				"description",
+				"type"
+			],
+			"additionalProperties": false
+		}
+	}
+}

@@ -1,0 +1,1 @@
+pyinstaller flash_gui.py --onefile --noconsole --distpath ..\

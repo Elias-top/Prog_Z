@@ -1,0 +1,335 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "vmc_vitis_library_api_spec_schema-1.0",
+    "description": "VMC Vitis Library API Specification 1.0",
+    "type": "object",
+    "properties": {
+        "low_level_file": {
+            "description": "Low Level file name.",
+            "type": "string"
+        },
+        "ip_name": {
+            "description": "The name of the IP.",
+            "type": "string"
+        },
+        "block_info": {
+            "description": "The block description.",
+            "type": "object",
+            "properties":  {
+                "label": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "parameters": {
+            "description": "The parameters that need to be set for configuring the IP.",
+            "type": "array",
+            "items": { "$ref": "#/definitions/parameter" },
+            "minItems": 1
+        },
+        "generator": {
+            "description": "Function to get instantiation.",
+            "$ref": "#/definitions/function"
+        }
+    },
+    "required": [
+        "ip_name",
+        "block_info",
+        "parameters"
+    ],
+    "additionalProperties": false,
+    "definitions": {
+        "array_type": {
+            "description": "An array type whose size is a constant",
+            "type": "object",
+            "properties": {
+                "element_type": {
+                    "type": "object",
+                    "additionalItems": false,
+                    "additionalProperties": false,
+                    "$ref": "#/definitions/basic_or_dependent_type"
+                },
+                "size": {
+                    "description": "Number of array elements",
+                    "type": "integer"
+                },
+                "type_kind": {
+                    "type": "string",
+                    "enum": [
+                        "array_type"
+		    ]
+		}
+	    },
+            "required": [
+                "element_type",
+                "size",
+                "type_kind"
+	    ],
+            "additionalProperties": false
+	},
+        "basic_or_dependent_type": {
+            "oneOf": [
+                {
+	            "$ref": "#/definitions/basic_type"
+	        },
+	        {
+		    "$ref": "#/definitions/dependent_type"
+		}
+	    ]
+        },
+        "basic_type": {
+            "description": "An basic type",
+            "type": "object",
+            "properties": {
+                "type_kind": {
+                    "description": "This property serves as a tag to discriminate types.",
+                    "type": "string",
+	            "enum": [
+	                "basic_type"
+	            ]
+	        },
+                "basic_type_kind": {
+                    "description": "Specifies the basic type kind.",
+	            "type": "string",
+	            "enum": [
+	                "int16",
+                        "int32",
+                        "float",
+                        "cint16",
+                        "cint32",
+                        "cfloat"
+                    ]
+                }
+            },
+            "required": [
+                "type_kind",
+                "basic_type_kind"
+            ],
+            "additionalProperties": false
+        },
+        "dependent_sized_array_type": {
+            "description": "An array type whose size depends on a (template) parameter",
+            "type": "object",
+            "properties": {
+                "type_kind": {
+                    "type": "string",
+                    "enum": [
+                        "dependent_sized_array_type"
+                    ]
+                },
+                "size": {
+                    "description": "A C expression over the names of the template parameters that evaluates to a positive integer",
+                    "type": "string"
+                },
+                "element_type": {
+                    "type": "object",
+                    "additionalItems": false,
+                    "additionalProperties": false,
+                    "$ref": "#/definitions/basic_or_dependent_type"
+                }
+            },
+            "required": [
+                "type_kind",
+                "size",
+                "element_type"
+            ],
+            "additionalProperties": false
+        },
+        "dependent_type": {
+            "description": "A type specified by a (template) parameter",
+            "type": "object",
+            "properties": {
+                "type_kind": {
+                    "type": "string",
+                    "enum": [
+                        "dependent_type"
+                    ]
+                },
+                "typename": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type_kind",
+                "typename"
+            ],
+            "additionalItems": false,
+            "additionalProperties": false
+        },
+        "any_type": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/basic_type"
+                },
+                {
+                    "$ref": "#/definitions/dependent_type"
+                },
+                {
+                    "$ref": "#/definitions/array_type"
+                },
+                {
+                    "$ref": "#/definitions/dependent_sized_array_type"
+                }
+            ]
+        },
+        "enum_string": {
+            "description": "Specifies the set of legal values for a name parameter.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "enum_integer": {
+            "description": "Specifies the set of legal values for a name parameter.",
+            "type": "array",
+            "items": {
+                "type": "integer"
+            },
+            "minItems": 1
+        },
+        "function": {
+            "decription": "Reference to python function.",
+            "type": "object",
+            "properties": {
+                "file": {
+                    "description": "filename conataining the python function.",
+                    "type": "string"
+                },
+                "function": {
+                    "description": "python function name.",
+                    "type": "string"
+                },
+                "args": {
+                    "description": "List of optional arguments.",
+                    "type": "array",
+                    "items": {
+                        "type": "string" 
+                    }
+                }
+            },
+            "required": [
+                "file",
+                "function" 
+            ]
+        },
+        "block_function": {
+            "decription": "Reference to block gui.",
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "parameter display name",
+                    "type": "string"
+                },
+                "tablabel": {
+                    "description": "parent tab name",
+                    "type": "string"
+                },
+                "parameterType": {
+                    "description": "type of the parameter",
+                    "type": "string"
+                },
+                "enable": {
+                    "description": "callback enable",
+                    "type": "string" 
+                },
+                "disable": {
+                    "description": "callback disable",
+                    "type": "string" 
+                }
+            },
+            "required": [
+                "tablabel",
+                "parameterType" 
+            ]
+        },
+        
+        "parameter": {
+            "description": "This describes the attributes of a parameter.",
+            "type": "object",
+            "properties": {
+                "key": {
+                    "description": "Name of the parameter in the low level file.",
+                    "type": "string"
+                },
+		"name": {
+                    "description": "Name of the parameter.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Description of the parameter.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the parameter. For int/int64 the legal values can be restricted via the minimum and maximum attributes of the parameter.  For 'name' parameters, the legal set can be restricted via the 'enum' attribute of the parameter. A 'vector' parameter can be restricted via the 'vector_length' and 'element_type' attributes.",
+                    "type": "string"
+                },
+                "default": {
+                    "description": "Specifies the default value for a parameter."
+                },
+                "enum": {
+                    "description": "Specifies the set of legal values for a name parameter.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/enum_string"
+                        },
+                        {
+                            "$ref": "#/definitions/enum_integer"
+                        }
+                    ]
+                },
+                "enum_str": {
+                    "description": "Specifies the set of string representation for a name parameter",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "element_type": {
+                    "description": "Specifies the element type for a vector parameter.",
+                    "type": "string"
+                },
+                "blockgui": {
+                    "description": "Reference to block function for gui creation",
+                    "$ref": "#/definitions/block_function"                     
+                },
+		"label": {
+                    "description": "parameter display name",
+                    "type": "string"
+                },
+                "tablabel": {
+                    "description": "parent tab name",
+                    "type": "string"
+                },
+                "parameterType": {
+                    "description": "type of the parameter",
+                    "type": "string"
+                },
+                "enable": {
+                    "description": "callback enable",
+                    "type": "string" 
+                },
+                "disable": {
+                    "description": "callback disable",
+                    "type": "string" 
+                },
+                "validator": {
+                    "description": "Reference to python function for validation",
+                    "$ref": "#/definitions/function"
+                },
+                "updater": {
+                    "description": "Reference to python function for GUI updation",
+                    "$ref": "#/definitions/function"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

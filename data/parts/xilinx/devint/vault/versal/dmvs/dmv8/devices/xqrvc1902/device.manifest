@@ -1,0 +1,16 @@
+include_manifests = [ "versal/dmvs/dmv8/devices/xcvc1902/device.manifest" ];
+device_cfg = "versal/data/device_cfg/xqrvc1902/xqrvc1902.v1.cfg";
+device_die_xml = "versal/data/device_pkgs/xqrvc1902/die/Package.v1.xml";
+device_vsra2197_xml = "versal/data/device_pkgs/xqrvc1902/vsra2197/Package.v2.xml";
+device_Features_HDOracle_Pblock_cfg = "versal/data/device_cfg/Features/Pblock/HDOracle_Pblock.v49.cfg";
+Features_HDOracle_DeviceData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_DeviceData.v16.cfg";
+Features_HDOracle_AieData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_AieData.v4.cfg";
+Features_HDOracle_NocData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_NocData.v3.cfg";
+Features_HDOracle_PartStatsData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_PartStatsData.v1.cfg";
+Features_HDOracle_ClockRegionData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_ClockRegionData.v7.cfg";
+Features_HDOracle_HSRData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_HSRData.v1.cfg";
+Features_HDOracle_SpeedData_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_SpeedData.v5.cfg";
+Features_HDOracle_DeviceLevel_cfg = "versal/data/device_cfg/xqrvc1902/Features/HDOracle_DeviceLevel.v1.cfg";
+deviceAdditional_cfg = "versal/data/device_cfg/xqrvc1902/deviceAdditional.v1.cfg";
+device-1MM_connFullOfflineFile_pb = "versal/data/timingdata/devices/xqrvc1902/pb/xqrvc1902-1MM.connFullOfflineFile.v2.pb";
+device-1MM_dlyFullOfflineFile_pb = "versal/data/timingdata/devices/xqrvc1902/pb/xqrvc1902-1MM.dlyFullOfflineFile.v1.pb";

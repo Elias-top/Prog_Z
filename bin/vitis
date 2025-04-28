@@ -1,0 +1,567 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+# Do this before calling setupEnv.sh, because the equivalent .bat file will
+# instead source setupEnv.bat, which is more appropriate for Windows.
+
+if [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$0.bat" "$@"
+  exit $?
+fi
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+#
+# RDI_INSTALLROOT - One directory above RDI_BASEROOT
+#  E.x.
+#    /usr/Xilinx/SDx/2018.2/bin/example
+#    RDI_INSTALLROOT=/usr/Xilinx
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+
+XIL_NO_OVERRIDE=0
+XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+export RDI_NO_JRE=1
+export RDI_USE_JDK11=1
+export XIL_NO_OVERRIDE XIL_SUPPRESS_OVERRIDE_WARNINGS
+
+if [ -z "$XILINX_VIVADO" ]; then
+  if [[ -d "$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER" ]]; then
+    export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+  fi  
+fi
+
+export XILINX_VITIS="$HDI_APPROOT"
+
+if [ -z "$XILINX_HLS" ]; then
+  if [ -e "$XILINX_VITIS/data/hls" ]; then
+    export XILINX_HLS=$XILINX_VITIS
+  elif [ -e "$RDI_INSTALLROOT/Vitis_HLS/$RDI_INSTALLVER/data/hls" ]; then
+    export XILINX_HLS="$RDI_INSTALLROOT/Vitis_HLS/$RDI_INSTALLVER"
+  fi  
+fi
+
+if [[ -z "$XILINX_VITIS_AIETOOLS" && -e "$XILINX_VITIS/aietools" ]]; then
+  export XILINX_VITIS_AIETOOLS="$XILINX_VITIS/aietools"
+fi
+
+tooldir=tps/lnx64/jre11.0.16_1
+JAVA_HOME=$XILINX_VIVADO/$tooldir
+[ ! -e $JAVA_HOME ] && JAVA_HOME=$XILINX_VITIS/$tooldir
+export JAVA_HOME
+
+tooldir=tps/lnx64/python-3.8.3
+PYTHONHOME=$XILINX_VIVADO/$tooldir
+[ ! -e $PYTHONHOME ] && PYTHONHOME=$XILINX_VITIS/$tooldir
+export PYTHONHOME
+
+tooldir=tps/tcl/tcl8.6
+TPS_TCL=$XILINX_VIVADO/$tooldir
+[ ! -e $TPS_TCL ] && TPS_TCL=$XILINX_VITIS/$tooldir
+
+tooldir=tps/tk/tk8.5
+TPS_TK=$XILINX_VIVADO/$tooldir
+[ ! -e $TPS_TK ] && TPS_TK=$XILINX_VITIS/$tooldir
+
+tooldir=tps/lnx64/cmake-3.24.2
+TPS_CMAKE=$XILINX_VIVADO/$tooldir
+[ ! -e $TPS_CMAKE ] && TPS_CMAKE=$XILINX_VITIS/$tooldir
+
+tooldir=tps/lnx64/git-2.41.0
+TPS_GIT=$XILINX_VIVADO/tps/lnx64/git-2.45.0
+[ ! -e $TPS_GIT ] && TPS_GIT=$XILINX_VITIS/$tooldir
+
+tooldir=lnx64/tools/clang
+TOOLS_CLANG=$XILINX_VIVADO/$tooldir
+[ ! -e $TOOLS_CLANG ] && TOOLS_CLANG=$XILINX_VITIS/$tooldir
+
+tooldir=cli/jupyter/bin
+JUPYTER_BIN=$XILINX_VIVADO/$tooldir
+[ ! -e $JUPYTER_BIN ] && JUPYTER_BIN=$XILINX_VITIS/$tooldir
+
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+
+XILINX_VITIS_VERSION=UnknownVersion
+if [ -e "$HDI_APPROOT/bin/unwrapped/lnx64.o/prodversion" ]; then
+  XILINX_VITIS_VERSION=`${RDI_BINROOT}/loader -print_version Vitis`
+fi
+
+
+ export XILINX_VITIS_GIT=$TPS_GIT/bin
+
+
+export RDI_DEPENDENCY=
+
+if [ -z "$XILINX_XRT" ]; then
+  XBB_DIR="$( (cd -L "$XILINX_VITIS/../../../../xbb" && pwd -L) 2> /dev/null )"
+  if [ -e "/opt/xilinx/xrt/setup.sh" ]; then
+    . "/opt/xilinx/xrt/setup.sh"
+  elif [ -e "$XBB_DIR/xrt/packages/setenv.sh" ]; then
+    . "$XBB_DIR/xrt/packages/setenv.sh"
+  fi
+fi
+
+if [ ! -z "$XILINX_VIVADO" ]; then
+  export PATH=$XILINX_VIVADO/bin:$PATH 
+fi
+export PATH=$XILINX_VITIS/bin:$PATH
+[ -e "$XILINX_VITIS_AIETOOLS/bin" ] && export PATH=$XILINX_VITIS_AIETOOLS/bin:$PATH
+
+if [[ -d "$XILINX_HLS"  &&  "$XILINX_HLS" != "$XILINX_VITIS" ]]; then
+  CUSTOM_LIBRARY_PATH="$("$XILINX_HLS/bin/ldlibpath.sh" "$XILINX_HLS/lib/lnx64.o")"
+   if [ -z "$LD_LIBRARY_PATH" ]; then
+    LD_LIBRARY_PATH="$CUSTOM_LIBRARY_PATH:$XILINX_HLS/lib/lnx64.o"
+  else
+    LD_LIBRARY_PATH="$CUSTOM_LIBRARY_PATH:$XILINX_HLS/lib/lnx64.o:$LD_LIBRARY_PATH"
+  fi
+  export PATH=$XILINX_HLS/bin:$PATH
+fi
+
+if [ -d "$XILINX_VITIS" ]; then
+  MY_LIBRARY_PATH="$("$XILINX_VITIS/bin/ldlibpath.sh" "$XILINX_VITIS/lib/lnx64.o"):$PYTHONHOME/lib"
+  [ -n "$XILINX_VITIS_AIETOOLS" ] && [ -e "$XILINX_VITIS_AIETOOLS/lib/lnx64.o" ] && MY_LIBRARY_PATH="${MY_LIBRARY_PATH}:$XILINX_VITIS_AIETOOLS/lib/lnx64.o"
+  if [ -z "$LD_LIBRARY_PATH" ]; then
+    LD_LIBRARY_PATH=$MY_LIBRARY_PATH
+  else
+    LD_LIBRARY_PATH="${MY_LIBRARY_PATH}:$LD_LIBRARY_PATH"
+  fi
+  export LD_LIBRARY_PATH
+fi
+
+OS=`uname -s`
+
+noSplashPassed=0
+vitisNewOption=1
+defaultGUIOpt=0
+interactiveOption=0
+for arg in "$@"; do
+  if [[ "$arg" == "-nosplash" || "$arg" == "--nosplash" ]]; then
+    noSplashPassed=1
+  elif [[ "$arg" == "-classic" || "$arg" == "--classic" ]]; then
+    vitisNewOption=0
+  elif [[ "$arg" == "--gui" || "$arg" == "-g" ]]; then
+    defaultGUIOpt=1
+  elif [[ "$arg" == "-interactive" || "$arg" == "--interactive" || "$arg" == "-i" ]]; then
+    interactiveOption=1
+  elif [[ "$arg" == "-source" || "$arg" == "--source" || "$arg" == "-s" ]]; then
+    interactiveOption=1
+  elif [[ "$arg" == "-h" || "$arg" == "--help" || "$arg" == "--version" || "$arg" == "-v" ]]; then
+    interactiveOption=1
+  elif [[ "$arg" == "-w" || "$arg" == "--workspace" ]]; then
+    interactiveOption=1
+  elif [[ "$arg" == "-j" || "$arg" == "--jupyter" ]]; then
+    interactiveOption=1
+  fi
+done
+
+if [ -e "$XILINX_VITIS/.vitis_embedded" ]; then
+  export VITIS_EMBEDDED_INSTALL=true
+fi
+if [ -e "$XILINX_VITIS/.vitis_for_hls" ]; then
+  export VITIS_HLS_INSTALL=true
+fi
+
+if [ "${OS}" = "Linux" ] ; then
+   if [[ -z "${PYTHONPATH}" ]]; then
+       export PYTHONPATH=$PYTHONHOME/lib/python3.8/lib-dynload/:$PYTHONHOME/lib/python3.8
+   else
+       export PYTHONPATH=$PYTHONPATH:$PYTHONHOME/lib/python3.8/lib-dynload/:$PYTHONHOME/lib/python3.8
+   fi
+fi
+export BUILDINFO=`buildinfo`
+
+RDI_PROG=`basename "$0"`
+
+PATH=$XILINX_VITIS/bin:$PATH
+export PATH
+
+LD_LIBRARY_PATH=$XILINX_VITIS/lib/lnx64.o:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+if [[ -n "$XILINX_VITIS_AIETOOLS" && -e "$XILINX_VITIS_AIETOOLS/bin" ]]; then
+  export PATH=$XILINX_VITIS_AIETOOLS/bin:$PATH
+fi
+
+if [ $noSplashPassed == 0 ]; then
+  echo
+  echo "****** Vitis Development Environment"
+  echo "${XILINX_VITIS_VERSION}"
+  echo "  **** ${BUILDINFO}"
+  echo "    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved."
+  echo "    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved."
+  echo
+  if [ "$RDI_VERBOSE" = "True" ]; then
+    echo "       XILINX_VIVADO: \"$XILINX_VIVADO\""
+    echo "          XILINX_HLS: \"$XILINX_HLS\""
+    echo "        XILINX_VITIS: \"$XILINX_VITIS\""
+    echo "          XILINX_XRT: \"$XILINX_XRT\""
+    echo "                PATH: \"$PATH\""
+    echo "     LD_LIBRARY_PATH: \"$LD_LIBRARY_PATH\""
+    echo "           JAVA_HOME: \"$JAVA_HOME\""
+    echo "          PYTHONHOME: \"$PYTHONHOME\""
+  fi
+fi
+
+if [ $vitisNewOption == 0 ]; then
+   if [[ "$VITIS_EMBEDDED_INSTALL" == "true" || "$VITIS_HLS_INSTALL" == "true" ]]; then
+    echo "Error: --classic option is only supported by full Vitis installation."
+    echo "If you wish to run the classic Vitis IDE, please download the AMD Unified Installer and perform a full Vitis installation."
+    echo
+    exit 1
+   fi
+   "$RDI_BINROOT"/loader -exec rdi_vitis "${@:2}"
+   exit $?
+fi
+
+if [ -z "$XILINX_VITIS_DATA_DIR" ]; then
+  testFile=$HOME/.testFile
+else
+  mkdir -p $XILINX_VITIS_DATA_DIR 
+  configDir=`realpath $XILINX_VITIS_DATA_DIR`
+  testFile=$configDir/.testFile
+fi
+testFile+=`date +%S%N`
+
+dd if=/dev/zero of=$testFile bs=10M count=10 2> /dev/null
+if [ $? -ne 0 ]
+then
+  rm -f $testFile
+  echo "Error: The minimum disk space of 100MB not available in User HOME directory."
+  echo "Kindly free-up the space or specify another directory for configuration using environment variable XILINX_VITIS_DATA_DIR and re-launch Unified Vitis IDE."
+  exit $?
+else
+  rm -f $testFile
+fi
+
+if [ -n "$XILINX_PATH" ]; then
+# Read the properties file
+  echo "Got variable XILINX_PATH at $XILINX_PATH"
+  if [ ! -f $XILINX_PATH/patch.properties ]; then
+    echo "Warning: patch.properties file not found! valid patch.properties file is required and "
+    echo "needs to be placed in the top level directory of the patch - Patch has not been applied."
+    echo "Launching Vitis from the installs..."
+  else
+    while IFS='=' read -r key value; do
+      case "$key" in
+          'patch.number') patch_number="$value" ;;
+          'patch.release') patch_release="$value" ;;
+          'patch.description') patch_description="$value" ;;
+        esac
+    done < $XILINX_PATH/patch.properties
+
+    if [[ "$XILINX_VITIS_VERSION" == *"$patch_release"* ]]; then
+      echo "Patch $patch_number found at $XILINX_PATH, activated successfully."
+      PYTHONPATH=$PYTHONPATH:$XILINX_PATH/cli/:$XILINX_PATH/cli/python-packages/site-packages:$XILINX_PATH/cli/python-packages/lnx64:$XILINX_PATH/cli/proto:$XILINX_PATH/scripts/python_pkg
+      export PATCH_INFO="Patch $XILINX_PATH ($patch_number, $patch_release) Details - $patch_description"
+      if [ -d "$XILINX_PATH/ide/electron-app/lnx64/resources/app/" ] && [ -f "$XILINX_PATH/ide/electron-app/lnx64/resources/app/src-gen/backend/main.js" ] && [ -f "$XILINX_PATH/ide/electron-app/lnx64/resources/app/lib/index.html" ]; then
+        export CUSTOM_THEIA_PROJECT_APP_PATH="$XILINX_PATH/ide/electron-app/lnx64/resources/app/"
+        export CUSTOM_THEIA_BACKEND_MAIN_PATH="$XILINX_PATH/ide/electron-app/lnx64/resources/app/src-gen/backend/main.js"
+        export CUSTOM_THEIA_FRONTEND_PATH="$XILINX_PATH/ide/electron-app/lnx64/resources/app/lib/index.html"
+      fi
+    else
+      echo "Patch at $XILINX_PATH ($patch_release) is not compatible with $XILINX_VITIS_VERSION."
+      echo "Launching Vitis from the installs."
+    fi
+  fi
+fi
+
+if [ -z "${PATCH_INFO}" ]; then
+    if [ -f $XILINX_VITIS/patch.properties ]; then
+        while IFS='=' read -r key value; do
+          case "$key" in
+              'patch.number') patch_number="$value" ;;
+              'patch.release') patch_release="$value" ;;
+            esac
+        done < $XILINX_VITIS/patch.properties
+        export PATCH_INFO="Patch $XILINX_PATH ($patch_number, $patch_release) Details - $patch_description"
+        echo "Patch $patch_number found at $XILINX_VITIS, activated successfully."
+    else
+        export PATCH_INFO=""
+    fi
+fi
+
+if [ "${OS}" = "Linux" ] ; then
+   #Rigel Python CLI settings
+  export PYTHONPATH=$PYTHONPATH:$XILINX_VITIS/cli/:$XILINX_VITIS/cli/python-packages/site-packages:$XILINX_VITIS/cli/python-packages/lnx64:$XILINX_VITIS/cli/proto:$XILINX_VITIS/scripts/python_pkg
+  export TCL_LIBRARY=$TPS_TCL
+  export TK_LIBRARY=$TPS_TK
+fi
+
+# Add toolchain path to $PATH
+if [ -n "${PATH}" ]; then
+   export PATH=$RDI_APPROOT/gnu/microblaze/lin/bin:$RDI_APPROOT/gnu/arm/lin/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_be/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_le/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-linux/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-none/bin:$RDI_APPROOT/gnu/armr5/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/riscv/lin/riscv64-unknown-elf/bin:$PATH
+else
+   export PATH=$RDI_APPROOT/gnu/microblaze/lin/bin:$RDI_APPROOT/gnu/arm/lin/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_be/bin:$RDI_APPROOT/gnu/microblaze/linux_toolchain/nt64_le/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$RDI_APPROOT/gnu/aarch32/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-linux/bin:$RDI_APPROOT/gnu/aarch64/lin/aarch64-none/bin:$RDI_APPROOT/gnu/armr5/lin/gcc-arm-none-eabi/bin:$RDI_APPROOT/gnu/riscv/lin/riscv64-unknown-elf/bin
+fi
+
+RDI_DATADIR="$RDI_APPROOT/data"
+RDI_SHARED_DATA=""
+
+if [ $RDI_INSTALLVER == "aietools" ]; then
+  RDI_SHARED_DATA="`dirname $RDI_INSTALLROOT`/SharedData/`basename $RDI_BASEROOT`/data"
+else
+  RDI_SHARED_DATA="$RDI_INSTALLROOT/SharedData/`basename $RDI_APPROOT`/data"
+  # Check for installer end
+  if [ -d $RDI_SHARED_DATA ]; then
+    RDI_SHARED_DATA=$RDI_SHARED_DATA
+  elif [ -d "`dirname $RDI_INSTALLROOT`/SharedData" ]; then
+    RDI_SHARED_DATA="`dirname $RDI_INSTALLROOT`/SharedData/data"
+  fi
+fi
+
+if [ -d $RDI_SHARED_DATA ]; then
+  RDI_DATADIR="$RDI_SHARED_DATA:$RDI_DATADIR"
+fi
+
+if [ -d $RDI_APPROOT/data/vitis ]; then
+  RDI_DATADIR=$RDI_APPROOT/data/vitis:${RDI_DATADIR}
+fi
+export RDI_DATADIR
+
+RDI_PROG=`basename "$0"`
+
+PATH=$XILINX_VITIS/bin:$PATH
+
+[ -e "$TPS_CMAKE/libs" ] && LD_LIBRARY_PATH=$($XILINX_VITIS/bin/ldlibpath.sh $TPS_CMAKE/libs):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+[ -e "$PYTHONHOME/bin" ] && PATH=$PYTHONHOME/bin:$PATH
+[ -e "$JAVA_HOME/bin" ] && PATH=$JAVA_HOME/bin:$PATH
+[ -e "$TPS_CMAKE/bin" ] && PATH=$TPS_CMAKE/bin:$PATH
+[ -e "$TOOLS_CLANG/bin" ] && PATH=$TOOLS_CLANG/bin:$PATH
+[ -e "$TPS_GIT/bin" ] && PATH=$TPS_GIT/bin:$PATH
+export PATH
+
+if [ $defaultGUIOpt == 0 ]; then
+  if [[ $vitisNewOption == 1 && $interactiveOption != 1 ]]; then
+     default="--gui"
+     set - $@ $default
+  fi
+fi
+
+if [ -n "$VITIS_IDE_USER_TOOLCHAIN" ]; then
+    export PATH=$VITIS_IDE_USER_TOOLCHAIN:$PATH
+fi
+
+if [[ -z "$DISPLAY" &&  $interactiveOption != 1 ]]; then
+  echo "Error: Cannot open DISPLAY, environment variable DISPLAY not set"
+  exit $?
+fi
+
+
+################################################################################
+# Help                                                                         #
+################################################################################
+Help()
+{
+   # Display Help
+   echo "Syntax: vitis [--classic | -a | -w | -i | -s | -h | -v]"
+   echo
+   echo "Options:"
+   echo "   Launches New Vitis IDE (default option)."
+   echo "  -classic/--classic"
+   echo "         Launch classic Vitis IDE."
+   echo "  -a/--analyze [<summary file | folder | waveform file: *.[wdb|wcfg]>]"
+   echo "         Open the summary file in the Analysis view."
+   echo "         Opening a folder opens the summary files found in the folder."
+   echo "         Open the waveform file in a waveform view tab."
+   echo "         If no file or folder is specified, opens the Analysis view."
+   #echo
+   echo "  -w/--workspace <workspace_location>"
+   echo "         Launches Vitis IDE with the given workspace location."
+   #echo
+   #echo "                               Usage: $ vitisng -w <workspace_location>"
+   echo "  -i/--interactive"
+   echo "         Launches Vitis python interactive shell."
+   #echo
+   echo "  -s/--source <python_script>"
+   echo "         Runs the given python script."
+   #echo "  -b/--backend"
+   #echo "         Launch Vitis Next Generation IDE backend server (http://localhost:3000)."
+   #echo
+   #echo "                               Usage: $ vitisng -s <python_script>"
+   #jupyter Notebook help
+   echo "  -j/--jupyter"
+   echo "         Launches Vitis Jupyter Web UI."
+   echo "  -h/--help"
+   echo "         Display help message."
+   #echo
+   echo "  -v/--version"
+   echo "         Display Vitis version."
+   echo
+}
+
+
+# extract the --analyze arguments from the args
+analyzeArgs=()
+basicArgs=()
+addnext=false
+for ((index=1; index<=$#; index++));
+do
+  i=${@:$index:1}
+  case "$i" in
+    -analyze|--analyze|-a)
+      # --analyze file; use next arg as filename
+      analyzeArgs+=( "--analyze" )
+      addnext=true
+    ;;
+    -analyze=*|--analyze=*|-a=*)
+      # --analyze=file | -a=file => --analyze file
+      filearg=${i/--analyze=/}
+      filearg=${filearg/-analyze=/}
+      filearg=${filearg/-a=/}
+      analyzeArgs+=( "--analyze" )
+      analyzeArgs+=( $(readlink -m ${filearg}) )
+      unset filearg
+    ;;
+    *_summary)
+      if $addnext ;
+      then
+        # --analyze flag already added
+        addnext=false
+      else
+        analyzeArgs+=( "--analyze" )
+      fi
+      analyzeArgs+=( $(readlink -m $i) )
+    ;;
+    *)
+      if $addnext ;
+      then
+        # file part of --analyze file
+        if [[ $i = -* ]] ;
+        then
+          basicArgs+=( "$i" )
+          analyzeArgs+=( "open-view" )
+        else
+          analyzeArgs+=( $(readlink -m $i) )
+        fi
+        addnext=false
+      else
+        # all other args
+        basicArgs+=( "$i" )
+      fi
+    ;;
+  esac
+done
+if $addnext ;
+then
+  # this only happens if --analyze is specified as the last argument.
+  # "open-view" is a special value to open the analysis view
+  analyzeArgs+=( "open-view" )
+fi
+unset addnext
+if [ ${#analyzeArgs} -gt 0 ] ; then
+  analyzeArgs+=( "--noworkspace" )
+fi
+
+# replace argv with the processed argv
+argc=${#basicArgs[@]}+1
+set -- "${basicArgs[@]:0:${argc}}"
+unset basicArgs
+
+RDI_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -new|--new)
+      echo "Error: -new option is not supported by vitis."
+      echo "The default IDE is the new Unified Vitis IDE."
+      exit 1
+      ;;
+    --workspace|-w)
+      shift
+      workspace_path=$1
+      if [ ! -e "$workspace_path" ]; then
+        #FIX-ME: The directory existance should not be checked on client side. Push this logic to the server
+        [ $noSplashPassed == 0 ] && echo "Creating workspace directory: $workspace_path"
+        mkdir -p $workspace_path
+        [ "$?" -ne "0" ] && echo "Error: Failed to create the workspace directory '$workspace_path'" && exit $?
+      fi
+      workspace_realpath=`realpath $workspace_path 2>/dev/null`
+      [ "$?" -ne "0" ] && workspace_realpath=$workspace_path
+      $XILINX_VITIS/ide/electron-app/lnx64/vitis-ide --no-sandbox --log-level=debug $workspace_path ${analyzeArgs[@]} > /dev/null 2>&1 &
+      exit $?
+      ;;
+    -interactive|--interactive|-i)
+      # VALIDATE_ARGS (previously called OSF flag is used to validate arguments in Lopper in the platform flow.)
+      export VALIDATE_ARGS="True"
+      $PYTHONHOME/bin/python3 $XILINX_VITIS/cli/vitis/_vitisshell.py
+      exit $?
+      ;;
+    -source|--source|-s)
+      export VALIDATE_ARGS="True"
+      shift
+      sourceFile=$1
+      # Extracting the file name from the path
+      sourceFileName=$(basename "$sourceFile")
+      file_path=$XILINX_VITIS/cli/vitis/_predefined_classes.txt
+
+      if grep -q "'${sourceFileName%.py}'" "$file_path"; then
+          echo "Error: The file name '$sourceFileName' conflicts with Vitis pre-defined module names."
+          echo "Using this file name may cause unexpected behavior. Please change the file name."
+          echo "For full list of pre-defined module name please refer" $XILINX_VITIS/cli/vitis/_predefined_classes.txt
+          exit 1
+      fi
+      $PYTHONHOME/bin/python3 $sourceFile "${@:2}"
+      exit $?
+      ;;
+    --gui|-g)
+      $XILINX_VITIS/ide/electron-app/lnx64/vitis-ide --no-sandbox --log-level=debug ${analyzeArgs[@]} > /dev/null 2>&1 &
+      exit $?
+      ;;
+    --backend|-b)
+      cd $XILINX_VITIS/ide/browser-app/lnx64
+      node ./node_modules/@theia/cli/bin/theia start --no-sandbox --log-level=debug --plugins=local-dir:./plugins "${@:2}"
+      exit $?
+      ;;
+    --jupyter|-j)
+      [ ! -e "$JUPYTER_BIN/jupyter" ] && echo "Error: jupyter is not installed: $JUPYTER_BIN" && exit 1
+      export PATH=${JUPYTER_BIN}:$PATH
+      $JUPYTER_BIN/jupyter notebook --NotebookApp.kernel_manager_class=notebook.services.kernels.kernelmanager.AsyncMappingKernelManager "${@:2}"
+      exit $?
+      ;;
+    --help|-h)
+      Help
+      exit $?
+      ;;
+    --version|-v)
+      exit $?
+      ;;
+    *)
+      echo "Error: Unsupported option '$1'"
+      Help
+      exit $?
+      ;;
+   esac
+done
+
+#"$RDI_BINROOT"/loader -exec rdi_vitis "${RDI_ARGS[@]}"

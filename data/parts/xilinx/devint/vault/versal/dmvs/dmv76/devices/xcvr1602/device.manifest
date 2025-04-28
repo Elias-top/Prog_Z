@@ -1,0 +1,14 @@
+include_manifests = [ "versal/dmvs/dmv76/devices/xc10S70/device.manifest" ];
+device_cfg = "versal/data/device_cfg/xcvr1602/xcvr1602.v1.cfg";
+device_nocme_model = "versal/data/device_misc/xcvr1602/xcvr1602.nocme.v3.model";
+device_nocme_xgd = "versal/data/device_misc/xcvr1602/xcvr1602.nocme.v3.xgd";
+Features_HDOracle_PartStatsData_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_PartStatsData.v3.cfg";
+Features_HDOracle_HSRData_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_HSRData.v3.cfg";
+Features_HDOracle_NocData_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_NocData.v1.cfg";
+Features_HDOracle_ClockRegionData_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_ClockRegionData.v14.cfg";
+Features_HDOracle_AieData_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_AieData.v2.cfg";
+coupledPips_cfg = "versal/data/device_cfg/xcvr1602/coupledPips.v2.cfg";
+Features_HDOracle_DeviceData_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_DeviceData.v23.cfg";
+device_topo_cdo = "versal/data/cdo/devices/xcvr1602/topology_xcvr1602.v2.cdo";
+Features_HDOracle_DeviceLevel_cfg = "versal/data/device_cfg/xcvr1602/Features/HDOracle_DeviceLevel.v1.cfg";
+device_Features_HDOracle_Pblock_cfg = "versal/data/device_cfg/Features/Pblock/HDOracle_Pblock.v67.cfg";

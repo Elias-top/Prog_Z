@@ -1,0 +1,28 @@
+{                              
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "satellitle sysmon data by belname",
+    "type": "array",
+    "items" : {
+       "type" : "object",
+       "properties" : {
+      		     "belname" :  { "type" : "string" ,
+                                           "pattern": "^[^/]+/[^/]+$"
+                             		   } ,
+           	     "attrVals" : {           
+                       "type": "array",
+                       "items" : {
+                       	        "type" : "object",  
+                        	"properties" : {
+                          		     "attr" :  {"type" : "string"},
+                          		     "val" : { "type" : "string" }                   
+                          	},
+                          	"required" : ["attr", "val"],
+                          	"additionalProperties" : false
+                   		}           
+             	     }
+        },
+       	"required" : ["belname", "attrVals"],
+       	"additionalProperties" : false
+    }
+}  
+

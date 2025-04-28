@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "AIE-Engine Shim Solution Specification",
+  "id": "http://www.xilinx.com/AIEShimSolutionSchema-0.1",
+  "type": "object",
+  "properties": {
+    "version" :  { "type" : "string" },
+    "Placement": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "LogicalInstance" : {
+            "type": "object",
+            "properties": {
+              "InstanceName" : { "type": "string" },
+              "PortName"     : { "type": "string" }
+            }
+          },
+          "PhysicalInstance" : {
+            "type": "array",
+            "items" : {
+              "type": "object",
+              "properties": {
+                "name"    : { "type": "string"  },
+                "column"  : { "type": "integer" },
+                "channel" : { "type": "integer" }
+              }
+            }
+          },
+          "IsSoft" : { "type" : "boolean" }
+        }
+      }
+    }
+  }
+}
+

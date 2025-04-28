@@ -1,0 +1,1 @@
+pyinstaller bootgen_gui.py --onefile --noconsole --distpath ..\

@@ -1,0 +1,236 @@
+#!/bin/python
+
+import copy
+import os
+import sys
+import shutil
+import subprocess
+import argparse
+from xml.etree import ElementTree
+
+class KernelInfo:
+  def __init__(self, initName, extractPath):
+    self.repoPathSet = set()
+    self.name = initName
+    xoXml = ElementTree.parse(os.path.join(extractPath, "xo.xml")).getroot()
+    for kern in xoXml.findall("./Kernels/Kernel"):
+      if kern.get("Name") == self.name:
+        self.kernXml = ElementTree.parse(os.path.join(extractPath, kern.get("Dir"), "kernel.xml"))
+      self.repoPathSet.add(os.path.join(extractPath, kern.get("IP")))
+    kernHeader = self.kernXml.getroot().find("./kernel")
+    kernArgs = kernHeader.find("args")
+    self.vlnv = kernHeader.get("vlnv")
+    self.ctrlProtocol = kernHeader.get("hwControlProtocol")
+    self.argCount = 0
+    self.scalarCount = 0
+    self.scalarSize = 0
+    for arg in kernArgs.findall("arg"):
+      self.argCount = self.argCount + 1
+      addrQualifier = int(arg.get("addressQualifier"))
+      if addrQualifier == 1 or addrQualifier == 0:
+        self.scalarCount = self.scalarCount + 1
+        self.scalarSize = self.scalarSize + int(arg.get("size"), 0)
+
+  def GenerateFaXml(self, newName, dwidth, newXmlPath):
+    newKernelXml = copy.deepcopy(self.kernXml)
+    kernRoot = newKernelXml.getroot()
+    if kernRoot.find("./profile") is not None:
+      kernRoot.remove(kernRoot.find("./profile"))
+    newKernelXml.find("./kernel").set("name", newName)
+    newKernelXml.find("./kernel").set("vlnv", ReplaceVlnvName(self.vlnv, newName))
+    newKernelXml.find("./kernel").set("hwControlProtocol", "fast_adapter")
+    ElementTree.SubElement(newKernelXml.find("./kernel/args"), "arg", {
+        "name": "nextDescriptorAddr",
+        "addressQualifier": "1",
+        "id": str(self.argCount),
+        "port": "M_AXI_DESC",
+        "size": "0x8",
+        "offset": "0x0",
+        "hostOffset": "0x0",
+        "hostSize": "0x8",
+        "type": "void*"})
+    ElementTree.SubElement(newKernelXml.find("./kernel/ports"), "port", {
+        "name": "M_AXI_DESC",
+        "mode": "master",
+        "range": "0xFFFFFFFFFFFFFFFF",
+        "dataWidth": str(dwidth),
+        "portType": "addressable",
+        "base": "0x0"})
+    newKernelXml.write(newXmlPath)
+
+def Unzip(inputFile, dest):
+  print("Decompressing input " + str(inputFile) + " to " + str(dest))
+  return subprocess.call(['unzip', str(inputFile), '-d', str(dest)])
+
+def Vivado(launchDir, scriptPath):
+  print("Running vivado: vivado -mode batch -source " + str(scriptPath))
+  return subprocess.call(['vivado', '-mode', 'batch', '-source', str(scriptPath)], cwd=str(launchDir))
+
+def ReplaceVlnvName(vlnv, newName):
+  x = vlnv.split(":")
+  return x[0] + ":vitis:" + newName + ":" + x[3]
+
+def GenerateFaCore(cmdArgs, kernInfo, vivadoDir):
+  targetXo = os.path.join(os.path.abspath(os.getcwd()), cmdArgs.outXo)
+  kernXmlPath = os.path.join(vivadoDir, "kernel.xml")
+  scriptPath = os.path.join(vivadoDir, "run.tcl")
+  tempIpDir = os.path.join(vivadoDir, "temp_ip")
+
+  os.mkdir(tempIpDir)
+  for repo in kernInfo.repoPathSet:
+    shutil.copytree(os.path.abspath(repo), os.path.join(tempIpDir, os.path.basename(repo)))
+  kernInfo.GenerateFaXml(cmdArgs.outKernel, cmdArgs.dataWidth, kernXmlPath)
+
+  configTcl = [
+    "set config_part " + cmdArgs.part,
+    "set config_output_kernel " + cmdArgs.outKernel, 
+    "set config_output_xo " + targetXo,
+    "set config_output_kernel_xml " + kernXmlPath,
+    "set config_input_vlnv " + kernInfo.vlnv,
+    "set config_input_ctrl_protocol " + ("0" if (kernInfo.ctrlProtocol == "ap_ctrl_hs") else "1"),
+    "set config_adapter_in_arg_count " + str(kernInfo.scalarCount),
+    "set config_adapter_in_arg_size " + str(kernInfo.scalarSize),
+    "set config_adapter_fifo_depth " + "16", #str(cmdArgs.fifoDepth), #hard-code to 16 to deal with 9/29 hard-coding
+    "set config_adapter_width " + str(cmdArgs.dataWidth),
+    "set config_working_dir " + vivadoDir]
+
+  print("Generating config script: " + str(scriptPath))
+  outFile = open(scriptPath, "w")
+  for line in configTcl:
+    outFile.write(line + "\n")
+  outFile.write(BulkTclText())
+  outFile.close()
+  return Vivado(vivadoDir, scriptPath)
+
+def ParseCmdline():
+  ap = argparse.ArgumentParser()
+  ap.add_argument("-I", "--inXo", required=True, help="input xo")
+  ap.add_argument("-i", "--inKernel", required=True, help="input kernel")
+  ap.add_argument("-O", "--outXo", required=True, help="output xo")
+  ap.add_argument("-o", "--outKernel", required=True, help="output kernel")
+  ap.add_argument("-p", "--part", required=True, help="device part")
+  ap.add_argument("-w", "--workspace", required=False, default="workspace", help="workspace to conduct work")
+  #Commenting out this due to a conversation on 9/29's update meeting, where it was mentioned the driver is assuming 16
+  #ap.add_argument("--fifoDepth", required=False, default="16", help="depth of the scalar fifo")
+  ap.add_argument("--dataWidth", required=False, default="32", help="width of the descriptor fetch interface")
+  return ap.parse_args()
+
+def ValidateCmdline(cmdArgs):
+  dwidthSet = ["32", "64", "128", "256", "512"]
+  if cmdArgs.dataWidth not in dwidthSet:
+    print("dataWidth must be equal to " + str(dwidthSet))
+    return False
+  if not os.path.exists(cmdArgs.inXo) or not os.path.isfile(cmdArgs.inXo):
+    print("Input XO does not exist: " + str(cmdArgs.inXo))
+    return False
+  return True
+
+def main():
+  args = ParseCmdline()
+  if not ValidateCmdline(args):
+    print("fa_pack failed")
+    sys.exit(-1)
+  workspaceDir = os.path.join(os.path.abspath(os.getcwd()), args.workspace)
+  if os.path.exists(workspaceDir):
+    shutil.rmtree(workspaceDir)
+  decompressDir = os.path.join(workspaceDir,  "decompress")
+  vivadoDir = os.path.join(workspaceDir, "vivado")
+  os.mkdir(workspaceDir)
+  os.mkdir(decompressDir)
+  os.mkdir(vivadoDir)
+  if Unzip(args.inXo, decompressDir) != 0:
+    print("Failed to extract input xo")
+    sys.exit(-1)
+  kernInfo = KernelInfo(args.inKernel, decompressDir)
+  if GenerateFaCore(args, kernInfo, vivadoDir) != 0:
+    print("Failed to generate adapter wrapper")
+    sys.exit(-1)
+
+###############################################################
+###############################################################
+###############################################################
+#From this point down is just a boilerplate embedded tcl script
+###############################################################
+###############################################################
+###############################################################
+
+def BulkTclText():
+  text = """
+create_project -force project_1 ${config_working_dir}/project_1 -part ${config_part}
+create_bd_design ${config_output_kernel}
+set_property  ip_repo_paths [list ${config_working_dir}/temp_ip] [current_project]
+update_ip_catalog
+set adapter [create_bd_cell -type ip -vlnv xilinx.com:ip:fast_adapter adapter]
+set_property -dict [list CONFIG.ACC_CTRL_PROTOCOL ${config_input_ctrl_protocol} CONFIG.NUM_IN_ARGS ${config_adapter_in_arg_count} CONFIG.TOTAL_IN_ARG_SIZE ${config_adapter_in_arg_size} CONFIG.ADDR_FIFO_DEPTH ${config_adapter_fifo_depth} CONFIG.C_M_AXI_DESC_DATA_WIDTH ${config_adapter_width}] ${adapter}
+set kern [create_bd_cell -type ip -vlnv ${config_input_vlnv} compute]
+foreach clk [get_bd_pins -of_objects ${kern} -filter {TYPE == clk && DIR == I}] {
+       set name [bd::utils::get_short_name ${clk}]
+       set ext_pin [create_bd_port -dir I -type clk -freq_hz 300000000 ${name}]
+       connect_bd_net ${ext_pin} ${clk}
+}
+foreach rst [get_bd_pins -of_objects ${kern} -filter {TYPE == rst && DIR == I}] {
+       set name [bd::utils::get_short_name ${rst}]
+       set ext_pin [create_bd_port -dir I -type rst ${name}]
+       connect_bd_net ${ext_pin} ${rst}
+}
+set kern_ctrl_intf [get_bd_intf_pins -of_objects ${kern} -filter {MODE == Slave && VLNV =~ \"*:*:aximm_rtl:*\"}]
+set kern_ctrl_clk [bd::clkrst::get_sink_clk ${kern_ctrl_intf}]
+set kern_ctrl_clk_driver [find_bd_objs -relation connected_to ${kern_ctrl_clk}]
+set kern_ctrl_rst [bd::clkrst::get_sink_rst ${kern_ctrl_clk}]
+set kern_ctrl_rst_driver [find_bd_objs -relation connected_to ${kern_ctrl_rst}]
+connect_bd_net ${kern_ctrl_clk_driver} [get_bd_pins ${adapter}/axi_lite_clk]
+connect_bd_net ${kern_ctrl_rst_driver} [get_bd_pins ${adapter}/axi_lite_resetn]
+set ap_clk_cmd [create_bd_port -dir I -type clk -freq_hz 300000000 ap_clk_cmd]
+set ap_rst_n_cmd [create_bd_port -dir I -type rst ap_rst_n_cmd]
+connect_bd_net ${ap_clk_cmd} [get_bd_pins ${adapter}/axi_full_clk]
+connect_bd_net ${ap_rst_n_cmd} [get_bd_pins ${adapter}/axi_full_resetn]
+connect_bd_intf_net [get_bd_intf_pins ${adapter}/M_AXI_ACC] $kern_ctrl_intf
+set kern_intfs [get_bd_intf_pins -of_objects ${kern} -filter {MODE == Master || VLNV =~ \"*:*:axis_rtl:*\"}]
+make_bd_intf_pins_external ${kern_intfs}
+make_bd_pins_external  [get_bd_pins ${adapter}/interrupt]
+make_bd_intf_pins_external  [get_bd_intf_pins ${adapter}/M_AXI_DESC] [get_bd_intf_pins ${adapter}/S_AXI_LITE]
+foreach intf ${kern_intfs} {
+       set name [bd::utils::get_short_name $intf]
+       set_property NAME $name [find_bd_objs -relation connected_to $intf]
+}
+assign_bd_address
+foreach aximm [get_bd_intf_pins -of_objects ${kern} -filter {MODE == Master && VLNV =~ \"*:*:aximm_rtl:*\"}] {
+       set_property offset 0x0 [get_bd_addr_segs -of_objects ${aximm}]
+       set_property range 16E [get_bd_addr_segs -of_objects ${aximm}]
+}
+set_property offset 0x0 [get_bd_addr_segs -of_objects [get_bd_intf_pins ${adapter}/M_AXI_DESC]]
+set_property range 16E [get_bd_addr_segs -of_objects [get_bd_intf_pins ${adapter}/M_AXI_DESC]]
+set_property NAME s_axi_control [find_bd_objs -relation connected_to [get_bd_intf_pins ${adapter}/S_AXI_LITE]]
+set_property NAME M_AXI_DESC [find_bd_objs -relation connected_to [get_bd_intf_pins ${adapter}/M_AXI_DESC]]
+set_property NAME interrupt [find_bd_objs -relation connected_to [get_bd_pins ${adapter}/interrupt]]
+make_wrapper -files [get_files [current_bd_design].bd] -top
+add_files -norecurse ${config_working_dir}/project_1/project_1.srcs/sources_1/bd/[current_bd_design]/hdl/[current_bd_design]_wrapper.v
+ipx::package_project -root_dir ${config_working_dir}/temp_ip/${config_output_kernel} -vendor xilinx.com -library user -taxonomy /UserIP -import_files true -module ${config_output_kernel} -force
+ipx::unload_core ${config_working_dir}/temp_ip/${config_output_kernel}/component.xml
+ipx::edit_ip_in_project -upgrade true -name config_output_kernel -directory ${config_working_dir}/temp_ip/${config_output_kernel} ${config_working_dir}/temp_ip/${config_output_kernel}/component.xml
+update_compile_order -fileset sources_1
+set_property core_revision 1 [ipx::current_core]
+set_property NAME ${config_output_kernel} [ipx::current_core]
+set_property LIBRARY \"vitis\" [ipx::current_core]
+set_property DISPLAY_NAME ${config_output_kernel} [ipx::current_core]
+set_property DESCRIPTION ${config_output_kernel} [ipx::current_core]
+foreach clk [ipx::get_bus_interfaces -filter {BUS_TYPE_NAME == clock}] {
+       ipx::remove_bus_parameter FREQ_HZ $clk
+       ipx::remove_bus_parameter PHASE $clk
+}
+foreach busif [ipx::get_bus_interfaces -filter {BUS_TYPE_NAME == clock || BUS_TYPE_NAME == reset || BUS_TYPE_NAME == interrupt}] {
+       set portmap [ipx::get_port_maps -of_objects $busif]
+       set name [get_property PHYSICAL_NAME [lindex $portmap 0]]
+       set_property NAME $name $busif
+}
+ipx::update_source_project_archive -component [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+ipx::move_temp_component_back -component [ipx::current_core]
+package_xo -kernel_name ${config_output_kernel} -kernel_xml ${config_output_kernel_xml} -parent_ip_directory ${config_working_dir}/temp_ip/${config_output_kernel} -ip_directory ${config_working_dir}/temp_ip -xo_path ${config_output_xo} -force
+"""
+  return text
+
+if __name__ == "__main__":
+  main()

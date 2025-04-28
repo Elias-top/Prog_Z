@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+#
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+tempArgSize=0
+RDI_TEMP_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -version|--version)
+      RDI_ONLY_PRINT_VERSION=1
+      shift
+      ;;
+    *)
+      RDI_TEMP_ARGS[$tempArgSize]="$1"
+      tempArgSize=$(($tempArgSize + 1))
+      shift
+      ;;
+  esac
+done
+
+# Set XILINX_VIVADO
+#XILINX_VIVADO=`dirname "$RDI_BINROOT"`
+#export XILINX_VIVADO
+
+#export RDI_DEPENDENCY=XILINX_VIVADO_HLS
+
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+RDI_PROG=`basename "$0"`
+
+if [ "$RDI_ONLY_PRINT_VERSION" == "1" ]; then
+  "$RDI_BINROOT"/loader -print_version $RDI_PROG
+else
+  "$RDI_BINROOT"/loader -exec $RDI_PROG "${RDI_TEMP_ARGS[@]}"
+fi

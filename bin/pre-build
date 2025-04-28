@@ -1,0 +1,15 @@
+#!/bin/sh
+
+xsct -sdx $XILINX_VITIS/scripts/vitis/util/prebuild.tcl $@
+if [ -d "_ide/bsp" ]; then
+cd _ide/bsp    
+if [ -e "bsp.do.build" ]; then
+    make        
+    rm -f bsp.do.build
+else
+    echo  "make: Nothing to be done for pre-build"
+fi
+fi
+	
+
+

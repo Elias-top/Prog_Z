@@ -1,0 +1,15 @@
+include_manifests = [ "versal/dmvs/dmv31/devices/xcvc2802/device.manifest" ];
+device_cfg = "versal/data/device_cfg/xave2802/xave2802.v1.cfg";
+device_nocme_model = "versal/data/device_misc/xave2802/xave2802.nocme.v1.model";
+device_nocme_xgd = "versal/data/device_misc/xave2802/xave2802.nocme.v1.xgd";
+Features_HDOracle_AieData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_AieData.v1.cfg";
+Features_HDOracle_NocData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_NocData.v1.cfg";
+Features_HDOracle_HSRData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_HSRData.v1.cfg";
+Features_HDOracle_ClockRegionData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_ClockRegionData.v6.cfg";
+Features_HDOracle_DeviceData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_DeviceData.v15.cfg";
+Features_HDOracle_PartStatsData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_PartStatsData.v2.cfg";
+device_nsvh1369_xml = "versal/data/device_pkgs/xave2802/nsvh1369/Package.v1.xml";
+device_vsvh1760_xml = "versal/data/device_pkgs/xave2802/vsvh1760/Package.v1.xml";
+Features_HDOracle_SpeedData_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_SpeedData.v5.cfg";
+Features_HDOracle_DeviceLevel_cfg = "versal/data/device_cfg/xave2802/Features/HDOracle_DeviceLevel.v1.cfg";
+deviceAdditional_cfg = "versal/data/device_cfg/xave2802/deviceAdditional.v1.cfg";

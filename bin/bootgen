@@ -1,0 +1,76 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2011 Xilinx, Inc. All Rights Reserved.
+#
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+argSize=0
+INTERFACE=0
+RDI_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -arch)
+      ARCHITECTURE="$2"
+	  RDI_ARGS[$argSize]="$1"
+	  RDI_ARGS[($argSize + 1)]="$2"
+	  argSize=$(($argSize + 2))
+      shift
+	  shift
+      ;;
+    -interface)
+          INTERFACE=1
+	  RDI_ARGS[$argSize]="$1"
+	  argSize=$(($argSize + 1))
+      shift
+      ;;  
+    *)
+      RDI_ARGS[$argSize]="$1"
+      argSize=$(($argSize + 1))
+      shift
+      ;;
+   esac
+done
+
+RDI_PROG=`basename "$0"`
+RDI_NO_JRE=yes
+export RDI_NO_JRE
+if [[ "$ARCHITECTURE" == "fpga"  &&  "$INTERFACE" == "0" ]]; then
+	"$RDI_BINROOT"/loader -exec bootgen_fpga "${RDI_ARGS[@]}"
+elif [ "$ARCHITECTURE" == "spartanuplus" ]; then
+	"$RDI_BINROOT"/loader -exec bootgen_spartanuplus "${RDI_ARGS[@]}"
+elif [ "$ARCHITECTURE" == "versal_2ve_2vm" ]; then
+	"$RDI_BINROOT"/loader -exec bootgen_versal_2ve_2vm "${RDI_ARGS[@]}"
+elif [ "$ARCHITECTURE" == "lassen" ]; then
+	"$RDI_BINROOT"/loader -exec bootgen_spartanuplus "${RDI_ARGS[@]}"
+elif [ "$ARCHITECTURE" == "telluride" ]; then
+	"$RDI_BINROOT"/loader -exec bootgen_versal_2ve_2vm "${RDI_ARGS[@]}"
+else
+	"$RDI_BINROOT"/loader -exec bootgen "${RDI_ARGS[@]}"
+fi

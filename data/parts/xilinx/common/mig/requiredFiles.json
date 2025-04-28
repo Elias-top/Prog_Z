@@ -1,0 +1,15 @@
+{
+  "files":{
+    "common":{
+      "0" : "ip/xpm/xpm_cdc/hdl/xpm_cdc.sv",
+      "1" : "ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl"
+    },
+    "Advanced IO Wizard":{
+      "0" : "ip/xilinx/advanced_io_wizard_v1_0/data/priorityclocktree.json"
+    },
+    "Soft MC":{
+    },
+    "Hard MC":{
+    }
+  }
+}

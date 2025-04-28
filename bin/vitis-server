@@ -1,0 +1,234 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+# Do this before calling setupEnv.sh, because the equivalent .bat file will
+# instead source setupEnv.bat, which is more appropriate for Windows.
+
+if [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+elif [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$0.bat" "$@"
+  exit $?
+fi
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x.
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+#
+# RDI_INSTALLROOT - One directory above RDI_BASEROOT
+#  E.x.
+#    /usr/Xilinx/SDx/2018.2/bin/example
+#    RDI_INSTALLROOT=/usr/Xilinx
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+XIL_NO_OVERRIDE=0
+XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+export RDI_NO_JRE=1
+export RDI_USE_JDK11=1
+export XIL_NO_OVERRIDE XIL_SUPPRESS_OVERRIDE_WARNINGS
+
+if [ -z "$SHARED_DATA_HOME" ]; then
+  if [ -d "$RDI_INSTALLROOT/SharedData/$RDI_INSTALLVER" ]; then
+    export SHARED_DATA_HOME="$RDI_INSTALLROOT/SharedData/$RDI_INSTALLVER"
+  fi
+fi
+
+if [ -z "$XILINX_VIVADO" ]; then
+  if [ -d "$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER" ]; then
+    export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+  fi  
+fi
+if [ -z "$XILINX_VIVADO_HLS" ]; then
+  if [ -d "$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER" ]; then
+    export XILINX_VIVADO_HLS="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+  fi  
+fi
+
+if [ -n "$VITIS_SDK" ]; then
+  export XILINX_VITIS=$VITIS_SDK
+fi
+
+export XILINX_VITIS="$HDI_APPROOT"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+
+XILINX_VITIS_VERSION=UnknownVersion
+if [ -e "$HDI_APPROOT/bin/unwrapped/lnx64.o/prodversion" ]; then
+  XILINX_VITIS_VERSION=`${RDI_BINROOT}/loader -print_version Vitis`
+fi
+
+if [ -z "$XILINX_XRT" ]; then
+  XBB_DIR="$( (cd -L "$XILINX_VITIS/../../../../xbb" && pwd -L) 2> /dev/null )"
+  if [ -e "/opt/xilinx/xrt/setup.sh" ] ; then
+    . "/opt/xilinx/xrt/setup.sh"
+  elif [ -e "$XBB_DIR/xrt/packages/setenv.sh" ]; then
+    . "$XBB_DIR/xrt/packages/setenv.sh"
+  fi
+fi
+
+if [ ! -z "$XILINX_VIVADO" ]; then
+  export RDI_DEPENDENCY="XILINX_VIVADO_HLS:XILINX_HLS:VITIS_HLS_SETUP"
+  export PATH=$XILINX_VIVADO/bin:$PATH
+  export PATH=$XILINX_VIVADO_HLS/bin:$PATH
+fi
+export PATH=$XILINX_VITIS/bin:$PATH
+
+if [ -d "$XILINX_VITIS" ]; then
+  MY_LIBRARY_PATH="$("$XILINX_VITIS/bin/ldlibpath.sh" "$XILINX_VITIS/lib/lnx64.o")"
+  if [ -z "$LD_LIBRARY_PATH" ]; then
+    LD_LIBRARY_PATH="$MY_LIBRARY_PATH:$XILINX_VITIS/tps/lnx64/python-3.8.3/lib"
+  else
+    LD_LIBRARY_PATH="$MY_LIBRARY_PATH:$XILINX_VITIS/tps/lnx64/python-3.8.3/lib:$LD_LIBRARY_PATH"
+  fi
+  export LD_LIBRARY_PATH
+fi
+
+if [ -z "$XILINX_VITIS_AIETOOLS" ]; then
+  if [ -d "$XILINX_VITIS/aietools" ]; then
+    XILINX_VITIS_AIETOOLS="$XILINX_VITIS/aietools"
+    export XILINX_VITIS_AIETOOLS
+  fi
+fi
+
+export PATH=$XILINX_VITIS_AIETOOLS/bin:$PATH
+OS=`uname -s`
+
+if [ "${OS}" = "Linux" ] ; then
+   export PYTHONHOME=$XILINX_VITIS/tps/lnx64/python-3.8.3/
+   export PYTHONPATH=$XILINX_VITIS/tps/lnx64/python-3.8.3/lib/python3.8/lib-dynload/:$XILINX_VITIS/tps/lnx64/python-3.8.3/lib/python3.8/:$PYTHONPATH
+   #Rigel Python CLI settings 
+   PYTHONPATH=$XILINX_VITIS/cli/:$XILINX_VITIS/cli/python-packages/site-packages:$XILINX_VITIS/cli/proto:$PYTHONPATH
+   export PYTHONPATH
+fi
+BUILDINFO=`buildinfo`
+
+noSplashPassed=0
+VITIS_SERVER_ARGS=()
+for arg in "$@"
+do
+  if [ "$arg" == "-nosplash" ]; then
+	    noSplashPassed=1
+  else
+      if [[ "$arg" == "-h" || "$arg" == "--help" || "$arg" == "-help" ]]; then
+	       noSplashPassed=1
+      fi
+      VITIS_SERVER_ARGS[$argSize]="$arg"
+      argSize=$(($argSize + 1))      
+  fi
+done
+
+if [ $noSplashPassed == 0 ]; then
+echo
+echo "****** Vitis Development Environment"
+echo "${XILINX_VITIS_VERSION}"
+echo "  **** ${BUILDINFO}"
+echo "    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved."
+echo
+
+#RDI_VERBOSE=True
+
+
+#if [ -z "$CARDANO_ROOT" ]; then
+#    if [ -e "$HDI_APPROOT/cardano" ] ; then
+#        export CARDANO_ROOT="$HDI_APPROOT/cardano"
+#	. "$CARDANO_ROOT"/scripts/cardano_env.sh
+#    fi
+#fi
+
+if [ "$RDI_VERBOSE" = "True" ]; then
+  echo "       XILINX_VIVADO: \"$XILINX_VIVADO\""
+  echo "          XILINX_HLS: \"$XILINX_HLS\""
+  echo "        XILINX_VITIS: \"$XILINX_VITIS\""
+  echo "          XILINX_XRT: \"$XILINX_XRT\""
+  echo "                PATH: \"$PATH\""
+  echo "     LD_LIBRARY_PATH: \"$LD_LIBRARY_PATH\""
+fi
+
+fi
+
+RDI_PROG=`basename "$0"`
+
+PATH=$XILINX_VITIS/bin:$PATH
+export PATH
+
+LD_LIBRARY_PATH=$($XILINX_VITIS/bin/ldlibpath.sh $XILINX_VITIS/tps/lnx64/cmake-3.24.2/libs):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+export JAVA_HOME=$XILINX_VITIS/tps/lnx64/jre11.0.16_1/
+PATH=$PYTHONHOME/bin:$JAVA_HOME/bin:$PATH
+PATH=$XILINX_VITIS/tps/lnx64/cmake-3.24.2/bin:$XILINX_VITIS/lnx64/tools/clang/bin:$PATH
+PATH=$XILINX_VITIS/gnu/microblaze/lin/bin:$XILINX_VITIS/gnu/arm/lin/bin:$XILINX_VITIS/gnu/microblaze/linux_toolchain/nt64_be/bin:$XILINX_VITIS/gnu/microblaze/linux_toolchain/nt64_le/bin:$XILINX_VITIS/gnu/aarch32/lin/gcc-arm-linux-gnueabi/bin:$XILINX_VITIS/gnu/aarch32/lin/gcc-arm-none-eabi/bin:$XILINX_VITIS/gnu/aarch64/lin/aarch64-linux/bin:$XILINX_VITIS/gnu/aarch64/lin/aarch64-none/bin:$XILINX_VITIS/gnu/armr5/lin/gcc-arm-none-eabi/bin:$PATH
+
+if [ -n "$VITIS_IDE_USER_TOOLCHAIN" ]; then
+    export PATH=$VITIS_IDE_USER_TOOLCHAIN:$PATH
+fi
+
+#Lopper Env settings
+export LOPPER_DTC_FLAGS="-b 0 -@"
+
+#Env variable support to disable license check
+export IDE_SKIP_SERVER_LICENSE=1
+
+#sets RDI_DATADIR
+. "`dirname \"$0\"`/rdiArgs.sh"
+
+if [ -n "$XILINX_PATH" ]; then
+# Read the properties file
+  export IS_PATCH_AVAILABLE_BUT_INVALID=false
+  if [ ! -f $XILINX_PATH/patch.properties ]; then
+    echo "Error: patch.properties file not found!"
+    echo "Launching Vitis from the installs."
+    export IS_PATCH_AVAILABLE_BUT_INVALID=true
+  else
+    while IFS='=' read -r key value; do
+      case "$key" in
+          'patch.number') patch_number="$value" ;;
+          'patch.release') patch_release="$value" ;;
+        esac
+    done < $XILINX_PATH/patch.properties
+
+    if [[ "$XILINX_VITIS_VERSION" == *"$patch_release"* ]]; then
+      echo "Compatible patch found at $XILINX_PATH. Using patch: $patch_number"
+    else
+      echo "Patch at $XILINX_PATH ($patch_release) is not compatible with $XILINX_VITIS_VERSION."
+      echo "Launching Vitis from the installs."
+      export IS_PATCH_AVAILABLE_BUT_INVALID=true
+    fi
+  fi
+fi
+
+if [ -n "$XILINX_PATH" ] && [ "$IS_PATCH_AVAILABLE_BUT_INVALID" != "true" ] && [ -e "$XILINX_PATH/vitis-server/bin/vitis-server" ]; then
+    # Launch the bootloader using XILINX_PATH
+    $XILINX_PATH/vitis-server/bin/vitis-server "${VITIS_SERVER_ARGS[@]}"
+else
+    # Launch the bootloader using XILINX_VITIS
+    $XILINX_VITIS/vitis-server/bin/vitis-server "${VITIS_SERVER_ARGS[@]}"
+fi
+
+#"$RDI_BINROOT"/loader -exec rdi_vitis "${RDI_ARGS[@]}"

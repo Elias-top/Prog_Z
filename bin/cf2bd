@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Detect a Windows environment and automatically switch to the .bat file
+if [[ "`uname`" == windows32* ]] || [[ "`uname`" == CYGWIN* ]] ; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+fi
+
+. "`dirname \"$0\"`/setupEnv.sh"
+
+tempArgSize=0
+RDI_TEMP_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -version|--version)
+      RDI_ONLY_PRINT_VERSION=1
+      shift
+      ;;
+    *)
+      RDI_TEMP_ARGS[$tempArgSize]="$1"
+      tempArgSize=$(($tempArgSize + 1))
+      shift
+      ;;
+  esac
+done
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+
+export RDI_NO_JRE=1
+export XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+RDI_PROG=cf2bd
+if [ "$RDI_ONLY_PRINT_VERSION" == "1" ]; then
+  "$RDI_BINROOT"/loader -print_version $RDI_PROG
+else
+  "$RDI_BINROOT"/loader -exec $RDI_PROG "${RDI_TEMP_ARGS[@]}"
+fi

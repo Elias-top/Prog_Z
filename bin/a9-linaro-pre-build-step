@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "*startfile:" > Xilinx.spec
+echo "crti%O%s crtbegin%O%s" >> Xilinx.spec
+

@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+#
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+RDI_PLATFORM=lnx64
+RDI_JAVA_VERSION=21.0.1_12
+RDI_JAVAROOT=$RDI_APPROOT/tps/$RDI_PLATFORM/jre$RDI_JAVA_VERSION
+
+RDI_EXECCLASS="com.xilinx.vitis.archivesummary.ArchiveSummary"
+RDI_JAVAARGS="-Xms128m -Xmx512m -Xss5m"
+
+CLASSES_DIR="$RDI_APPROOT/lib/classes"
+CLASSPATH_JARS=(
+  "$CLASSES_DIR/ArchiveSummary.jar" \
+  "$CLASSES_DIR/commons-io-2.6.jar" \
+  "$CLASSES_DIR/picocli-4.1.2.jar" \
+  "$CLASSES_DIR/FrankFrameworks.jar" \
+  "$CLASSES_DIR/Dispatch.jar" \
+  "$CLASSES_DIR/protobuf-java-3.21.12.jar" \
+  "$CLASSES_DIR/protobuf-java-util-3.21.12.jar" \
+  "$CLASSES_DIR/com.google.gson_*.jar")
+
+if [ -d $CLASSES_DIR ]; then
+  for JAR in ${CLASSPATH_JARS[@]}; do 
+    if [ -z $RDI_CLASSPATH ]; then
+      RDI_CLASSPATH="$JAR"
+    else
+      RDI_CLASSPATH="$RDI_CLASSPATH:$JAR"
+    fi
+  done
+fi
+
+CMD="$RDI_JAVAROOT/bin/java $RDI_JAVAARGS -classpath $RDI_CLASSPATH $RDI_EXECCLASS $@"
+$CMD
+

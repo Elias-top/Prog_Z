@@ -1,0 +1,10 @@
+#!/bin/bash
+LOADER=`readlink -f $0`
+BIN_DIR=`dirname ${LOADER}`
+ARGS=$@
+
+LD_LIBRARY_PATH=$($BIN_DIR/ldlibpath.sh ${BIN_DIR}/../lib/lnx64.o):$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH
+
+LLVM_PATH=${BIN_DIR}/../llvm-clang/lnx64
+${LLVM_PATH}/llvm/bin/clang ${ARGS}

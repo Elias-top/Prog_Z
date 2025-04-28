@@ -1,0 +1,5 @@
+the_ROM_image:
+{
+    [bootloader] C:/Users/Ilya/Desktop/Prog_Z/Examples_Files/boot_gen_files_examples/fsbl.elf
+    C:/Users/Ilya/Desktop/Prog_Z/Examples_Files/boot_gen_files_examples/fsbl.elf
+}

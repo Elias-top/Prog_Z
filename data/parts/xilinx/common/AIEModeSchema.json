@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "AIE Engine View Specification",
+  "id": "http://www.xilinx.com/AIEModeSchema-0.1",
+  "definitions": {
+    "AIEViewCommandInfo": {
+      "type": "object",
+      "properties": {
+        "allowed" : { "type": "bool" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "type": "object",
+  "properties": {
+    "AIEViewCommands": {
+      "type": "object",
+      "properties": {
+        "$ref": "#/definitions/AIEViewCommandInfo"
+      }
+    }
+  }
+}

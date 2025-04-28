@@ -1,0 +1,13 @@
+include_manifests = [ "versal/dmvs/dmv62/arch.manifest" ];
+arch_rtd = "versal/data/rtd/devices/xc10MDS1/versal.v1.rtd";
+device_belContextMap = "versal/data/device_misc/xc10MDS1/xc10MDS1.v1.belContextMap";
+device_netContextMap = "versal/data/device_misc/xc10MDS1/xc10MDS1.v1.netContextMap";
+device_noConnectPins = "versal/data/device_misc/xc10MDS1/xc10MDS1.v1.noConnectPins";
+device_rtd = "versal/data/rtd/devices/xc10MDS1/xc10MDS1.v1.rtd";
+device_xng = "versal/data/xng/devices/xc10MDS1.v1.xng";
+tileData_cfg = "versal/data/device_cfg/xc10MDS1/tileData.v1.cfg";
+device_die_xml = "versal/data/device_pkgs/xc10MDS1/die/Package.v1.xml";
+device_dxt = "versal/data/device_misc/xc10MDS1/xc10MDS1.v1.dxt";
+Features_HDOracle_DeviceData_cfg = "versal/data/device_cfg/xc10MDS1/Features/HDOracle_DeviceData.v1.cfg";
+Features_HDOracle_AieData_cfg = "versal/data/device_cfg/xc10MDS1/Features/HDOracle_AieData.v1.cfg";
+Features_HDOracle_NocData_cfg = "versal/data/device_cfg/xc10MDS1/Features/HDOracle_NocData.v2.cfg";

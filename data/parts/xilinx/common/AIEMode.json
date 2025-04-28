@@ -1,0 +1,5263 @@
+{
+  "AIEViewCommands": {
+    "add_cells_to_pblock": {
+       "allowed": true
+    },
+    "add_design_id": {
+       "allowed" : true
+    },
+    "add_drc_checks": {
+       "allowed" : true
+    },
+    "add_example_design_repo": {
+       "allowed" : true
+    },
+    "add_files": {
+       "allowed" : true
+    },
+    "all_clocks": {
+       "allowed" : false
+    },
+    "all_cpus": {
+       "allowed" : true
+    },
+    "all_dsps": {
+       "allowed" : true
+    },
+    "all_fanin": {
+       "allowed" : false
+    },
+    "all_fanout": {
+       "allowed" : false
+    },
+    "all_ffs": {
+       "allowed" : true
+    },
+    "all_hsios": {
+       "allowed" : true
+    },
+    "all_inputs": {
+       "allowed" : true
+    },
+    "all_latches": {
+       "allowed" : true
+    },
+    "all_outputs": {
+       "allowed" : true
+    },
+    "all_rams": {
+       "allowed" : true
+    },
+    "all_registers": {
+       "allowed" : false
+    },
+    "apply_board_connection": {
+       "allowed" : true
+    },
+    "apply_hw_ila_trigger": {
+       "allowed" : false
+    },
+    "archive_project": {
+       "allowed" : true
+    },
+    "auto_detect_xpm": {
+       "allowed" : true
+    },
+    "board::current_board": {
+       "allowed" : true
+    },
+    "board::get_board_bus_nets": {
+       "allowed" : true
+    },
+    "board::get_board_buses": {
+       "allowed" : true
+    },
+    "board::get_board_component_interfaces": {
+       "allowed" : true
+    },
+    "board::get_board_component_modes": {
+       "allowed" : true
+    },
+    "board::get_board_component_pins": {
+       "allowed" : true
+    },
+    "board::get_board_components": {
+       "allowed" : true
+    },
+    "board::get_board_interface_ports": {
+       "allowed" : true
+    },
+    "board::get_board_ip_preferences": {
+       "allowed" : true
+    },
+    "board::get_board_jumpers": {
+       "allowed" : true
+    },
+    "board::get_board_parameters": {
+       "allowed" : true
+    },
+    "board::get_board_part_interfaces": {
+       "allowed" : true
+    },
+    "board::get_board_part_pins": {
+       "allowed" : true
+    },
+    "board::get_boards": {
+       "allowed" : true
+    },
+    "board::install": {
+       "allowed" : true
+    },
+    "board::list_repo_boards": {
+       "allowed" : true
+    },
+    "board::refresh_repo_catalog": {
+       "allowed" : true
+    },
+    "board::uninstall": {
+       "allowed" : true
+    },
+    "board_common::get_board_parts": {
+       "allowed" : true
+    },
+    "calc_config_time": {
+       "allowed" : true
+    },
+    "can_resolve_reference": {
+       "allowed" : true
+    },
+    "ced::add_group": {
+       "allowed" : true
+    },
+    "ced::add_indent": {
+       "allowed" : true
+    },
+    "ced::add_page": {
+       "allowed" : true
+    },
+    "ced::add_panel": {
+       "allowed" : true
+    },
+    "ced::add_param": {
+       "allowed" : true
+    },
+    "ced::add_row": {
+       "allowed" : true
+    },
+    "ced::add_text": {
+       "allowed" : true
+    },
+    "ced::debug_design_info": {
+       "allowed" : true
+    },
+    "ced::get_group": {
+       "allowed" : true
+    },
+    "ced::get_page": {
+       "allowed" : true
+    },
+    "ced::get_param": {
+       "allowed" : true
+    },
+    "ced::get_text": {
+       "allowed" : true
+    },
+    "ced::register_procedure_information": {
+       "allowed" : true
+    },
+    "check_integrity": {
+       "allowed" : true
+    },
+    "check_syntax": {
+       "allowed" : true
+    },
+    "check_timing": {
+       "allowed" : true
+    },
+    "close_design": {
+       "allowed" : true
+    },
+    "close_project": {
+       "allowed" : true
+    },
+    "common::close_msg_db": {
+       "allowed" : true
+    },
+    "common::config_webtalk": {
+       "allowed" : true
+    },
+    "common::create_gui_custom_command": {
+       "allowed" : true
+    },
+    "common::create_gui_custom_command_arg": {
+       "allowed" : true
+    },
+    "common::create_msg_db": {
+       "allowed" : true
+    },
+    "common::create_property": {
+       "allowed" : true
+    },
+    "common::endgroup": {
+       "allowed" : true
+    },
+    "common::get_global_preferences": {
+       "allowed" : true
+    },
+    "common::get_gui_custom_command_args": {
+       "allowed" : true
+    },
+    "common::get_gui_custom_commands": {
+       "allowed" : true
+    },
+    "common::get_msg_config": {
+       "allowed" : true
+    },
+    "common::get_param": {
+       "allowed" : true
+    },
+    "common::get_property": {
+       "allowed" : true
+    },
+    "common::help": {
+       "allowed" : true
+    },
+    "common::lint_files": {
+       "allowed" : true
+    },
+    "common::list_features": {
+       "allowed" : true
+    },
+    "common::list_param": {
+       "allowed" : true
+    },
+    "common::list_property": {
+       "allowed" : true
+    },
+    "common::list_property_value": {
+       "allowed" : true
+    },
+    "common::load_features": {
+       "allowed" : true
+    },
+    "common::load_msg_db": {
+       "allowed" : true
+    },
+    "common::load_preferences": {
+       "allowed" : true
+    },
+    "common::redo": {
+       "allowed" : true
+    },
+    "common::register_proc": {
+       "allowed" : true
+    },
+    "common::remove_gui_custom_command_args": {
+       "allowed" : true
+    },
+    "common::remove_gui_custom_commands": {
+       "allowed" : true
+    },
+    "common::report_environment": {
+       "allowed" : true
+    },
+    "common::report_param": {
+       "allowed" : true
+    },
+    "common::report_property": {
+       "allowed" : true
+    },
+    "common::reset_msg_config": {
+       "allowed" : true
+    },
+    "common::reset_msg_count": {
+       "allowed" : true
+    },
+    "common::reset_param": {
+       "allowed" : true
+    },
+    "common::reset_property": {
+       "allowed" : true
+    },
+    "common::save_preferences": {
+       "allowed" : true
+    },
+    "common::send_msg_id": {
+       "allowed" : true
+    },
+    "common::set_msg_config": {
+       "allowed" : true
+    },
+    "common::set_param": {
+       "allowed" : true
+    },
+    "common::set_property": {
+       "allowed" : true
+    },
+    "common::start_gui": {
+       "allowed" : true
+    },
+    "common::startgroup": {
+       "allowed" : true
+    },
+    "common::stop_gui": {
+       "allowed" : true
+    },
+    "common::undo": {
+       "allowed" : true
+    },
+    "common::unregister_proc": {
+       "allowed" : true
+    },
+    "common::version": {
+       "allowed" : true
+    },
+    "common::webserver": {
+       "allowed" : true
+    },
+    "common::webtalk_add_data": {
+       "allowed" : true
+    },
+    "common::webtalk_dump_data": {
+       "allowed" : true
+    },
+    "common::webtalk_init": {
+       "allowed" : true
+    },
+    "common::webtalk_register_client": {
+       "allowed" : true
+    },
+    "common::webtalk_terminate": {
+       "allowed" : true
+    },
+    "common::webtalk_transmit": {
+       "allowed" : true
+    },
+    "compile_c": {
+       "allowed" : true
+    },
+    "compile_simlib": {
+       "allowed" : true
+    },
+    "config_compile_simlib": {
+       "allowed" : true
+    },
+    "config_design_analysis": {
+       "allowed" : true
+    },
+    "config_implementation_flow": {
+       "allowed" : true
+    },
+    "config_ip_cache": {
+       "allowed" : true
+    },
+    "config_run": {
+       "allowed" : true
+    },
+    "config_timing_analysis": {
+       "allowed" : true
+    },
+    "config_timing_corners": {
+       "allowed" : true
+    },
+    "config_timing_pessimism": {
+       "allowed" : false
+    },
+    "connect_debug_cores": {
+       "allowed" : true
+    },
+    "connect_debug_port": {
+       "allowed" : true
+    },
+    "connect_net": {
+       "allowed" : true
+    },
+    "convert_ips": {
+       "allowed" : true
+    },
+    "convert_ngc": {
+       "allowed" : true
+    },
+    "copy_ip": {
+       "allowed" : true
+    },
+    "copy_run": {
+       "allowed" : true
+    },
+    "create_cell": {
+       "allowed" : true
+    },
+    "create_clock": {
+       "allowed" : true
+    },
+    "create_dashboard": {
+       "allowed" : true
+    },
+    "create_dashboard_gadget": {
+       "allowed" : true
+    },
+    "create_debug_core": {
+       "allowed" : true
+    },
+    "create_debug_port": {
+       "allowed" : true
+    },
+    "create_drc_check": {
+       "allowed" : true
+    },
+    "create_drc_ruledeck": {
+       "allowed" : true
+    },
+    "create_drc_violation": {
+       "allowed" : true
+    },
+    "create_fileset": {
+       "allowed" : true
+    },
+    "create_generated_clock": {
+       "allowed" : false
+    },
+    "create_interface": {
+       "allowed" : true
+    },
+    "create_ip": {
+       "allowed" : true
+    },
+    "create_ip_run": {
+       "allowed" : true
+    },
+    "create_macro": {
+       "allowed" : true
+    },
+    "create_net": {
+       "allowed" : true
+    },
+    "create_partition_def": {
+       "allowed" : true
+    },
+    "create_pblock": {
+       "allowed" : false
+    },
+    "create_pin": {
+       "allowed" : true
+    },
+    "create_port": {
+       "allowed" : true
+    },
+    "create_port_on_reconfigurable_module": {
+       "allowed" : true
+    },
+    "create_pr_configuration": {
+       "allowed" : true
+    },
+    "create_project": {
+       "allowed" : true
+    },
+    "create_reconfig_module": {
+       "allowed" : true
+    },
+    "create_report_config": {
+       "allowed" : true
+    },
+    "create_rqs_run": {
+       "allowed" : true
+    },
+    "create_run": {
+       "allowed" : true
+    },
+    "create_slack_histogram": {
+       "allowed" : true
+    },
+    "create_sysgen": {
+       "allowed" : true
+    },
+    "create_waiver": {
+       "allowed" : true
+    },
+    "create_xps": {
+       "allowed" : true
+    },
+    "current_board_part": {
+       "allowed" : true
+    },
+    "current_dashboard": {
+       "allowed" : true
+    },
+    "current_design": {
+       "allowed" : true
+    },
+    "current_fileset": {
+       "allowed" : true
+    },
+    "current_instance": {
+       "allowed" : true
+    },
+    "current_pr_configuration": {
+       "allowed" : true
+    },
+    "current_project": {
+       "allowed" : true
+    },
+    "current_run": {
+       "allowed" : true
+    },
+    "customize_kernel": {
+       "allowed" : true
+    },
+    "debug::add_scope": {
+       "allowed" : true
+    },
+    "debug::add_suppress_rule_cmd": {
+       "allowed" : true
+    },
+    "debug::bind_elf_as_mem": {
+       "allowed" : true
+    },
+    "debug::bp": {
+       "allowed" : true
+    },
+    "debug::calc_min_requirements": {
+       "allowed" : true
+    },
+    "debug::carve_routes_of_cell": {
+       "allowed" : true
+    },
+    "debug::cell_duplication": {
+       "allowed" : true
+    },
+    "debug::check_family_regexp": {
+       "allowed" : true
+    },
+    "debug::check_levelization": {
+       "allowed" : true
+    },
+    "debug::clear_sta": {
+       "allowed" : false
+    },
+    "debug::clear_sta_thread_pool": {
+       "allowed" : false
+    },
+    "debug::composite_file": {
+       "allowed" : true
+    },
+    "debug::compute_design_id": {
+       "allowed" : true
+    },
+    "debug::config_vsta": {
+       "allowed" : true
+    },
+    "debug::create_operating_conditions": {
+       "allowed" : false
+    },
+    "debug::debug_cache_miss": {
+       "allowed" : true
+    },
+    "debug::debug_dcalc": {
+       "allowed" : false
+    },
+    "debug::delays_changed": {
+       "allowed" : false
+    },
+    "debug::delete_sta": {
+       "allowed" : false
+    },
+    "debug::delete_suppress_rule_by_ruleid_cmd": {
+       "allowed" : true
+    },
+    "debug::design_graph": {
+       "allowed" : true
+    },
+    "debug::design_graph_mgr": {
+       "allowed" : true
+    },
+    "debug::design_graph_node": {
+       "allowed" : true
+    },
+    "debug::disable_msg_limit": {
+       "allowed" : true
+    },
+    "debug::dump_auto_device_properties_filter": {
+       "allowed" : true
+    },
+    "debug::dump_bfs": {
+       "allowed" : true
+    },
+    "debug::dump_cache_entries": {
+       "allowed" : true
+    },
+    "debug::dump_cmb_transforms": {
+       "allowed" : true
+    },
+    "debug::dump_elf": {
+       "allowed" : true
+    },
+    "debug::dump_hidden_reason_data": {
+       "allowed" : true
+    },
+    "debug::dump_ip_current_device_support": {
+       "allowed" : true
+    },
+    "debug::dump_ipdata": {
+       "allowed" : true
+    },
+    "debug::dump_ipinst": {
+       "allowed" : true
+    },
+    "debug::dump_ipsummaryresults": {
+       "allowed" : true
+    },
+    "debug::dump_netlist_info": {
+       "allowed" : true
+    },
+    "debug::dump_part_properties": {
+       "allowed" : true
+    },
+    "debug::dump_sim_models": {
+       "allowed" : true
+    },
+    "debug::dump_slacks": {
+       "allowed" : true
+    },
+    "debug::dump_special_ips": {
+       "allowed" : true
+    },
+    "debug::dump_vertex_flags": {
+       "allowed" : true
+    },
+    "debug::elfassociation": {
+       "allowed" : true
+    },
+    "debug::enable_msg_limit": {
+       "allowed" : true
+    },
+    "debug::eval_auto_device_properties_filter": {
+       "allowed" : true
+    },
+    "debug::event_tester": {
+       "allowed" : true
+    },
+    "debug::find_trace": {
+       "allowed" : true
+    },
+    "debug::fix_route": {
+       "allowed" : true
+    },
+    "debug::gen_hd_timing_constraints": {
+       "allowed" : false
+    },
+    "debug::generate_ced": {
+       "allowed" : true
+    },
+    "debug::get_fuzzy_cache_matches": {
+       "allowed" : true
+    },
+    "debug::get_leaf_clock_nets": {
+       "allowed" : true
+    },
+    "debug::get_messages": {
+       "allowed" : true
+    },
+    "debug::get_messages_from_log": {
+       "allowed" : true
+    },
+    "debug::get_min_requirements": {
+       "allowed" : true
+    },
+    "debug::get_mmcm_fvco": {
+       "allowed" : true
+    },
+    "debug::get_msg_control_rules": {
+       "allowed" : true
+    },
+    "debug::get_msg_src_stats": {
+       "allowed" : true
+    },
+    "debug::get_refclks_for_output": {
+       "allowed" : true
+    },
+    "debug::get_suppress_rules": {
+       "allowed" : true
+    },
+    "debug::get_sw_version": {
+       "allowed" : true
+    },
+    "debug::get_tcl_msg_count": {
+       "allowed" : true
+    },
+    "debug::get_trace_verbosity": {
+       "allowed" : true
+    },
+    "debug::get_verbosity": {
+       "allowed" : true
+    },
+    "debug::get_visibility": {
+       "allowed" : true
+    },
+    "debug::has_netlist_bit": {
+       "allowed" : true
+    },
+    "debug::has_scope": {
+       "allowed" : true
+    },
+    "debug::hold_messages_for_thread": {
+       "allowed" : true
+    },
+    "debug::incr_timing": {
+       "allowed" : false
+    },
+    "debug::interface_info": {
+       "allowed" : true
+    },
+    "debug::invalidate_timing": {
+       "allowed" : false
+    },
+    "debug::is_family_full_production": {
+       "allowed" : true
+    },
+    "debug::is_msg_xsl_on": {
+       "allowed" : true
+    },
+    "debug::is_time_stamp_on": {
+       "allowed" : true
+    },
+    "debug::is_timing_constrained": {
+       "allowed" : true
+    },
+    "debug::lic1735_checkLicense": {
+       "allowed" : true
+    },
+    "debug::lic1735_checkStatus": {
+       "allowed" : true
+    },
+    "debug::lic1735_checkinLicense": {
+       "allowed" : true
+    },
+    "debug::lic1735_checkoutLicense": {
+       "allowed" : true
+    },
+    "debug::lic1735_createLicSpec": {
+       "allowed" : true
+    },
+    "debug::lic1735_destroyLicSpec": {
+       "allowed" : true
+    },
+    "debug::list_class": {
+       "allowed" : true
+    },
+    "debug::loop_break_on_clock": {
+       "allowed" : true
+    },
+    "debug::manual_route": {
+       "allowed" : true
+    },
+    "debug::mask_msgmgr_errors": {
+       "allowed" : true
+    },
+    "debug::need_constraint_update": {
+       "allowed" : true
+    },
+    "debug::package_rtl_kernel": {
+       "allowed" : true
+    },
+    "debug::physical_synthesis": {
+       "allowed" : true
+    },
+    "debug::physical_synthesis_client": {
+       "allowed" : true
+    },
+    "debug::physynth_clone_finder": {
+       "allowed" : true
+    },
+    "debug::physynth_write_verilog": {
+       "allowed" : true
+    },
+    "debug::place_instance": {
+       "allowed" : true
+    },
+    "debug::placer_monitor": {
+       "allowed" : true
+    },
+    "debug::print_levelize_latch_d_to_q_edges": {
+       "allowed" : true
+    },
+    "debug::print_object": {
+       "allowed" : true
+    },
+    "debug::print_slowest_clocks": {
+       "allowed" : true
+    },
+    "debug::psta": {
+       "allowed" : false
+    },
+    "debug::query_objects": {
+       "allowed" : true
+    },
+    "debug::read_elf": {
+       "allowed" : true
+    },
+    "debug::read_sta": {
+       "allowed" : true
+    },
+    "debug::release_messages_for_thread": {
+       "allowed" : true
+    },
+    "debug::remove_case_analysis": {
+       "allowed" : true
+    },
+    "debug::remove_clock": {
+       "allowed" : true
+    },
+    "debug::remove_clock_groups": {
+       "allowed" : true
+    },
+    "debug::remove_clock_latency": {
+       "allowed" : true
+    },
+    "debug::remove_data_check": {
+       "allowed" : true
+    },
+    "debug::remove_disable_timing": {
+       "allowed" : false
+    },
+    "debug::remove_input_delay": {
+       "allowed" : false
+    },
+    "debug::remove_output_delay": {
+       "allowed" : false
+    },
+    "debug::remove_propagated_clock": {
+       "allowed" : false
+    },
+    "debug::remove_scope": {
+       "allowed" : true
+    },
+    "debug::remove_timing_constrained": {
+       "allowed" : false
+    },
+    "debug::report_constraints": {
+       "allowed" : false
+    },
+    "debug::report_contain_route_status": {
+       "allowed" : true
+    },
+    "debug::report_delay_calculation": {
+       "allowed" : false
+    },
+    "debug::report_design_status": {
+       "allowed" : true
+    },
+    "debug::report_exclude_placement_status": {
+       "allowed" : true
+    },
+    "debug::report_ip_files": {
+       "allowed" : true
+    },
+    "debug::report_level_metrics": {
+       "allowed" : false
+    },
+    "debug::report_mem_init": {
+       "allowed" : true
+    },
+    "debug::report_partitions": {
+       "allowed" : true
+    },
+    "debug::report_partpin_status": {
+       "allowed" : true
+    },
+    "debug::report_prediction_results": {
+       "allowed" : true
+    },
+    "debug::report_route_constraint": {
+       "allowed" : true
+    },
+    "debug::report_search_hash_sets": {
+       "allowed" : true
+    },
+    "debug::report_sta3_pruning": {
+       "allowed" : false
+    },
+    "debug::report_subnet_route_status": {
+       "allowed" : true
+    },
+    "debug::report_timing_info": {
+       "allowed" : false
+    },
+    "debug::report_unused_tags": {
+       "allowed" : true
+    },
+    "debug::reset_all_msg_counters": {
+       "allowed" : true
+    },
+    "debug::reset_path": {
+       "allowed" : false
+    },
+    "debug::reset_scope": {
+       "allowed" : true
+    },
+    "debug::reset_timing_derate": {
+       "allowed" : false
+    },
+    "debug::reset_trace_verbosity": {
+       "allowed" : false
+    },
+    "debug::reset_visibility": {
+       "allowed" : true
+    },
+    "debug::run": {
+       "allowed" : true
+    },
+    "debug::script": {
+       "allowed" : true
+    },
+    "debug::sdaccel_timing": {
+       "allowed" : true
+    },
+    "debug::send_message": {
+       "allowed" : true
+    },
+    "debug::set_cache_lock": {
+       "allowed" : true
+    },
+    "debug::set_clock_gating_check": {
+       "allowed" : false
+    },
+    "debug::set_debug_sta": {
+       "allowed" : false
+    },
+    "debug::set_ideal_latency": {
+       "allowed" : false
+    },
+    "debug::set_ideal_network": {
+       "allowed" : false
+    },
+    "debug::set_max_fanout": {
+       "allowed" : false
+    },
+    "debug::set_random_delays": {
+       "allowed" : false
+    },
+    "debug::set_timing_derate": {
+       "allowed" : false
+    },
+    "debug::set_trace_verbosity": {
+       "allowed" : false
+    },
+    "debug::set_verbosity": {
+       "allowed" : true
+    },
+    "debug::set_visibility": {
+       "allowed" : true
+    },
+    "debug::show_statistics": {
+       "allowed" : true
+    },
+    "debug::slack_tracker": {
+       "allowed" : false
+    },
+    "debug::sta3_get_tdm_info": {
+       "allowed" : false
+    },
+    "debug::sta3_print_timing_end": {
+       "allowed" : true
+    },
+    "debug::sta4_check_constraints": {
+       "allowed" : false
+    },
+    "debug::sta4_clone_contraints": {
+       "allowed" : false
+    },
+    "debug::sta4_clone_in_exceptions": {
+       "allowed" : false
+    },
+    "debug::sta4_clone_out_exceptions": {
+       "allowed" : false
+    },
+    "debug::sta4_close_timer": {
+       "allowed" : false
+    },
+    "debug::sta4_config_timing_analysis": {
+       "allowed" : false
+    },
+    "debug::sta4_create_clock_groups": {
+       "allowed" : false
+    },
+    "debug::sta4_create_exception_window": {
+       "allowed" : false
+    },
+    "debug::sta4_create_false_path": {
+       "allowed" : false
+    },
+    "debug::sta4_create_generated_clock": {
+       "allowed" : false
+    },
+    "debug::sta4_create_max_delay": {
+       "allowed" : false
+    },
+    "debug::sta4_create_min_delay": {
+       "allowed" : false
+    },
+    "debug::sta4_create_multicycle_path": {
+       "allowed" : false
+    },
+    "debug::sta4_dump_graph": {
+       "allowed" : false
+    },
+    "debug::sta4_dump_node": {
+       "allowed" : false
+    },
+    "debug::sta4_get_fanin": {
+       "allowed" : false
+    },
+    "debug::sta4_get_fanout": {
+       "allowed" : false
+    },
+    "debug::sta4_get_worst_slack": {
+       "allowed" : false
+    },
+    "debug::sta4_invalidate_paths": {
+       "allowed" : false
+    },
+    "debug::sta4_load_timer": {
+       "allowed" : false
+    },
+    "debug::sta4_print_clock": {
+       "allowed" : false
+    },
+    "debug::sta4_print_exception": {
+       "allowed" : false
+    },
+    "debug::sta4_print_stats": {
+       "allowed" : false
+    },
+    "debug::sta4_print_timing_end": {
+       "allowed" : false
+    },
+    "debug::sta4_print_timing_summary": {
+       "allowed" : false
+    },
+    "debug::sta4_query_delay": {
+       "allowed" : false
+    },
+    "debug::sta4_query_timing": {
+       "allowed" : false
+    },
+    "debug::sta4_save_timer": {
+       "allowed" : false
+    },
+    "debug::sta4_slack_compare": {
+       "allowed" : false
+    },
+    "debug::sta4_update_timing": {
+       "allowed" : false
+    },
+    "debug::sta4_wns_compare": {
+       "allowed" : false
+    },
+    "debug::sta4_write_xdc": {
+       "allowed" : false
+    },
+    "debug::sta_init_hv": {
+       "allowed" : false
+    },
+    "debug::sta_print_inst_clock_map": {
+       "allowed" : false
+    },
+    "debug::summarize_timing_exceptions": {
+       "allowed" : false
+    },
+    "debug::supports_sim_only": {
+       "allowed" : false
+    },
+    "debug::test_worst_slack_event_speed": {
+       "allowed" : false
+    },
+    "debug::tns": {
+       "allowed" : true
+    },
+    "debug::trace_router_sitepins": {
+       "allowed" : true
+    },
+    "debug::turn_off_msg_xsl": {
+       "allowed" : true
+    },
+    "debug::turn_off_time_stamp": {
+       "allowed" : true
+    },
+    "debug::turn_on_msg_xsl": {
+       "allowed" : true
+    },
+    "debug::turn_on_time_stamp": {
+       "allowed" : true
+    },
+    "debug::update_placement_info": {
+       "allowed" : false
+    },
+    "debug::verify_timing": {
+       "allowed" : false
+    },
+    "debug::wns": {
+       "allowed" : false
+    },
+    "debug::wns_min_queue_size": {
+       "allowed" : false
+    },
+    "debug::wns_tns_whs_ths_str": {
+       "allowed" : false
+    },
+    "debug::worst_arrival_event": {
+       "allowed" : false
+    },
+    "debug::worst_slack_event": {
+       "allowed" : false
+    },
+    "debug::write_blif": {
+       "allowed" : false
+    },
+    "debug::write_config_timing": {
+       "allowed" : false
+    },
+    "debug::write_delays": {
+       "allowed" : false
+    },
+    "debug::write_elf_as_mem": {
+       "allowed" : false
+    },
+    "debug::write_flop_graph": {
+       "allowed" : false
+    },
+    "debug::write_mem_as_xdc": {
+       "allowed" : false
+    },
+    "debug::write_sta": {
+       "allowed" : false
+    },
+    "decrypt_bitstream": {
+       "allowed" : true
+    },
+    "delete_clock_networks_results": {
+       "allowed" : false
+    },
+    "delete_dashboard": {
+       "allowed" : true
+    },
+    "delete_dashboard_gadgets": {
+       "allowed" : true
+    },
+    "delete_debug_core": {
+       "allowed" : false
+    },
+    "delete_debug_port": {
+       "allowed" : false
+    },
+    "delete_drc_check": {
+       "allowed" : false
+    },
+    "delete_drc_ruledeck": {
+       "allowed" : false
+    },
+    "delete_fileset": {
+       "allowed" : true
+    },
+    "delete_interface": {
+       "allowed" : true
+    },
+    "delete_ip_run": {
+       "allowed" : true
+    },
+    "delete_macros": {
+       "allowed" : true
+    },
+    "delete_partition_defs": {
+       "allowed" : true
+    },
+    "delete_pblocks": {
+       "allowed" : false
+    },
+    "delete_power_results": {
+       "allowed" : true
+    },
+    "delete_pr_configurations": {
+       "allowed" : true
+    },
+    "delete_reconfig_modules": {
+       "allowed" : true
+    },
+    "delete_report_configs": {
+       "allowed" : false
+    },
+    "delete_rpm": {
+       "allowed" : true
+    },
+    "delete_runs": {
+       "allowed" : true
+    },
+    "delete_timing_results": {
+       "allowed" : false
+    },
+    "delete_utilization_results": {
+       "allowed" : true
+    },
+    "delete_waivers": {
+       "allowed" : true
+    },
+    "device::current_device": {
+       "allowed" : true
+    },
+    "device::direct_route": {
+       "allowed" : true
+    },
+    "device::write_logic_location_data": {
+       "allowed" : true
+    },
+    "device_enable": {
+       "allowed" : true
+    },
+    "disconnect_debug_port": {
+       "allowed" : true
+    },
+    "disconnect_net": {
+       "allowed" : true
+    },
+    "enable_beta_device": {
+       "allowed" : true
+    },
+    "encrypt": {
+       "allowed" : true
+    },
+    "encrypt_package": {
+       "allowed" : true
+    },
+    "export_as_example_design": {
+       "allowed" : true
+    },
+    "export_bd_synth": {
+       "allowed" : true
+    },
+    "export_ip_user_files": {
+       "allowed" : true
+    },
+    "export_simulation": {
+       "allowed" : true
+    },
+    "extract_files": {
+       "allowed" : true
+    },
+    "filter": {
+       "allowed" : true
+    },
+    "find_routing_path": {
+       "allowed" : true
+    },
+    "find_top": {
+       "allowed" : true
+    },
+    "flow_viz": {
+       "allowed" : true
+    },
+    "generate_base_platform": {
+       "allowed" : true
+    },
+    "generate_dsa_emu": {
+       "allowed" : true
+    },
+    "generate_mem_files": {
+       "allowed" : true
+    },
+    "generate_pblock": {
+       "allowed" : true
+    },
+    "generate_qor_suggestions": {
+       "allowed" : true
+    },
+    "generate_reports": {
+       "allowed" : true
+    },
+    "generate_rl_platform": {
+       "allowed" : true
+    },
+    "generate_shx_platform": {
+       "allowed" : true
+    },
+    "generate_target": {
+       "allowed" : true
+    },
+    "genkey_customer": {
+       "allowed" : true
+    },
+    "genkey_ipprovider": {
+       "allowed" : true
+    },
+    "get_assessment_score": {
+       "allowed" : true
+    },
+    "get_bel_pins": {
+       "allowed" : true
+    },
+    "get_bels": {
+       "allowed" : true
+    },
+    "get_board_parts": {
+       "allowed" : true
+    },
+    "get_cdc_violations": {
+       "allowed" : true
+    },
+    "get_cells": {
+       "allowed" : true
+    },
+    "get_clock_regions": {
+       "allowed" : false
+    },
+    "get_clocks": {
+       "allowed" : true
+    },
+    "get_dashboard_gadgets": {
+       "allowed" : true
+    },
+    "get_dashboards": {
+       "allowed" : true
+    },
+    "get_debug_cores": {
+       "allowed" : true
+    },
+    "get_debug_ports": {
+       "allowed" : true
+    },
+    "get_designs": {
+       "allowed" : true
+    },
+    "get_drc_checks": {
+       "allowed" : true
+    },
+    "get_drc_ruledecks": {
+       "allowed" : true
+    },
+    "get_drc_violations": {
+       "allowed" : true
+    },
+    "get_example_designs": {
+       "allowed" : true
+    },
+    "get_file_path": {
+       "allowed" : true
+    },
+    "get_files": {
+       "allowed" : true
+    },
+    "get_filesets": {
+       "allowed" : true
+    },
+    "get_generated_clocks": {
+       "allowed" : false
+    },
+    "get_gtbanks": {
+       "allowed" : true
+    },
+    "get_hierarchy_separator": {
+       "allowed" : true
+    },
+    "get_highlighted_objects": {
+       "allowed" : true
+    },
+    "get_interfaces": {
+       "allowed" : true
+    },
+    "get_io_standards": {
+       "allowed" : true
+    },
+    "get_iobanks": {
+       "allowed" : true
+    },
+    "get_ip_upgrade_results": {
+       "allowed" : true
+    },
+    "get_ipdefs": {
+       "allowed" : true
+    },
+    "get_ips": {
+       "allowed" : true
+    },
+    "get_kernels": {
+       "allowed" : true
+    },
+    "get_lib_cells": {
+       "allowed" : true
+    },
+    "get_lib_pins": {
+       "allowed" : true
+    },
+    "get_libs": {
+       "allowed" : true
+    },
+    "get_macros": {
+       "allowed" : true
+    },
+    "get_marked_objects": {
+       "allowed" : true
+    },
+    "get_methodology_checks": {
+       "allowed" : true
+    },
+    "get_methodology_violations": {
+       "allowed" : true
+    },
+    "get_nearest_site": {
+       "allowed" : true
+    },
+    "get_net_delays": {
+       "allowed" : true
+    },
+    "get_nets": {
+       "allowed" : true
+    },
+    "get_nodes": {
+       "allowed" : true
+    },
+    "get_oracle_feature_specs": {
+       "allowed" : true
+    },
+    "get_package_pins": {
+       "allowed" : true
+    },
+    "get_partition_defs": {
+       "allowed" : true
+    },
+    "get_parts": {
+       "allowed" : true
+    },
+    "get_path_groups": {
+       "allowed" : true
+    },
+    "get_pblocks": {
+       "allowed" : true
+    },
+    "get_pins": {
+       "allowed" : true
+    },
+    "get_pips": {
+       "allowed" : true
+    },
+    "get_pkgpin_bytegroups": {
+       "allowed" : true
+    },
+    "get_pkgpin_nibbles": {
+       "allowed" : true
+    },
+    "get_ports": {
+       "allowed" : true
+    },
+    "get_pplocs": {
+       "allowed" : true
+    },
+    "get_pr_configurations": {
+       "allowed" : true
+    },
+    "get_primitives": {
+       "allowed" : true
+    },
+    "get_projects": {
+       "allowed" : true
+    },
+    "get_qor_suggestions": {
+       "allowed" : true
+    },
+    "get_reconfig_modules": {
+       "allowed" : true
+    },
+    "get_report_configs": {
+       "allowed" : true
+    },
+    "get_runs": {
+       "allowed" : true
+    },
+    "get_selected_objects": {
+       "allowed" : true
+    },
+    "get_simulators": {
+       "allowed" : true
+    },
+    "get_site_pins": {
+       "allowed" : true
+    },
+    "get_site_pips": {
+       "allowed" : true
+    },
+    "get_sites": {
+       "allowed" : true
+    },
+    "get_slrs": {
+       "allowed" : true
+    },
+    "get_speed_models": {
+       "allowed" : false
+    },
+    "get_template_bd_designs": {
+       "allowed" : true
+    },
+    "get_tiles": {
+       "allowed" : true
+    },
+    "get_timing_arcs": {
+       "allowed" : true
+    },
+    "get_timing_paths": {
+       "allowed" : true
+    },
+    "get_utilization": {
+       "allowed" : true
+    },
+    "get_waivers": {
+       "allowed" : true
+    },
+    "get_wires": {
+       "allowed" : true
+    },
+    "group_path": {
+       "allowed" : false
+    },
+    "highlight_objects": {
+       "allowed" : true
+    },
+    "implement_debug_core": {
+       "allowed" : true
+    },
+    "implement_mig_cores": {
+       "allowed" : true
+    },
+    "implement_xphy_cores": {
+       "allowed" : true
+    },
+    "import_files": {
+       "allowed" : true
+    },
+    "import_ip": {
+       "allowed" : true
+    },
+    "import_synplify": {
+       "allowed" : true
+    },
+    "import_xise": {
+       "allowed" : true
+    },
+    "import_xst": {
+       "allowed" : true
+    },
+    "improve_timing": {
+       "allowed" : false
+    },
+    "infer_diff_pairs": {
+       "allowed" : true
+    },
+    "install_encrypted_package": {
+       "allowed" : true
+    },
+    "instantiate_example_design": {
+       "allowed" : true
+    },
+    "instantiate_template_bd_design": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMGetMsgTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMInstanceTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMInstanceTest1": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMMsgFmt": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMOstreamTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMPbVersion": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMStorageTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMStreamTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_CMMXmessage": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_ComMsgMgrTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_ComMsgMgrThreadTest": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_add_filter": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_benchmark": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_check_msg": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_delete_filters": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_dump_xocc_mrf": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_load_xocc_mrf": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_override_alias": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_parse_gcc_log": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_report_filters": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_send_message_scope": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_send_meta_msg": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_set_mode": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_set_msg_limit": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_setstacklimit": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_test_getMessage": {
+       "allowed" : true
+    },
+    "internal::ComMsgMgr_test_storeMessageToDb": {
+       "allowed" : true
+    },
+    "internal::NTL_probe": {
+       "allowed" : true
+    },
+    "internal::add_hw_probes": {
+       "allowed" : true
+    },
+    "internal::add_inst_to_constr": {
+       "allowed" : true
+    },
+    "internal::add_stub": {
+       "allowed" : true
+    },
+    "internal::add_to_boundarysitedb": {
+       "allowed" : true
+    },
+    "internal::aet::IOtransform": {
+       "allowed" : true
+    },
+    "internal::aet::aoa16": {
+       "allowed" : true
+    },
+    "internal::aet::aoa16Info": {
+       "allowed" : true
+    },
+    "internal::aet::aoaRouteInfo": {
+       "allowed" : true
+    },
+    "internal::aet::aoaZCutReport": {
+       "allowed" : true
+    },
+    "internal::aet::aoaZSmear": {
+       "allowed" : true
+    },
+    "internal::aet::baseconnwl": {
+       "allowed" : true
+    },
+    "internal::aet::checkOutputOverlap": {
+       "allowed" : true
+    },
+    "internal::aet::clocking": {
+       "allowed" : true
+    },
+    "internal::aet::countFFdistance": {
+       "allowed" : true
+    },
+    "internal::aet::disableTile": {
+       "allowed" : true
+    },
+    "internal::aet::distram": {
+       "allowed" : true
+    },
+    "internal::aet::dst": {
+       "allowed" : true
+    },
+    "internal::aet::dumpPlRt": {
+       "allowed" : true
+    },
+    "internal::aet::epsCrit": {
+       "allowed" : true
+    },
+    "internal::aet::estimate": {
+       "allowed" : true
+    },
+    "internal::aet::genEstHeatMap": {
+       "allowed" : true
+    },
+    "internal::aet::genclockoverlay": {
+       "allowed" : true
+    },
+    "internal::aet::getNominalDelays": {
+       "allowed" : false
+    },
+    "internal::aet::getsites": {
+       "allowed" : true
+    },
+    "internal::aet::intRTL": {
+       "allowed" : true
+    },
+    "internal::aet::intTileBasedBBWireLength": {
+       "allowed" : true
+    },
+    "internal::aet::intdatamod": {
+       "allowed" : true
+    },
+    "internal::aet::intdatatest": {
+       "allowed" : true
+    },
+    "internal::aet::intdataupdate": {
+       "allowed" : true
+    },
+    "internal::aet::loadRt": {
+       "allowed" : true
+    },
+    "internal::aet::ngcreate": {
+       "allowed" : true
+    },
+    "internal::aet::p2p": {
+       "allowed" : true
+    },
+    "internal::aet::patSniff": {
+       "allowed" : true
+    },
+    "internal::aet::pathdelay": {
+       "allowed" : false
+    },
+    "internal::aet::pinProjSniff": {
+       "allowed" : true
+    },
+    "internal::aet::placeios": {
+       "allowed" : true
+    },
+    "internal::aet::placemap": {
+       "allowed" : true
+    },
+    "internal::aet::print_cut_nets": {
+       "allowed" : true
+    },
+    "internal::aet::prod2xmlrtcheck": {
+       "allowed" : true
+    },
+    "internal::aet::removeConnections": {
+       "allowed" : true
+    },
+    "internal::aet::removeDrivers": {
+       "allowed" : true
+    },
+    "internal::aet::removeLoads": {
+       "allowed" : true
+    },
+    "internal::aet::report_int_pinwires": {
+       "allowed" : true
+    },
+    "internal::aet::report_net_impl": {
+       "allowed" : true
+    },
+    "internal::aet::report_pin_proj": {
+       "allowed" : true
+    },
+    "internal::aet::resetoutput": {
+       "allowed" : true
+    },
+    "internal::aet::reverse_pin_proj": {
+       "allowed" : true
+    },
+    "internal::aet::sddcheck": {
+       "allowed" : true
+    },
+    "internal::aet::smear": {
+       "allowed" : true
+    },
+    "internal::aet::sniffRt": {
+       "allowed" : true
+    },
+    "internal::aet::ssiDeviceReport": {
+       "allowed" : true
+    },
+    "internal::aet::ssiReport": {
+       "allowed" : true
+    },
+    "internal::aet::strandedlnode": {
+       "allowed" : true
+    },
+    "internal::aet::triplet2triplet": {
+       "allowed" : true
+    },
+    "internal::aet::validatePinProj": {
+       "allowed" : true
+    },
+    "internal::aet::wireLength": {
+       "allowed" : true
+    },
+    "internal::aet::writeDeviceFloorplan": {
+       "allowed" : true
+    },
+    "internal::aet::xmlrenamemux": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::clear": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::load": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::read_file": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::remove": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::report": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::save": {
+       "allowed" : true
+    },
+    "internal::aie_prj_mgr::write_file": {
+       "allowed" : true
+    },
+    "internal::allocateAllBudgets": {
+       "allowed" : true
+    },
+    "internal::analyze_pipeline": {
+       "allowed" : true
+    },
+    "internal::analyze_placer_congestion": {
+       "allowed" : true
+    },
+    "internal::analyze_pr_fp": {
+       "allowed" : true
+    },
+    "internal::analyzetiming": {
+       "allowed" : true
+    },
+    "internal::annotate_pdi": {
+       "allowed" : true
+    },
+    "internal::append_suffix": {
+       "allowed" : true
+    },
+    "internal::assign_replicated_pin_collection": {
+       "allowed" : true
+    },
+    "internal::attach_digest": {
+       "allowed" : true
+    },
+    "internal::balance_uram_chain": {
+       "allowed" : true
+    },
+    "internal::build_clocking_gap_trees": {
+       "allowed" : true
+    },
+    "internal::build_dot_graph": {
+       "allowed" : true
+    },
+    "internal::callgrind": {
+       "allowed" : true
+    },
+    "internal::can_create_hold_fix_imr": {
+       "allowed" : true
+    },
+    "internal::can_place": {
+       "allowed" : true
+    },
+    "internal::cc_get_last_mod": {
+       "allowed" : true
+    },
+    "internal::check_clock_legalization": {
+       "allowed" : true
+    },
+    "internal::check_integrity": {
+       "allowed" : true
+    },
+    "internal::check_pin_routing": {
+       "allowed" : true
+    },
+    "internal::check_route_inversions": {
+       "allowed" : true
+    },
+    "internal::check_routedb_cachedsites": {
+       "allowed" : true
+    },
+    "internal::check_rules": {
+       "allowed" : true
+    },
+    "internal::check_xml_implementation": {
+       "allowed" : true
+    },
+    "internal::checksum": {
+       "allowed" : true
+    },
+    "internal::cleanup_incr_routing": {
+       "allowed" : true
+    },
+    "internal::clktree_add": {
+       "allowed" : true
+    },
+    "internal::clktree_query": {
+       "allowed" : true
+    },
+    "internal::clktree_show": {
+       "allowed" : true
+    },
+    "internal::clockRegion_mazeRouter": {
+       "allowed" : true
+    },
+    "internal::collection_context": {
+       "allowed" : true
+    },
+    "internal::collection_context_extract": {
+       "allowed" : true
+    },
+    "internal::compile_fsm": {
+       "allowed" : true
+    },
+    "internal::completions::list": {
+       "allowed" : true
+    },
+    "internal::composite_file": {
+       "allowed" : true
+    },
+    "internal::computeBudgeterMemory": {
+       "allowed" : true
+    },
+    "internal::cong_place": {
+       "allowed" : true
+    },
+    "internal::congestion_debug_net_routing": {
+       "allowed" : true
+    },
+    "internal::congestion_dump_support": {
+       "allowed" : true
+    },
+    "internal::congestion_report_mesh_stats": {
+       "allowed" : true
+    },
+    "internal::congestion_report_modeling_error": {
+       "allowed" : true
+    },
+    "internal::constraints_attrspec_report": {
+       "allowed" : true
+    },
+    "internal::constraints_file_modified": {
+       "allowed" : true
+    },
+    "internal::constraints_get_constraint_status": {
+       "allowed" : true
+    },
+    "internal::constraints_infer_sigifc": {
+       "allowed" : true
+    },
+    "internal::constraints_registry_report": {
+       "allowed" : true
+    },
+    "internal::constraints_report": {
+       "allowed" : true
+    },
+    "internal::constraints_reset_constraint_status": {
+       "allowed" : true
+    },
+    "internal::constraints_tmc_mode": {
+       "allowed" : true
+    },
+    "internal::control_set_opt": {
+       "allowed" : true
+    },
+    "internal::controlset_numsites": {
+       "allowed" : true
+    },
+    "internal::convert_chipscope_xml": {
+       "allowed" : true
+    },
+    "internal::copy_zip": {
+       "allowed" : true
+    },
+    "internal::core_container": {
+       "allowed" : true
+    },
+    "internal::coregen_eval_scratch_xit": {
+       "allowed" : true
+    },
+    "internal::coveringCrSiteRectTest": {
+       "allowed" : true
+    },
+    "internal::cpget_neighbors": {
+       "allowed" : true
+    },
+    "internal::create_auto_lut_clusters": {
+       "allowed" : true
+    },
+    "internal::create_elfassociations": {
+       "allowed" : true
+    },
+    "internal::create_hold_fix_imr": {
+       "allowed" : true
+    },
+    "internal::create_hw_ila_data": {
+       "allowed" : true
+    },
+    "internal::create_hw_probe": {
+       "allowed" : true
+    },
+    "internal::create_hw_probeset": {
+       "allowed" : true
+    },
+    "internal::create_implicit_pulsed_latch": {
+       "allowed" : true
+    },
+    "internal::create_shape": {
+       "allowed" : true
+    },
+    "internal::crossreference::dump": {
+       "allowed" : true
+    },
+    "internal::crossreference::lookup": {
+       "allowed" : true
+    },
+    "internal::crprget_clock_delay": {
+       "allowed" : false
+    },
+    "internal::cruncher": {
+       "allowed" : true
+    },
+    "internal::data_file_path": {
+       "allowed" : true
+    },
+    "internal::dcp2sp": {
+       "allowed" : true
+    },
+    "internal::dd": {
+       "allowed" : true
+    },
+    "internal::debugCoreReconnect": {
+       "allowed" : true
+    },
+    "internal::debug_acdb": {
+       "allowed" : true
+    },
+    "internal::debug_check_placedb": {
+       "allowed" : true
+    },
+    "internal::debug_core_info": {
+       "allowed" : true
+    },
+    "internal::debug_dump_belattrdb": {
+       "allowed" : true
+    },
+    "internal::debug_dump_boundarysitedb": {
+       "allowed" : true
+    },
+    "internal::debug_dump_checksums": {
+       "allowed" : true
+    },
+    "internal::debug_dump_device": {
+       "allowed" : true
+    },
+    "internal::debug_dump_element_attributes": {
+       "allowed" : true
+    },
+    "internal::debug_dump_oracle": {
+       "allowed" : true
+    },
+    "internal::debug_dump_pinmapper": {
+       "allowed" : true
+    },
+    "internal::debug_dump_placedb": {
+       "allowed" : true
+    },
+    "internal::debug_dump_shapedb": {
+       "allowed" : true
+    },
+    "internal::debug_dump_sitemap": {
+       "allowed" : true
+    },
+    "internal::debug_dump_sitemap_dynamic_pins": {
+       "allowed" : true
+    },
+    "internal::debug_graph": {
+       "allowed" : true
+    },
+    "internal::debug_mdbn": {
+       "allowed" : true
+    },
+    "internal::debug_my_routine": {
+       "allowed" : true
+    },
+    "internal::debug_netlist": {
+       "allowed" : true
+    },
+    "internal::debug_placedb_uptodate": {
+       "allowed" : true
+    },
+    "internal::debug_populate_attributes": {
+       "allowed" : true
+    },
+    "internal::debug_route_state": {
+       "allowed" : true
+    },
+    "internal::debug_site_placedb": {
+       "allowed" : true
+    },
+    "internal::debug_xdef": {
+       "allowed" : true
+    },
+    "internal::decrypt": {
+       "allowed" : true
+    },
+    "internal::decryption": {
+       "allowed" : true
+    },
+    "internal::delay_cruncher": {
+       "allowed" : false
+    },
+    "internal::delayreporter": {
+       "allowed" : false
+    },
+    "internal::delete_auto_lut_clusters": {
+       "allowed" : true
+    },
+    "internal::delete_hw_ila_data": {
+       "allowed" : true
+    },
+    "internal::delete_hw_probes": {
+       "allowed" : true
+    },
+    "internal::delete_hw_probeset": {
+       "allowed" : true
+    },
+    "internal::deobfusc_ip": {
+       "allowed" : true
+    },
+    "internal::deque_unit_tests": {
+       "allowed" : true
+    },
+    "internal::design::fpdump": {
+       "allowed" : true
+    },
+    "internal::design::pblocksnest": {
+       "allowed" : true
+    },
+    "internal::device_checker": {
+       "allowed" : true
+    },
+    "internal::device_dump_objsize": {
+       "allowed" : true
+    },
+    "internal::device_dump_shapes_cfg": {
+       "allowed" : true
+    },
+    "internal::device_find_data_file": {
+       "allowed" : true
+    },
+    "internal::diff_ssn_result": {
+       "allowed" : true
+    },
+    "internal::dirt_event_validator": {
+       "allowed" : true
+    },
+    "internal::dlyest_greedy_moves": {
+       "allowed" : true
+    },
+    "internal::dlyest_set_pploc": {
+       "allowed" : true
+    },
+    "internal::drc_locked_placement": {
+       "allowed" : true
+    },
+    "internal::dst_vs_p2p": {
+       "allowed" : true
+    },
+    "internal::dump1735envelopes": {
+       "allowed" : true
+    },
+    "internal::dump1735fl": {
+       "allowed" : true
+    },
+    "internal::dumpChangedVertices": {
+       "allowed" : true
+    },
+    "internal::dumpReportClockNetworkPaths": {
+       "allowed" : true
+    },
+    "internal::dumpSSN": {
+       "allowed" : true
+    },
+    "internal::dumpTags": {
+       "allowed" : true
+    },
+    "internal::dumpTiming": {
+       "allowed" : true
+    },
+    "internal::dump_board_information": {
+       "allowed" : true
+    },
+    "internal::dump_config_modes": {
+       "allowed" : true
+    },
+    "internal::dump_congestion_mesh": {
+       "allowed" : true
+    },
+    "internal::dump_connection_db": {
+       "allowed" : true
+    },
+    "internal::dump_core_container_xml": {
+       "allowed" : true
+    },
+    "internal::dump_dlyest_crossing_tables": {
+       "allowed" : true
+    },
+    "internal::dump_dlyest_routes": {
+       "allowed" : true
+    },
+    "internal::dump_intent_codes": {
+       "allowed" : true
+    },
+    "internal::dump_io_stds": {
+       "allowed" : true
+    },
+    "internal::dump_leaf_assignment": {
+       "allowed" : true
+    },
+    "internal::dump_locked_node_cache": {
+       "allowed" : true
+    },
+    "internal::dump_ncn_cache": {
+       "allowed" : true
+    },
+    "internal::dump_nibbles": {
+       "allowed" : true
+    },
+    "internal::dump_node_templates": {
+       "allowed" : true
+    },
+    "internal::dump_port_configs": {
+       "allowed" : true
+    },
+    "internal::dump_rtl_kernel": {
+       "allowed" : true
+    },
+    "internal::dump_sat_sysmon": {
+       "allowed" : true
+    },
+    "internal::dump_unbuffered_pips": {
+       "allowed" : true
+    },
+    "internal::dump_xiphy_bitslice_sites": {
+       "allowed" : true
+    },
+    "internal::dumpclockdelays": {
+       "allowed" : false
+    },
+    "internal::dumpdelays": {
+       "allowed" : false
+    },
+    "internal::dxget_delay": {
+       "allowed" : false
+    },
+    "internal::dxget_neighbors": {
+       "allowed" : true
+    },
+    "internal::dxload": {
+       "allowed" : true
+    },
+    "internal::dxmake": {
+       "allowed" : true
+    },
+    "internal::edit_dcp": {
+       "allowed" : true
+    },
+    "internal::ee": {
+       "allowed" : true
+    },
+    "internal::efx_place_site": {
+       "allowed" : true
+    },
+    "internal::enable_all_devices": {
+       "allowed" : true
+    },
+    "internal::enable_gtwiz_internal_testing": {
+       "allowed" : true
+    },
+    "internal::enable_incremental_power": {
+       "allowed" : true
+    },
+    "internal::enable_testarcs": {
+       "allowed" : true
+    },
+    "internal::encrypt": {
+       "allowed" : true
+    },
+    "internal::encrypt1735": {
+       "allowed" : true
+    },
+    "internal::encryption": {
+       "allowed" : true
+    },
+    "internal::ensure_writeable_dir": {
+       "allowed" : true
+    },
+    "internal::env_getBuildData": {
+       "allowed" : true
+    },
+    "internal::env_getISEVersion": {
+       "allowed" : true
+    },
+    "internal::env_getMajor": {
+       "allowed" : true
+    },
+    "internal::env_getMinor": {
+       "allowed" : true
+    },
+    "internal::env_getProductMajorMinorVersion": {
+       "allowed" : true
+    },
+    "internal::env_getProductVersion": {
+       "allowed" : true
+    },
+    "internal::env_getRDIDataDir": {
+       "allowed" : true
+    },
+    "internal::env_getUpdate": {
+       "allowed" : true
+    },
+    "internal::env_getVersionQualifier": {
+       "allowed" : true
+    },
+    "internal::evaluate_extra_objects_collection": {
+       "allowed" : true
+    },
+    "internal::example_test1": {
+       "allowed" : true
+    },
+    "internal::exists": {
+       "allowed" : true
+    },
+    "internal::exp_graph": {
+       "allowed" : true
+    },
+    "internal::export_rodin_synth_constraints": {
+       "allowed" : true
+    },
+    "internal::extract_dcp_file": {
+       "allowed" : true
+    },
+    "internal::file_copyTo": {
+       "allowed" : true
+    },
+    "internal::file_mkExecutable": {
+       "allowed" : true
+    },
+    "internal::fileutils::encryption": {
+       "allowed" : true
+    },
+    "internal::finalize_design": {
+       "allowed" : true
+    },
+    "internal::fix_lut_pin_assignment": {
+       "allowed" : true
+    },
+    "internal::force_place_cell": {
+       "allowed" : true
+    },
+    "internal::forcemcdumper": {
+       "allowed" : true
+    },
+    "internal::gen_expanded_footprint": {
+       "allowed" : true
+    },
+    "internal::gen_hd_designreuse_script": {
+       "allowed" : true
+    },
+    "internal::gen_hd_ip_qor_script": {
+       "allowed" : true
+    },
+    "internal::gen_hd_pr_script": {
+       "allowed" : true
+    },
+    "internal::gen_hd_qor_script": {
+       "allowed" : true
+    },
+    "internal::gen_pr_qor_script": {
+       "allowed" : true
+    },
+    "internal::gen_route_traces": {
+       "allowed" : true
+    },
+    "internal::generate_me_token": {
+       "allowed" : true
+    },
+    "internal::generate_place_xdc": {
+       "allowed" : true
+    },
+    "internal::get_address_space_tags": {
+       "allowed" : true
+    },
+    "internal::get_arc_types": {
+       "allowed" : true
+    },
+    "internal::get_attr_specs": {
+       "allowed" : true
+    },
+    "internal::get_bel_defs": {
+       "allowed" : true
+    },
+    "internal::get_bel_pin_defs": {
+       "allowed" : true
+    },
+    "internal::get_bel_usage_defs": {
+       "allowed" : true
+    },
+    "internal::get_bitmap_frames": {
+       "allowed" : true
+    },
+    "internal::get_bitmap_manager": {
+       "allowed" : true
+    },
+    "internal::get_board_compatible_connectors": {
+       "allowed" : true
+    },
+    "internal::get_board_interface_options": {
+       "allowed" : true
+    },
+    "internal::get_bram_info": {
+       "allowed" : true
+    },
+    "internal::get_bus_interface_probes": {
+       "allowed" : true
+    },
+    "internal::get_clock_capable_ios": {
+       "allowed" : true
+    },
+    "internal::get_clock_graph_insts": {
+       "allowed" : true
+    },
+    "internal::get_clock_mgr": {
+       "allowed" : true
+    },
+    "internal::get_config_delay": {
+       "allowed" : false
+    },
+    "internal::get_config_resource": {
+       "allowed" : true
+    },
+    "internal::get_connected_bels": {
+       "allowed" : true
+    },
+    "internal::get_connected_sites": {
+       "allowed" : true
+    },
+    "internal::get_crossing_tile_types": {
+       "allowed" : true
+    },
+    "internal::get_crpr_diagnostics": {
+       "allowed" : true
+    },
+    "internal::get_crpr_tree": {
+       "allowed" : true
+    },
+    "internal::get_debug_probes": {
+       "allowed" : true
+    },
+    "internal::get_devices": {
+       "allowed" : true
+    },
+    "internal::get_distToDelayEst": {
+       "allowed" : false
+    },
+    "internal::get_dr_route_for": {
+       "allowed" : true
+    },
+    "internal::get_element_pins": {
+       "allowed" : true
+    },
+    "internal::get_elements": {
+       "allowed" : true
+    },
+    "internal::get_encrypted_files": {
+       "allowed" : true
+    },
+    "internal::get_eqn_string": {
+       "allowed" : true
+    },
+    "internal::get_files_from_comp": {
+       "allowed" : true
+    },
+    "internal::get_hw_probesets": {
+       "allowed" : true
+    },
+    "internal::get_implicit_pulsed_latch": {
+       "allowed" : true
+    },
+    "internal::get_init_string": {
+       "allowed" : true
+    },
+    "internal::get_internal_parts": {
+       "allowed" : true
+    },
+    "internal::get_invertible_lbelpins": {
+       "allowed" : true
+    },
+    "internal::get_ip_core_container_path": {
+       "allowed" : true
+    },
+    "internal::get_ipxact_inst": {
+       "allowed" : true
+    },
+    "internal::get_is_pins_fixed": {
+       "allowed" : true
+    },
+    "internal::get_lbel_defs": {
+       "allowed" : true
+    },
+    "internal::get_lbels": {
+       "allowed" : true
+    },
+    "internal::get_lumped_delay": {
+       "allowed" : true
+    },
+    "internal::get_lumped_model_3": {
+       "allowed" : true
+    },
+    "internal::get_lumped_model_5": {
+       "allowed" : true
+    },
+    "internal::get_mem_cells": {
+       "allowed" : true
+    },
+    "internal::get_no_connect_pins": {
+       "allowed" : true
+    },
+    "internal::get_node_graph": {
+       "allowed" : true
+    },
+    "internal::get_npf_dict": {
+       "allowed" : true
+    },
+    "internal::get_object_classes": {
+       "allowed" : true
+    },
+    "internal::get_opt_invertible_pins": {
+       "allowed" : true
+    },
+    "internal::get_path_invmux": {
+       "allowed" : true
+    },
+    "internal::get_power": {
+       "allowed" : true
+    },
+    "internal::get_pploc_congestion": {
+       "allowed" : true
+    },
+    "internal::get_primitives": {
+       "allowed" : true
+    },
+    "internal::get_prog_delay": {
+       "allowed" : true
+    },
+    "internal::get_prop_from_comp_file": {
+       "allowed" : true
+    },
+    "internal::get_raw_name": {
+       "allowed" : true
+    },
+    "internal::get_rbel_defs": {
+       "allowed" : true
+    },
+    "internal::get_rbels": {
+       "allowed" : true
+    },
+    "internal::get_repower_pips": {
+       "allowed" : true
+    },
+    "internal::get_resource_groups": {
+       "allowed" : true
+    },
+    "internal::get_resource_limits": {
+       "allowed" : true
+    },
+    "internal::get_route_nodes": {
+       "allowed" : true
+    },
+    "internal::get_routes": {
+       "allowed" : true
+    },
+    "internal::get_routing_tiles": {
+       "allowed" : true
+    },
+    "internal::get_site_pin_defs": {
+       "allowed" : true
+    },
+    "internal::get_site_type_conns": {
+       "allowed" : true
+    },
+    "internal::get_site_type_nets": {
+       "allowed" : true
+    },
+    "internal::get_site_types": {
+       "allowed" : true
+    },
+    "internal::get_site_wires": {
+       "allowed" : true
+    },
+    "internal::get_sites_raw": {
+       "allowed" : true
+    },
+    "internal::get_speed_controller": {
+       "allowed" : true
+    },
+    "internal::get_speed_label": {
+       "allowed" : true
+    },
+    "internal::get_speed_model_history": {
+       "allowed" : true
+    },
+    "internal::get_src_attr": {
+       "allowed" : true
+    },
+    "internal::get_src_type_attr": {
+       "allowed" : true
+    },
+    "internal::get_state_from_comp": {
+       "allowed" : true
+    },
+    "internal::get_static_resources_in_rm": {
+       "allowed" : true
+    },
+    "internal::get_strategy_option_value": {
+       "allowed" : true
+    },
+    "internal::get_target_sitetype_pins": {
+       "allowed" : true
+    },
+    "internal::get_tile_types": {
+       "allowed" : true
+    },
+    "internal::get_tiles_raw": {
+       "allowed" : true
+    },
+    "internal::get_tl_info": {
+       "allowed" : true
+    },
+    "internal::get_total_power": {
+       "allowed" : true
+    },
+    "internal::get_used_memory": {
+       "allowed" : true
+    },
+    "internal::get_windows_version": {
+       "allowed" : true
+    },
+    "internal::get_wire_types": {
+       "allowed" : true
+    },
+    "internal::get_xdef_bels": {
+       "allowed" : true
+    },
+    "internal::get_xdef_mappingpins": {
+       "allowed" : true
+    },
+    "internal::get_xdef_mappings": {
+       "allowed" : true
+    },
+    "internal::get_xdef_nets": {
+       "allowed" : true
+    },
+    "internal::get_xdef_sites": {
+       "allowed" : true
+    },
+    "internal::get_xpr_lite": {
+       "allowed" : true
+    },
+    "internal::gobble_memory": {
+       "allowed" : true
+    },
+    "internal::grid_lsf_init": {
+       "allowed" : true
+    },
+    "internal::grid_lsf_jobstatus": {
+       "allowed" : true
+    },
+    "internal::grid_lsf_killjob": {
+       "allowed" : true
+    },
+    "internal::grid_lsf_submitjob": {
+       "allowed" : true
+    },
+    "internal::grid_lsf_submitjobs": {
+       "allowed" : true
+    },
+    "internal::gui_crash_on_undo": {
+       "allowed" : true
+    },
+    "internal::gui_dnd": {
+       "allowed" : true
+    },
+    "internal::gui_dump_shortcuts": {
+       "allowed" : true
+    },
+    "internal::gym::exerciseDummy": {
+       "allowed" : true
+    },
+    "internal::hd_gen_footprint_pu": {
+       "allowed" : true
+    },
+    "internal::hddm_whatis": {
+       "allowed" : true
+    },
+    "internal::hdmanager_getClkSpineTile": {
+       "allowed" : true
+    },
+    "internal::hdmanager_sampleTest": {
+       "allowed" : true
+    },
+    "internal::heap_profiler": {
+       "allowed" : true
+    },
+    "internal::hier_ltx_test": {
+       "allowed" : true
+    },
+    "internal::htc_col1": {
+       "allowed" : true
+    },
+    "internal::htc_get_objects": {
+       "allowed" : true
+    },
+    "internal::htc_pos1": {
+       "allowed" : true
+    },
+    "internal::hut_guievent": {
+       "allowed" : true
+    },
+    "internal::hutfile_exists": {
+       "allowed" : true
+    },
+    "internal::inject_attr_spec_error": {
+       "allowed" : true
+    },
+    "internal::inject_clock_tree_error": {
+       "allowed" : true
+    },
+    "internal::inject_design": {
+       "allowed" : true
+    },
+    "internal::intra_site_dly_cache": {
+       "allowed" : true
+    },
+    "internal::invertible_pin_checker": {
+       "allowed" : true
+    },
+    "internal::is_active": {
+       "allowed" : true
+    },
+    "internal::is_associated_to_board": {
+       "allowed" : true
+    },
+    "internal::is_core_container_enabled": {
+       "allowed" : true
+    },
+    "internal::is_debuggable_net": {
+       "allowed" : true
+    },
+    "internal::is_dedicated_route": {
+       "allowed" : true
+    },
+    "internal::is_derived": {
+       "allowed" : true
+    },
+    "internal::is_encrypted_file": {
+       "allowed" : true
+    },
+    "internal::is_ref_dcp_update_required": {
+       "allowed" : true
+    },
+    "internal::is_vorpal": {
+       "allowed" : true
+    },
+    "internal::isl_file_sink": {
+       "allowed" : true
+    },
+    "internal::isl_file_source": {
+       "allowed" : true
+    },
+    "internal::isl_tell_seek": {
+       "allowed" : true
+    },
+    "internal::list_ssn_drive_spec": {
+       "allowed" : true
+    },
+    "internal::list_strategy": {
+       "allowed" : true
+    },
+    "internal::load_speed_models": {
+       "allowed" : true
+    },
+    "internal::lopt_connrepl2": {
+       "allowed" : true
+    },
+    "internal::lopt_report_constr": {
+       "allowed" : true
+    },
+    "internal::make_ssn_db": {
+       "allowed" : true
+    },
+    "internal::make_ssn_result": {
+       "allowed" : true
+    },
+    "internal::make_ssn_test": {
+       "allowed" : true
+    },
+    "internal::me::check_aie_netlist": {
+       "allowed" : true
+    },
+    "internal::me::check_soldb": {
+       "allowed" : true
+    },
+    "internal::me::compile_me": {
+       "allowed" : true
+    },
+    "internal::me::convert_meir_to_binary": {
+       "allowed" : true
+    },
+    "internal::me::copy_constrs": {
+       "allowed" : true
+    },
+    "internal::me::get_property": {
+       "allowed" : true
+    },
+    "internal::me::import_meir_netlist": {
+       "allowed" : true
+    },
+    "internal::me::print_constrs": {
+       "allowed" : true
+    },
+    "internal::me::print_soldb": {
+       "allowed" : true
+    },
+    "internal::me::read_constrs": {
+       "allowed" : true
+    },
+    "internal::me::read_meir_from_json": {
+       "allowed" : true
+    },
+    "internal::me::read_soldb": {
+       "allowed" : true
+    },
+    "internal::me::read_xn": {
+       "allowed" : true
+    },
+    "internal::me::run_ai_engine": {
+       "allowed" : true
+    },
+    "internal::me::run_area_group_unit_tests": {
+       "allowed" : true
+    },
+    "internal::me::set_property": {
+       "allowed" : true
+    },
+    "internal::me::unload_constrs": {
+       "allowed" : true
+    },
+    "internal::me::write_constraints_to_json": {
+       "allowed" : true
+    },
+    "internal::me::write_constrs": {
+       "allowed" : true
+    },
+    "internal::me::write_math_engine_solution_to_xdc": {
+       "allowed" : true
+    },
+    "internal::me::write_soldb": {
+       "allowed" : true
+    },
+    "internal::me::write_xn": {
+       "allowed" : true
+    },
+    "internal::mediator_all_net_delays": {
+       "allowed" : true
+    },
+    "internal::memjack_profiling": {
+       "allowed" : true
+    },
+    "internal::memory_image_mgr": {
+       "allowed" : true
+    },
+    "internal::merge_ltx_test": {
+       "allowed" : true
+    },
+    "internal::mkdir": {
+       "allowed" : true
+    },
+    "internal::mux_with_static_incident": {
+       "allowed" : true
+    },
+    "internal::netdraw_dump_bundles": {
+       "allowed" : true
+    },
+    "internal::netdraw_dump_crossing": {
+       "allowed" : true
+    },
+    "internal::netlist_analyze_nets": {
+       "allowed" : true
+    },
+    "internal::netlist_attrsearch": {
+       "allowed" : true
+    },
+    "internal::netlist_checksum": {
+       "allowed" : true
+    },
+    "internal::netlist_custom_check": {
+       "allowed" : true
+    },
+    "internal::netlist_design_conversion": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_attrstat": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_dbmgr": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_fileline": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_iocache": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_namemem": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_netstitch": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_objcount": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_objsize": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_othercount": {
+       "allowed" : true
+    },
+    "internal::netlist_dump_primgroup": {
+       "allowed" : true
+    },
+    "internal::netlist_dumpcvstate": {
+       "allowed" : true
+    },
+    "internal::netlist_finalize": {
+       "allowed" : true
+    },
+    "internal::netlist_generatelog": {
+       "allowed" : true
+    },
+    "internal::netlist_hierconn": {
+       "allowed" : true
+    },
+    "internal::netlist_id": {
+       "allowed" : true
+    },
+    "internal::netlist_memstats": {
+       "allowed" : true
+    },
+    "internal::netlist_name_lookup": {
+       "allowed" : true
+    },
+    "internal::netlist_net_info": {
+       "allowed" : true
+    },
+    "internal::netlist_regen_ip": {
+       "allowed" : true
+    },
+    "internal::netlist_remove_test": {
+       "allowed" : true
+    },
+    "internal::netlist_rename": {
+       "allowed" : true
+    },
+    "internal::netlist_replace": {
+       "allowed" : true
+    },
+    "internal::netlist_report_cell": {
+       "allowed" : true
+    },
+    "internal::netlist_report_huge_cells": {
+       "allowed" : true
+    },
+    "internal::netlist_report_obs_name": {
+       "allowed" : true
+    },
+    "internal::netlist_report_ref_cell": {
+       "allowed" : true
+    },
+    "internal::netlist_scratch_design": {
+       "allowed" : true
+    },
+    "internal::netlist_secureInfo": {
+       "allowed" : true
+    },
+    "internal::netlist_sort": {
+       "allowed" : true
+    },
+    "internal::netlist_tdt_test": {
+       "allowed" : true
+    },
+    "internal::netlist_test_fastcast": {
+       "allowed" : true
+    },
+    "internal::netlist_test_hanc_dont_touch": {
+       "allowed" : true
+    },
+    "internal::netlist_test_mpf_write": {
+       "allowed" : true
+    },
+    "internal::netlist_test_namedict": {
+       "allowed" : true
+    },
+    "internal::netlist_test_nametable": {
+       "allowed" : true
+    },
+    "internal::netlist_traverse_test": {
+       "allowed" : true
+    },
+    "internal::netlist_unet_check": {
+       "allowed" : true
+    },
+    "internal::netlist_uniq_inst_name": {
+       "allowed" : true
+    },
+    "internal::netlist_uniq_net_name": {
+       "allowed" : true
+    },
+    "internal::netlist_unprimify": {
+       "allowed" : true
+    },
+    "internal::netlist_validate": {
+       "allowed" : true
+    },
+    "internal::nlopt_file_converter": {
+       "allowed" : true
+    },
+    "internal::nls::unit_test": {
+       "allowed" : true
+    },
+    "internal::noc::clear_noc_solution": {
+       "allowed" : true
+    },
+    "internal::noc::compile_noc": {
+       "allowed" : true
+    },
+    "internal::noc::lock_noc_instances": {
+       "allowed" : true
+    },
+    "internal::noc::read_constraints_from_json": {
+       "allowed" : true
+    },
+    "internal::noc::read_logical_arch_from_json": {
+       "allowed" : true
+    },
+    "internal::noc::read_solution_from_json": {
+       "allowed" : true
+    },
+    "internal::noc::read_solution_from_txt": {
+       "allowed" : true
+    },
+    "internal::noc::read_traffic": {
+       "allowed" : true
+    },
+    "internal::noc::read_traffic_from_json": {
+       "allowed" : true
+    },
+    "internal::noc::read_traffic_from_txt": {
+       "allowed" : true
+    },
+    "internal::noc::validate_constraints_schema": {
+       "allowed" : true
+    },
+    "internal::noc::validate_solution_schema": {
+       "allowed" : true
+    },
+    "internal::noc::validate_traffic_schema": {
+       "allowed" : true
+    },
+    "internal::noc::write_constraints_to_json": {
+       "allowed" : true
+    },
+    "internal::noc::write_logical_arch_to_json": {
+       "allowed" : true
+    },
+    "internal::noc::write_solution_to_json": {
+       "allowed" : true
+    },
+    "internal::noc::write_solution_to_txt": {
+       "allowed" : true
+    },
+    "internal::noc::write_traffic_to_json": {
+       "allowed" : true
+    },
+    "internal::noc::write_traffic_to_txt": {
+       "allowed" : true
+    },
+    "internal::node_delay": {
+       "allowed" : true
+    },
+    "internal::npw": {
+       "allowed" : true
+    },
+    "internal::obfusc_asciitoeightbit": {
+       "allowed" : true
+    },
+    "internal::obfusc_asciitofivebit": {
+       "allowed" : true
+    },
+    "internal::obfusc_decode": {
+       "allowed" : true
+    },
+    "internal::obfusc_encode": {
+       "allowed" : true
+    },
+    "internal::obfusc_encode_path": {
+       "allowed" : true
+    },
+    "internal::obfusc_ip": {
+       "allowed" : true
+    },
+    "internal::obfusc_module": {
+       "allowed" : true
+    },
+    "internal::obfusc_subtree": {
+       "allowed" : true
+    },
+    "internal::optimize_io_timing": {
+       "allowed" : true
+    },
+    "internal::parallel_decrypt": {
+       "allowed" : true
+    },
+    "internal::parse1735": {
+       "allowed" : true
+    },
+    "internal::parse_gcc_log": {
+       "allowed" : true
+    },
+    "internal::partition_dumpMgr": {
+       "allowed" : true
+    },
+    "internal::partition_readxml": {
+       "allowed" : true
+    },
+    "internal::partition_test1": {
+       "allowed" : true
+    },
+    "internal::partition_test2": {
+       "allowed" : true
+    },
+    "internal::physdb_event_validator": {
+       "allowed" : true
+    },
+    "internal::physdb_loadtdata": {
+       "allowed" : true
+    },
+    "internal::place_and_route": {
+       "allowed" : true
+    },
+    "internal::place_parallel_worker": {
+       "allowed" : true
+    },
+    "internal::place_stamp": {
+       "allowed" : true
+    },
+    "internal::plainnames": {
+       "allowed" : true
+    },
+    "internal::plot_congestion_mesh": {
+       "allowed" : true
+    },
+    "internal::post_route_drc": {
+       "allowed" : true
+    },
+    "internal::power_netNodeAnalysis": {
+       "allowed" : true
+    },
+    "internal::power_opt_precompute": {
+       "allowed" : true
+    },
+    "internal::pploc_analysis": {
+       "allowed" : true
+    },
+    "internal::pr_check_utilization": {
+       "allowed" : true
+    },
+    "internal::preplace_est_delay": {
+       "allowed" : true
+    },
+    "internal::prescanedif": {
+       "allowed" : true
+    },
+    "internal::print_area_constraint_db": {
+       "allowed" : true
+    },
+    "internal::probe_unrouted_pin": {
+       "allowed" : true
+    },
+    "internal::profiler": {
+       "allowed" : true
+    },
+    "internal::push_constraints_to_rodin_synth": {
+       "allowed" : true
+    },
+    "internal::pwropt_explore": {
+       "allowed" : true
+    },
+    "internal::read_attrspecs_lib_config_format": {
+       "allowed" : true
+    },
+    "internal::read_corecontainer": {
+       "allowed" : true
+    },
+    "internal::read_decrypt": {
+       "allowed" : true
+    },
+    "internal::read_write_family_rtd": {
+       "allowed" : true
+    },
+    "internal::read_xml_routing": {
+       "allowed" : true
+    },
+    "internal::regex_matchRegExp": {
+       "allowed" : true
+    },
+    "internal::release_speed_controller": {
+       "allowed" : true
+    },
+    "internal::release_speed_models": {
+       "allowed" : true
+    },
+    "internal::remove_hold_fix_imr": {
+       "allowed" : true
+    },
+    "internal::remove_hw_probes": {
+       "allowed" : true
+    },
+    "internal::remove_implicit_pulsed_latch": {
+       "allowed" : true
+    },
+    "internal::renames": {
+       "allowed" : true
+    },
+    "internal::replace_insts_constrs": {
+       "allowed" : true
+    },
+    "internal::replace_pin_collection": {
+       "allowed" : true
+    },
+    "internal::report_bel_delays": {
+       "allowed" : true
+    },
+    "internal::report_clock_uncertainty": {
+       "allowed" : true
+    },
+    "internal::report_clockregion_info": {
+       "allowed" : true
+    },
+    "internal::report_composite_hierarchy": {
+       "allowed" : true
+    },
+    "internal::report_crpr": {
+       "allowed" : true
+    },
+    "internal::report_dcp": {
+       "allowed" : true
+    },
+    "internal::report_delay": {
+       "allowed" : true
+    },
+    "internal::report_delay_by_distance": {
+       "allowed" : true
+    },
+    "internal::report_enabled_arcs": {
+       "allowed" : true
+    },
+    "internal::report_est_wire_delay": {
+       "allowed" : true
+    },
+    "internal::report_graph_edges": {
+       "allowed" : true
+    },
+    "internal::report_liberty_bels": {
+       "allowed" : true
+    },
+    "internal::report_locked_nodes": {
+       "allowed" : true
+    },
+    "internal::report_mediator_delay": {
+       "allowed" : true
+    },
+    "internal::report_memory": {
+       "allowed" : true
+    },
+    "internal::report_path_group": {
+       "allowed" : true
+    },
+    "internal::report_pin_densities": {
+       "allowed" : true
+    },
+    "internal::report_placer_congestion": {
+       "allowed" : true
+    },
+    "internal::report_power_clocks": {
+       "allowed" : true
+    },
+    "internal::report_rodin_logics": {
+       "allowed" : true
+    },
+    "internal::report_route_to_pin": {
+       "allowed" : true
+    },
+    "internal::report_routing_pips": {
+       "allowed" : true
+    },
+    "internal::report_run_hierarchy": {
+       "allowed" : true
+    },
+    "internal::report_run_status": {
+       "allowed" : true
+    },
+    "internal::report_sitetype_path": {
+       "allowed" : true
+    },
+    "internal::report_smear_congestion": {
+       "allowed" : true
+    },
+    "internal::report_stats_for_eval": {
+       "allowed" : true
+    },
+    "internal::report_strategy": {
+       "allowed" : true
+    },
+    "internal::report_tcmalloc_stats": {
+       "allowed" : true
+    },
+    "internal::report_uuids": {
+       "allowed" : true
+    },
+    "internal::report_veam_conditions": {
+       "allowed" : true
+    },
+    "internal::report_xdef_mappings": {
+       "allowed" : true
+    },
+    "internal::reset_fixed_pins": {
+       "allowed" : true
+    },
+    "internal::retiming": {
+       "allowed" : true
+    },
+    "internal::rm_from_core_container": {
+       "allowed" : true
+    },
+    "internal::route_bist_driver": {
+       "allowed" : true
+    },
+    "internal::route_branchpen_comp": {
+       "allowed" : true
+    },
+    "internal::route_clk_ring": {
+       "allowed" : true
+    },
+    "internal::route_crunch_delay_verifier": {
+       "allowed" : true
+    },
+    "internal::route_dbg_analyze_hold": {
+       "allowed" : true
+    },
+    "internal::route_dbg_cost_analyser": {
+       "allowed" : true
+    },
+    "internal::route_dbg_dlycomp": {
+       "allowed" : true
+    },
+    "internal::route_dbg_extract_region": {
+       "allowed" : true
+    },
+    "internal::route_dbg_interconnect_verifier": {
+       "allowed" : true
+    },
+    "internal::route_dbg_netlist": {
+       "allowed" : true
+    },
+    "internal::route_dbg_netlist_verification": {
+       "allowed" : true
+    },
+    "internal::route_dbg_node_graph_coloring": {
+       "allowed" : true
+    },
+    "internal::route_dbg_p2p_route": {
+       "allowed" : true
+    },
+    "internal::route_dbg_pathenum": {
+       "allowed" : true
+    },
+    "internal::route_dbg_report_tile_util": {
+       "allowed" : true
+    },
+    "internal::route_dbg_unit_tests": {
+       "allowed" : true
+    },
+    "internal::route_delay": {
+       "allowed" : true
+    },
+    "internal::route_dly_report": {
+       "allowed" : true
+    },
+    "internal::route_expander_eval": {
+       "allowed" : true
+    },
+    "internal::route_finalize": {
+       "allowed" : true
+    },
+    "internal::route_gclock": {
+       "allowed" : true
+    },
+    "internal::route_gen_offline_files": {
+       "allowed" : true
+    },
+    "internal::route_incr_netlist_verify": {
+       "allowed" : true
+    },
+    "internal::route_net_crossings": {
+       "allowed" : true
+    },
+    "internal::route_node_dly": {
+       "allowed" : true
+    },
+    "internal::route_node_graph_verifier": {
+       "allowed" : true
+    },
+    "internal::route_seven_level_crunch_verifier": {
+       "allowed" : true
+    },
+    "internal::route_timing_report": {
+       "allowed" : true
+    },
+    "internal::route_unusedmux_report": {
+       "allowed" : true
+    },
+    "internal::routed_site_performance": {
+       "allowed" : true
+    },
+    "internal::rptgen_create_element": {
+       "allowed" : true
+    },
+    "internal::rptgen_create_report_doc": {
+       "allowed" : true
+    },
+    "internal::rptgen_create_table": {
+       "allowed" : true
+    },
+    "internal::rptgen_dump_doc": {
+       "allowed" : true
+    },
+    "internal::rptgen_dump_text_writer": {
+       "allowed" : true
+    },
+    "internal::rptgen_load_doc": {
+       "allowed" : true
+    },
+    "internal::rptgen_save_doc": {
+       "allowed" : true
+    },
+    "internal::rptgen_write_gui": {
+       "allowed" : true
+    },
+    "internal::rptgen_write_text": {
+       "allowed" : true
+    },
+    "internal::rtltest::fileline": {
+       "allowed" : true
+    },
+    "internal::ruleroute_perfmeter": {
+       "allowed" : true
+    },
+    "internal::run_dcp_unit_tests": {
+       "allowed" : true
+    },
+    "internal::run_dlyest": {
+       "allowed" : true
+    },
+    "internal::run_hw_test": {
+       "allowed" : true
+    },
+    "internal::run_make_pin_assignment": {
+       "allowed" : true
+    },
+    "internal::schematic_visibility_report": {
+       "allowed" : true
+    },
+    "internal::sdaccel_floorplan": {
+       "allowed" : true
+    },
+    "internal::security_report": {
+       "allowed" : true
+    },
+    "internal::set_belattrdb": {
+       "allowed" : true
+    },
+    "internal::set_crpr_diagnostics": {
+       "allowed" : true
+    },
+    "internal::set_implicit_pulsed_latch": {
+       "allowed" : true
+    },
+    "internal::set_lic1735_cache": {
+       "allowed" : true
+    },
+    "internal::set_max_total_power": {
+       "allowed" : true
+    },
+    "internal::set_pip": {
+       "allowed" : true
+    },
+    "internal::set_prog_delay": {
+       "allowed" : true
+    },
+    "internal::set_site_pin": {
+       "allowed" : true
+    },
+    "internal::set_xdef_mappingpins_requiredvalue": {
+       "allowed" : true
+    },
+    "internal::sfttest": {
+       "allowed" : true
+    },
+    "internal::show_all": {
+       "allowed" : true
+    },
+    "internal::site_pin_swap": {
+       "allowed" : true
+    },
+    "internal::slicebalance": {
+       "allowed" : true
+    },
+    "internal::soldb": {
+       "allowed" : true
+    },
+    "internal::sysinfo": {
+       "allowed" : true
+    },
+    "internal::system_call": {
+       "allowed" : true
+    },
+    "internal::tclinfra::cancel_test": {
+       "allowed" : true
+    },
+    "internal::tclinfra::collection_move1": {
+       "allowed" : true
+    },
+    "internal::tclinfra::collection_to_stringvector": {
+       "allowed" : true
+    },
+    "internal::tclinfra::composite_test": {
+       "allowed" : true
+    },
+    "internal::tclinfra::create_fcos": {
+       "allowed" : true
+    },
+    "internal::tclinfra::debug_tobj": {
+       "allowed" : true
+    },
+    "internal::tclinfra::delete_fco": {
+       "allowed" : true
+    },
+    "internal::tclinfra::deprecated": {
+       "allowed" : true
+    },
+    "internal::tclinfra::get_fcos": {
+       "allowed" : true
+    },
+    "internal::tclinfra::misc": {
+       "allowed" : true
+    },
+    "internal::tclinfra::options_test1": {
+       "allowed" : true
+    },
+    "internal::tclinfra::precision_test1": {
+       "allowed" : true
+    },
+    "internal::tclinfra::rename": {
+       "allowed" : true
+    },
+    "internal::tclinfra::slave_test": {
+       "allowed" : true
+    },
+    "internal::tclinfra::supports_undo": {
+       "allowed" : true
+    },
+    "internal::tclinfra::tcl_tasks_list": {
+       "allowed" : true
+    },
+    "internal::tclinfra::undo_test": {
+       "allowed" : true
+    },
+    "internal::tclparse": {
+       "allowed" : true
+    },
+    "internal::tdunce": {
+       "allowed" : true
+    },
+    "internal::test_clock_utils": {
+       "allowed" : true
+    },
+    "internal::test_convert": {
+       "allowed" : true
+    },
+    "internal::test_grip": {
+       "allowed" : true
+    },
+    "internal::test_hw_probes": {
+       "allowed" : true
+    },
+    "internal::test_ila2": {
+       "allowed" : true
+    },
+    "internal::test_misc_hututils": {
+       "allowed" : true
+    },
+    "internal::test_offchip_term": {
+       "allowed" : true
+    },
+    "internal::test_pin_plan_cfg": {
+       "allowed" : true
+    },
+    "internal::test_resynth": {
+       "allowed" : true
+    },
+    "internal::test_rsa": {
+       "allowed" : true
+    },
+    "internal::test_ssn_db": {
+       "allowed" : true
+    },
+    "internal::test_static_site": {
+       "allowed" : true
+    },
+    "internal::test_text_table": {
+       "allowed" : true
+    },
+    "internal::test_xpm": {
+       "allowed" : true
+    },
+    "internal::transOasysNl": {
+       "allowed" : true
+    },
+    "internal::unplace_pu": {
+       "allowed" : true
+    },
+    "internal::unroute_branch": {
+       "allowed" : true
+    },
+    "internal::update_archive_signature": {
+       "allowed" : true
+    },
+    "internal::update_dsa": {
+       "allowed" : true
+    },
+    "internal::update_ip_library": {
+       "allowed" : true
+    },
+    "internal::update_mem": {
+       "allowed" : true
+    },
+    "internal::update_power": {
+       "allowed" : true
+    },
+    "internal::update_speed_model_values": {
+       "allowed" : true
+    },
+    "internal::validate_config": {
+       "allowed" : true
+    },
+    "internal::vdump2wdb": {
+       "allowed" : true
+    },
+    "internal::veamdumper": {
+       "allowed" : true
+    },
+    "internal::vlm_GetFetchedLicenseInfo": {
+       "allowed" : true
+    },
+    "internal::vlm_GetFormattedLicenseNamesFromFeatureLines": {
+       "allowed" : true
+    },
+    "internal::vlm_GetLicenseInfo": {
+       "allowed" : true
+    },
+    "internal::vlm_IsBorrowableFeatureLines": {
+       "allowed" : true
+    },
+    "internal::vlm_IsFetchingLicInfo": {
+       "allowed" : true
+    },
+    "internal::vlm_StartFetchingLicInfo": {
+       "allowed" : true
+    },
+    "internal::vlm_StopFetchingLicInfo": {
+       "allowed" : true
+    },
+    "internal::vlm_get_acquire_url": {
+       "allowed" : true
+    },
+    "internal::vlm_get_env": {
+       "allowed" : true
+    },
+    "internal::vlm_get_env_registry": {
+       "allowed" : true
+    },
+    "internal::vlm_is_activation_enabled": {
+       "allowed" : true
+    },
+    "internal::vlm_is_virtualization": {
+       "allowed" : true
+    },
+    "internal::vlm_retrieve_license": {
+       "allowed" : true
+    },
+    "internal::vlm_set_env": {
+       "allowed" : true
+    },
+    "internal::vlm_system_info": {
+       "allowed" : true
+    },
+    "internal::vlm_test_init": {
+       "allowed" : true
+    },
+    "internal::webtalk_add_data": {
+       "allowed" : true
+    },
+    "internal::webtalk_debug_print": {
+       "allowed" : true
+    },
+    "internal::webtalk_inc_user_counter": {
+       "allowed" : true
+    },
+    "internal::webtalk_load_data_model": {
+       "allowed" : true
+    },
+    "internal::webtalk_register_client": {
+       "allowed" : true
+    },
+    "internal::webtalk_store_data_model": {
+       "allowed" : true
+    },
+    "internal::webtalk_transmit_data": {
+       "allowed" : true
+    },
+    "internal::webtalkp_add_data": {
+       "allowed" : true
+    },
+    "internal::webtalkp_clear": {
+       "allowed" : true
+    },
+    "internal::webtalkp_debug_print": {
+       "allowed" : true
+    },
+    "internal::webtalkp_prep_and_transmit_data": {
+       "allowed" : true
+    },
+    "internal::webtalkp_register_client": {
+       "allowed" : true
+    },
+    "internal::write_attrspecs_lib_config_format": {
+       "allowed" : true
+    },
+    "internal::write_chipscope_xdc": {
+       "allowed" : true
+    },
+    "internal::write_clock_leaf_regions": {
+       "allowed" : true
+    },
+    "internal::write_device_yaml": {
+       "allowed" : true
+    },
+    "internal::write_guide_info": {
+       "allowed" : true
+    },
+    "internal::write_ncd": {
+       "allowed" : true
+    },
+    "internal::write_part_tql": {
+       "allowed" : true
+    },
+    "internal::write_pcf": {
+       "allowed" : true
+    },
+    "internal::write_pin_plan_cfg": {
+       "allowed" : true
+    },
+    "internal::write_pmc_init_files": {
+       "allowed" : true
+    },
+    "internal::write_replay_file": {
+       "allowed" : true
+    },
+    "internal::write_shapes": {
+       "allowed" : true
+    },
+    "internal::write_speed_models": {
+       "allowed" : true
+    },
+    "internal::write_xdc_template": {
+       "allowed" : true
+    },
+    "internal::xillic_GetFlexErrorMessage": {
+       "allowed" : true
+    },
+    "internal::xillic_GetFlexMessages": {
+       "allowed" : true
+    },
+    "internal::xillic_GetLicenseFiles": {
+       "allowed" : true
+    },
+    "internal::xillic_GetXilinxErrorMessage": {
+       "allowed" : true
+    },
+    "internal::xillic_GetXilinxMessages": {
+       "allowed" : true
+    },
+    "internal::xillic_XilCheckout": {
+       "allowed" : true
+    },
+    "internal::xillic_deobfuscate": {
+       "allowed" : true
+    },
+    "internal::xillic_info_versionExpired": {
+       "allowed" : true
+    },
+    "internal::xillic_info_versionLimit": {
+       "allowed" : true
+    },
+    "internal::xillic_ip_check": {
+       "allowed" : true
+    },
+    "internal::xillic_licInfo": {
+       "allowed" : true
+    },
+    "internal::xillic_obfuscate": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_borrowFeatures": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_checkoutComplete": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_checkoutExpiry": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_checkoutFeature": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_checkoutFeaturePart": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_checkoutFeaturePartVersion": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_checkoutVersionLimitExpiry": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_computechecksumforfile": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_familyName": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_ipCheck": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_isBetaPart": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_isPreProductionPart": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_isProductionPart": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_isWebPackPart": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_licInfoWebTalk": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_retrievechecksum": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_trialLicense": {
+       "allowed" : true
+    },
+    "internal::xillic_utils_xilLicVersion": {
+       "allowed" : true
+    },
+    "internal::xillic_vd_version": {
+       "allowed" : true
+    },
+    "internal::xillic_xil_get_licinfo_webtalk": {
+       "allowed" : true
+    },
+    "internal::xillic_xlic_checkout": {
+       "allowed" : true
+    },
+    "internal::xilsed": {
+       "allowed" : true
+    },
+    "internal::xmc2npi": {
+       "allowed" : true
+    },
+    "internal::xpm_xml_test": {
+       "allowed" : true
+    },
+    "internal::zip_add_file": {
+       "allowed" : true
+    },
+    "internal::zip_compress": {
+       "allowed" : true
+    },
+    "internal::zip_containsFile": {
+       "allowed" : true
+    },
+    "internal::zip_cover_zip": {
+       "allowed" : true
+    },
+    "internal::zip_delete_file": {
+       "allowed" : true
+    },
+    "internal::zip_istream": {
+       "allowed" : true
+    },
+    "internal::zip_ostream": {
+       "allowed" : true
+    },
+    "internal::zip_uncompress_external": {
+       "allowed" : true
+    },
+    "internal::zip_uncompress_internal": {
+       "allowed" : true
+    },
+    "internal::zip_unzip_zip": {
+       "allowed" : true
+    },
+    "iphys_opt_design": {
+       "allowed" : true
+    },
+    "ipx::get_cores": {
+       "allowed" : true
+    },
+    "launch_chipscope_analyzer": {
+       "allowed" : true
+    },
+    "launch_impact": {
+       "allowed" : true
+    },
+    "launch_runs": {
+       "allowed" : true
+    },
+    "launch_sdk": {
+       "allowed" : true
+    },
+    "launch_simulation": {
+       "allowed" : true
+    },
+    "link_design": {
+       "allowed" : true
+    },
+    "list_targets": {
+       "allowed" : true
+    },
+    "lock_design": {
+       "allowed" : true
+    },
+    "make_diff_pair_ports": {
+       "allowed" : true
+    },
+    "make_wrapper": {
+       "allowed" : true
+    },
+    "mark_objects": {
+       "allowed" : true
+    },
+    "modify_debug_ports": {
+       "allowed" : true
+    },
+    "move_dashboard_gadget": {
+       "allowed" : true
+    },
+    "move_files": {
+       "allowed" : true
+    },
+    "nlopt_child_process": {
+       "allowed" : true
+    },
+    "noc::read_noc_qos": {
+       "allowed" : true
+    },
+    "noc::reset_noc_qos": {
+       "allowed" : true
+    },
+    "noc::write_noc_qos": {
+       "allowed" : true
+    },
+    "open_checkpoint": {
+       "allowed" : true
+    },
+    "open_dsa": {
+       "allowed" : true
+    },
+    "open_example_project": {
+       "allowed" : true
+    },
+    "open_impl_design": {
+       "allowed" : true
+    },
+    "open_io_design": {
+       "allowed" : true
+    },
+    "open_netlist_design": {
+       "allowed" : true
+    },
+    "open_placer_checkpoint": {
+       "allowed" : true
+    },
+    "open_project": {
+       "allowed" : true
+    },
+    "open_report": {
+       "allowed" : true
+    },
+    "open_rtl_design": {
+       "allowed" : true
+    },
+    "open_run": {
+       "allowed" : true
+    },
+    "opt_design": {
+       "allowed" : true
+    },
+    "package_xo": {
+       "allowed" : true
+    },
+    "phys_opt_design": {
+       "allowed" : true
+    },
+    "place_cell": {
+       "allowed" : true
+    },
+    "place_design": {
+       "allowed" : true
+    },
+    "place_partpins": {
+       "allowed" : true
+    },
+    "place_pblocks": {
+       "allowed" : true
+    },
+    "place_ports": {
+       "allowed" : true
+    },
+    "platform_verify": {
+       "allowed" : false
+    },
+    "power_opt_design": {
+       "allowed" : true
+    },
+    "pr_recombine": {
+       "allowed" : true
+    },
+    "pr_subdivide": {
+       "allowed" : true
+    },
+    "pr_verify": {
+       "allowed" : true
+    },
+    "precompile_kernel": {
+       "allowed" : true
+    },
+    "rdi::HistAdd": {
+       "allowed" : true
+    },
+    "rdi::HistChange": {
+       "allowed" : true
+    },
+    "rdi::HistClear": {
+       "allowed" : true
+    },
+    "rdi::HistEvent": {
+       "allowed" : true
+    },
+    "rdi::HistInfo": {
+       "allowed" : true
+    },
+    "rdi::HistKeep": {
+       "allowed" : true
+    },
+    "rdi::HistNextId": {
+       "allowed" : true
+    },
+    "rdi::HistRedo": {
+       "allowed" : true
+    },
+    "rdi::add_properties": {
+       "allowed" : true
+    },
+    "rdi::checkenv": {
+       "allowed" : true
+    },
+    "rdi::cleanup_ip_sim_files": {
+       "allowed" : true
+    },
+    "rdi::col2list": {
+       "allowed" : true
+    },
+    "rdi::col_copy": {
+       "allowed" : true
+    },
+    "rdi::col_isshared": {
+       "allowed" : true
+    },
+    "rdi::col_lrange": {
+       "allowed" : true
+    },
+    "rdi::col_lreplace": {
+       "allowed" : true
+    },
+    "rdi::col_lreverse": {
+       "allowed" : true
+    },
+    "rdi::col_lset": {
+       "allowed" : true
+    },
+    "rdi::col_lsort": {
+       "allowed" : true
+    },
+    "rdi::command_translated": {
+       "allowed" : true
+    },
+    "rdi::compile_sim_model": {
+       "allowed" : true
+    },
+    "rdi::create_slave": {
+       "allowed" : true
+    },
+    "rdi::current_features": {
+       "allowed" : true
+    },
+    "rdi::current_locale": {
+       "allowed" : true
+    },
+    "rdi::delete_slave": {
+       "allowed" : true
+    },
+    "rdi::echo": {
+       "allowed" : true
+    },
+    "rdi::export_component": {
+       "allowed" : true
+    },
+    "rdi::extract_ip_sim_files": {
+       "allowed" : true
+    },
+    "rdi::get_app_data": {
+       "allowed" : true
+    },
+    "rdi::get_app_data_release": {
+       "allowed" : true
+    },
+    "rdi::get_app_root": {
+       "allowed" : true
+    },
+    "rdi::get_attr_specs": {
+       "allowed" : true
+    },
+    "rdi::get_data_dir": {
+       "allowed" : true
+    },
+    "rdi::get_journal_filename": {
+       "allowed" : true
+    },
+    "rdi::get_log_filename": {
+       "allowed" : true
+    },
+    "rdi::get_product_name": {
+       "allowed" : true
+    },
+    "rdi::get_sim_run_dir": {
+       "allowed" : true
+    },
+    "rdi::get_xpm_files": {
+       "allowed" : true
+    },
+    "rdi::hide_category": {
+       "allowed" : true
+    },
+    "rdi::hide_commands": {
+       "allowed" : true
+    },
+    "rdi::hide_features": {
+       "allowed" : true
+    },
+    "rdi::hide_namespaces": {
+       "allowed" : true
+    },
+    "rdi::info_commands": {
+       "allowed" : true
+    },
+    "rdi::interactive_report_timing": {
+       "allowed" : true
+    },
+    "rdi::is_regress": {
+       "allowed" : true
+    },
+    "rdi::load_jvm": {
+       "allowed" : true
+    },
+    "rdi::main": {
+       "allowed" : true
+    },
+    "rdi::match_options": {
+       "allowed" : true
+    },
+    "rdi::open_ppr_or_dcp": {
+       "allowed" : true
+    },
+    "rdi::register_slave_tasks": {
+       "allowed" : true
+    },
+    "rdi::remove_duplicates": {
+       "allowed" : true
+    },
+    "rdi::run_program": {
+       "allowed" : true
+    },
+    "rdi::set_attribute": {
+       "allowed" : true
+    },
+    "rdi::set_help_config": {
+       "allowed" : true
+    },
+    "rdi::set_property": {
+       "allowed" : true
+    },
+    "rdi::source": {
+       "allowed" : true
+    },
+    "rdi::start_editline": {
+       "allowed" : true
+    },
+    "rdi::stop_editline": {
+       "allowed" : true
+    },
+    "rdi::unregister_task": {
+       "allowed" : true
+    },
+    "rdi::verify_ip_sim_status": {
+       "allowed" : true
+    },
+    "rdi::x11_workaround": {
+       "allowed" : true
+    },
+    "read_checkpoint": {
+       "allowed" : true
+    },
+    "read_chipscope_cdc": {
+       "allowed" : true
+    },
+    "read_csv": {
+       "allowed" : true
+    },
+    "read_design_id": {
+       "allowed" : true
+    },
+    "read_edif": {
+       "allowed" : true
+    },
+    "read_ip": {
+       "allowed" : true
+    },
+    "read_iphys_opt_tcl": {
+       "allowed" : true
+    },
+    "read_mem": {
+       "allowed" : true
+    },
+    "read_qor_suggestions": {
+       "allowed" : true
+    },
+    "read_saif": {
+       "allowed" : true
+    },
+    "read_schematic": {
+       "allowed" : true
+    },
+    "read_twx": {
+       "allowed" : true
+    },
+    "read_ucf": {
+       "allowed" : true
+    },
+    "read_vcd": {
+       "allowed" : true
+    },
+    "read_verilog": {
+       "allowed" : true
+    },
+    "read_vhdl": {
+       "allowed" : true
+    },
+    "read_waivers": {
+       "allowed" : true
+    },
+    "read_xdc": {
+       "allowed" : true
+    },
+    "read_xdef": {
+       "allowed" : false
+    },
+    "refresh_design": {
+       "allowed" : true
+    },
+    "refresh_meminit": {
+       "allowed" : true
+    },
+    "register_simulator": {
+       "allowed" : true
+    },
+    "reimport_files": {
+       "allowed" : true
+    },
+    "remove_annotated_delay": {
+       "allowed" : false
+    },
+    "remove_cell": {
+       "allowed" : true
+    },
+    "remove_cells_from_pblock": {
+       "allowed" : true
+    },
+    "remove_drc_checks": {
+       "allowed" : true
+    },
+    "remove_files": {
+       "allowed" : true
+    },
+    "remove_net": {
+       "allowed" : true
+    },
+    "remove_pin": {
+       "allowed" : true
+    },
+    "remove_port": {
+       "allowed" : true
+    },
+    "rename_cell": {
+       "allowed" : true
+    },
+    "rename_net": {
+       "allowed" : true
+    },
+    "rename_pin": {
+       "allowed" : true
+    },
+    "rename_port": {
+       "allowed" : true
+    },
+    "rename_ref": {
+       "allowed" : true
+    },
+    "reorder_files": {
+       "allowed" : true
+    },
+    "report_bus_skew": {
+       "allowed" : true
+    },
+    "report_carry_chains": {
+       "allowed" : true
+    },
+    "report_cdc": {
+       "allowed" : true
+    },
+    "report_clock_interaction": {
+       "allowed" : true
+    },
+    "report_clock_networks": {
+       "allowed" : true
+    },
+    "report_clock_utilization": {
+       "allowed" : false
+    },
+    "report_clocks": {
+       "allowed" : true
+    },
+    "report_compile_order": {
+       "allowed" : true
+    },
+    "report_config_implementation": {
+       "allowed" : true
+    },
+    "report_config_timing": {
+       "allowed" : false
+    },
+    "report_control_sets": {
+       "allowed" : false
+    },
+    "report_datasheet": {
+       "allowed" : true
+    },
+    "report_debug_core": {
+       "allowed" : true
+    },
+    "report_delay_model": {
+       "allowed" : false
+    },
+    "report_design_analysis": {
+       "allowed" : true
+    },
+    "report_disable_timing": {
+       "allowed" : false
+    },
+    "report_drc": {
+       "allowed" : true
+    },
+    "report_exceptions": {
+       "allowed" : true
+    },
+    "report_fit": {
+       "allowed" : false
+    },
+    "report_high_fanout_nets": {
+       "allowed" : true
+    },
+    "report_incremental_reuse": {
+       "allowed" : true
+    },
+    "report_io": {
+       "allowed" : true
+    },
+    "report_ip_status": {
+       "allowed" : true
+    },
+    "report_methodology": {
+       "allowed" : true
+    },
+    "report_operating_conditions": {
+       "allowed" : false
+    },
+    "report_phys_opt": {
+       "allowed" : true
+    },
+    "report_pipeline_analysis": {
+       "allowed" : true
+    },
+    "report_power": {
+       "allowed" : true
+    },
+    "report_power_opt": {
+       "allowed" : true
+    },
+    "report_pr_configuration_analysis": {
+       "allowed" : true
+    },
+    "report_pulse_width": {
+       "allowed" : true
+    },
+    "report_qor_assessment": {
+       "allowed" : true
+    },
+    "report_qor_suggestions": {
+       "allowed" : true
+    },
+    "report_ram_utilization": {
+       "allowed" : true
+    },
+    "report_route_status": {
+       "allowed" : true
+    },
+    "report_sdx_utilization": {
+       "allowed" : true
+    },
+    "report_seu": {
+       "allowed" : true
+    },
+    "report_sim_device": {
+       "allowed" : true
+    },
+    "report_simlib_info": {
+       "allowed" : true
+    },
+    "report_ssn": {
+       "allowed" : true
+    },
+    "report_switching_activity": {
+       "allowed" : true
+    },
+    "report_synchronizer_mtbf": {
+       "allowed" : true
+    },
+    "report_timing": {
+       "allowed" : true
+    },
+    "report_timing_summary": {
+       "allowed" : true
+    },
+    "report_transformed_primitives": {
+       "allowed" : true
+    },
+    "report_ucf_timing": {
+       "allowed" : false
+    },
+    "report_utilization": {
+       "allowed" : true
+    },
+    "report_waivers": {
+       "allowed" : true
+    },
+    "reset_drc": {
+       "allowed" : true
+    },
+    "reset_drc_check": {
+       "allowed" : true
+    },
+    "reset_methodology": {
+       "allowed" : true
+    },
+    "reset_methodology_check": {
+       "allowed" : true
+    },
+    "reset_operating_conditions": {
+       "allowed" : false
+    },
+    "reset_project": {
+       "allowed" : true
+    },
+    "reset_runs": {
+       "allowed" : true
+    },
+    "reset_simulation": {
+       "allowed" : true
+    },
+    "reset_ssn": {
+       "allowed" : true
+    },
+    "reset_switching_activity": {
+       "allowed" : true
+    },
+    "reset_target": {
+       "allowed" : true
+    },
+    "reset_timing": {
+       "allowed" : true
+    },
+    "reset_ucf": {
+       "allowed" : true
+    },
+    "resize_net_bus": {
+       "allowed" : true
+    },
+    "resize_pblock": {
+       "allowed" : true
+    },
+    "resize_pin_bus": {
+       "allowed" : true
+    },
+    "resize_port_bus": {
+       "allowed" : true
+    },
+    "resynth_module": {
+       "allowed" : true
+    },
+    "route_design": {
+       "allowed" : true
+    },
+    "run_ml_model": {
+       "allowed" : true
+    },
+    "save_constraints": {
+       "allowed" : true
+    },
+    "save_constraints_as": {
+       "allowed" : true
+    },
+    "save_project_as": {
+       "allowed" : true
+    },
+    "save_waivers": {
+       "allowed" : true
+    },
+    "select_objects": {
+       "allowed" : true
+    },
+    "set_annotated_delay": {
+       "allowed" : true
+    },
+    "set_bus_skew": {
+       "allowed" : true
+    },
+    "set_case_analysis": {
+       "allowed" : true
+    },
+    "set_clock_groups": {
+       "allowed" : true
+    },
+    "set_clock_latency": {
+       "allowed" : true
+    },
+    "set_clock_sense": {
+       "allowed" : true
+    },
+    "set_clock_uncertainty": {
+       "allowed" : true
+    },
+    "set_data_check": {
+       "allowed" : true
+    },
+    "set_delay_model": {
+       "allowed" : true
+    },
+    "set_disable_timing": {
+       "allowed" : true
+    },
+    "set_external_delay": {
+       "allowed" : true
+    },
+    "set_false_path": {
+       "allowed" : true
+    },
+    "set_hierarchy_separator": {
+       "allowed" : true
+    },
+    "set_input_delay": {
+       "allowed" : true
+    },
+    "set_input_jitter": {
+       "allowed" : true
+    },
+    "set_ip_msg_config": {
+       "allowed" : true
+    },
+    "set_load": {
+       "allowed" : true
+    },
+    "set_logic_dc": {
+       "allowed" : true
+    },
+    "set_logic_one": {
+       "allowed" : true
+    },
+    "set_logic_unconnected": {
+       "allowed" : true
+    },
+    "set_logic_zero": {
+       "allowed" : true
+    },
+    "set_max_delay": {
+       "allowed" : true
+    },
+    "set_max_time_borrow": {
+       "allowed" : true
+    },
+    "set_min_delay": {
+       "allowed" : true
+    },
+    "set_multicycle_path": {
+       "allowed" : true
+    },
+    "set_operating_conditions": {
+       "allowed" : true
+    },
+    "set_output_delay": {
+       "allowed" : true
+    },
+    "set_package_pin_val": {
+       "allowed" : true
+    },
+    "set_part": {
+       "allowed" : true
+    },
+    "set_power_opt": {
+       "allowed" : true
+    },
+    "set_propagated_clock": {
+       "allowed" : true
+    },
+    "set_speed_grade": {
+       "allowed" : true
+    },
+    "set_switching_activity": {
+       "allowed" : true
+    },
+    "set_system_jitter": {
+       "allowed" : true
+    },
+    "set_units": {
+       "allowed" : true
+    },
+    "setup_ip_static_library": {
+       "allowed" : true
+    },
+    "setup_pr_configurations": {
+       "allowed" : true
+    },
+    "show_objects": {
+       "allowed" : true
+    },
+    "show_schematic": {
+       "allowed" : true
+    },
+    "split_diff_pair_ports": {
+       "allowed" : true
+    },
+    "start_ip_gui": {
+       "allowed" : true
+    },
+    "strip_logic_functions": {
+       "allowed" : true
+    },
+    "swap_locs": {
+       "allowed" : true
+    },
+    "synth_design": {
+       "allowed" : true
+    },
+    "synth_ip": {
+       "allowed" : true
+    },
+    "tclapp::add_app_path": {
+       "allowed" : true
+    },
+    "tclapp::add_app_property": {
+       "allowed" : true
+    },
+    "tclapp::add_proc": {
+       "allowed" : true
+    },
+    "tclapp::add_proc_property": {
+       "allowed" : true
+    },
+    "tclapp::add_property": {
+       "allowed" : true
+    },
+    "tclapp::create_catalog": {
+       "allowed" : true
+    },
+    "tclapp::create_tclstore": {
+       "allowed" : true
+    },
+    "tclapp::debug::create_loaded_catalog": {
+       "allowed" : true
+    },
+    "tclapp::debug::save_loaded_catalog": {
+       "allowed" : true
+    },
+    "tclapp::delete_app": {
+       "allowed" : true
+    },
+    "tclapp::delete_proc": {
+       "allowed" : true
+    },
+    "tclapp::get_app_dir": {
+       "allowed" : true
+    },
+    "tclapp::get_config": {
+       "allowed" : true
+    },
+    "tclapp::get_context": {
+       "allowed" : true
+    },
+    "tclapp::get_proc_property": {
+       "allowed" : true
+    },
+    "tclapp::get_property": {
+       "allowed" : true
+    },
+    "tclapp::get_readable_repo_path": {
+       "allowed" : true
+    },
+    "tclapp::get_shared_repo_path": {
+       "allowed" : true
+    },
+    "tclapp::get_user_repo_path": {
+       "allowed" : true
+    },
+    "tclapp::install": {
+       "allowed" : true
+    },
+    "tclapp::list_all": {
+       "allowed" : true
+    },
+    "tclapp::list_apps": {
+       "allowed" : true
+    },
+    "tclapp::load_apps": {
+       "allowed" : true
+    },
+    "tclapp::load_catalog": {
+       "allowed" : true
+    },
+    "tclapp::open_app_catalog": {
+       "allowed" : true
+    },
+    "tclapp::refresh_catalog": {
+       "allowed" : true
+    },
+    "tclapp::register_persist_apps": {
+       "allowed" : true
+    },
+    "tclapp::report_app": {
+       "allowed" : true
+    },
+    "tclapp::reset_store": {
+       "allowed" : true
+    },
+    "tclapp::reset_tclstore": {
+       "allowed" : true
+    },
+    "tclapp::save_app_catalog": {
+       "allowed" : true
+    },
+    "tclapp::save_catalog": {
+       "allowed" : true
+    },
+    "tclapp::set_config": {
+       "allowed" : true
+    },
+    "tclapp::set_context": {
+       "allowed" : true
+    },
+    "tclapp::tcl_store_on": {
+       "allowed" : true
+    },
+    "tclapp::test": {
+       "allowed" : true
+    },
+    "tclapp::uninstall": {
+       "allowed" : true
+    },
+    "tclapp::unload_apps": {
+       "allowed" : true
+    },
+    "tclapp::update": {
+       "allowed" : true
+    },
+    "tclapp::update_app_catalog": {
+       "allowed" : true
+    },
+    "tclapp::update_catalog": {
+       "allowed" : true
+    },
+    "tclapp::update_support": {
+       "allowed" : true
+    },
+    "tclapp::update_tclstore": {
+       "allowed" : true
+    },
+    "tclapp::use_local": {
+       "allowed" : true
+    },
+    "tie_unused_pins": {
+       "allowed" : true
+    },
+    "unhighlight_objects": {
+       "allowed" : true
+    },
+    "unmark_objects": {
+       "allowed" : true
+    },
+    "unplace_cell": {
+       "allowed" : true
+    },
+    "unselect_objects": {
+       "allowed" : true
+    },
+    "update_clock_routing": {
+       "allowed" : true
+    },
+    "update_compile_order": {
+       "allowed" : true
+    },
+    "update_design": {
+       "allowed" : true
+    },
+    "update_files": {
+       "allowed" : true
+    },
+    "update_ip_catalog": {
+       "allowed" : true
+    },
+    "update_macro": {
+       "allowed" : true
+    },
+    "update_module_reference": {
+       "allowed" : true
+    },
+    "update_noc_qos": {
+       "allowed" : true
+    },
+    "update_sw_parameters": {
+       "allowed" : true
+    },
+    "update_timing": {
+       "allowed" : true
+    },
+    "upgrade_ip": {
+       "allowed" : true
+    },
+    "validate_dsa": {
+       "allowed" : true
+    },
+    "wait_on_run": {
+       "allowed" : true
+    },
+    "write_abstract_shell": {
+       "allowed" : true
+    },
+    "write_bitstream": {
+       "allowed" : true
+    },
+    "write_bmm": {
+       "allowed" : true
+    },
+    "write_bsdl": {
+       "allowed" : true
+    },
+    "write_cfgmem": {
+       "allowed" : true
+    },
+    "write_checkpoint": {
+       "allowed" : true
+    },
+    "write_csv": {
+       "allowed" : true
+    },
+    "write_debug_probes": {
+       "allowed" : true
+    },
+    "write_device_image": {
+       "allowed" : true
+    },
+    "write_dsa": {
+       "allowed" : true
+    },
+    "write_edif": {
+       "allowed" : true
+    },
+    "write_fdts": {
+       "allowed" : true
+    },
+    "write_hwdef": {
+       "allowed" : true
+    },
+    "write_hwx": {
+       "allowed" : true
+    },
+    "write_ibis": {
+       "allowed" : true
+    },
+    "write_inferred_xdc": {
+       "allowed" : true
+    },
+    "write_ip_tcl": {
+       "allowed" : true
+    },
+    "write_iphys_opt_tcl": {
+       "allowed" : true
+    },
+    "write_mem_info": {
+       "allowed" : true
+    },
+    "write_placer_checkpoint": {
+       "allowed" : true
+    },
+    "write_project_tcl": {
+       "allowed" : true
+    },
+    "write_qor_suggestions": {
+       "allowed" : true
+    },
+    "write_schematic": {
+       "allowed" : true
+    },
+    "write_sdf": {
+       "allowed" : true
+    },
+    "write_sysdef": {
+       "allowed" : true
+    },
+    "write_ucf": {
+       "allowed" : true
+    },
+    "write_verilog": {
+       "allowed" : true
+    },
+    "write_vhdl": {
+       "allowed" : true
+    },
+    "write_waivers": {
+       "allowed" : true
+    },
+    "write_xdc": {
+       "allowed" : true
+    },
+    "write_xdef": {
+       "allowed" : true
+    },
+    "writeback_frames": {
+       "allowed" : true
+    },
+    "xgui::add_group": {
+       "allowed" : true
+    },
+    "xgui::add_indent": {
+       "allowed" : true
+    },
+    "xgui::add_page": {
+       "allowed" : true
+    },
+    "xgui::add_panel": {
+       "allowed" : true
+    },
+    "xgui::add_param": {
+       "allowed" : true
+    },
+    "xgui::add_row": {
+       "allowed" : true
+    },
+    "xgui::add_text": {
+       "allowed" : true
+    },
+    "xgui::register_procedure_information": {
+       "allowed" : true
+    },
+    "xilinx::board::get_board_presets": {
+       "allowed" : true
+    },
+    "xilinx::board::get_board_used_interfaces": {
+       "allowed" : true
+    },
+    "xilinx::board::get_ip_associated_interfaces": {
+       "allowed" : true
+    },
+    "xilinx::designutils::bisect_pblock": {
+       "allowed" : true
+    },
+    "xilinx::designutils::check_cdc_paths": {
+       "allowed" : true
+    },
+    "xilinx::designutils::clone_cell": {
+       "allowed" : true
+    },
+    "xilinx::designutils::clone_net_driver": {
+       "allowed" : true
+    },
+    "xilinx::designutils::convert_muxfx_to_luts": {
+       "allowed" : true
+    },
+    "xilinx::designutils::create_combined_mig_io_design": {
+       "allowed" : true
+    },
+    "xilinx::designutils::create_diff_ports": {
+       "allowed" : true
+    },
+    "xilinx::designutils::generate_runs": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_clock_interaction": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_connected_ref_pins": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_data_through_pins": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_host_platform": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_inter_slr_nets": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_leaf_cells": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_mem": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_pid_mem": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_sll_nets": {
+       "allowed" : true
+    },
+    "xilinx::designutils::get_sll_nodes": {
+       "allowed" : true
+    },
+    "xilinx::designutils::gets_regexp": {
+       "allowed" : true
+    },
+    "xilinx::designutils::highlight_enable_signal_sites": {
+       "allowed" : true
+    },
+    "xilinx::designutils::insert_buffer": {
+       "allowed" : true
+    },
+    "xilinx::designutils::insert_buffer_chain": {
+       "allowed" : true
+    },
+    "xilinx::designutils::insert_clock_probe": {
+       "allowed" : true
+    },
+    "xilinx::designutils::is_fabric_connected": {
+       "allowed" : true
+    },
+    "xilinx::designutils::prettyTable": {
+       "allowed" : true
+    },
+    "xilinx::designutils::read_file_regexp": {
+       "allowed" : true
+    },
+    "xilinx::designutils::reapply_iostandard": {
+       "allowed" : true
+    },
+    "xilinx::designutils::remove_buffer": {
+       "allowed" : true
+    },
+    "xilinx::designutils::rename_net": {
+       "allowed" : true
+    },
+    "xilinx::designutils::replicate_high_fanout_registers": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_all_primitives": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_cells_fanout": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_cells_loc": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_clock_buffers": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_critical_hfn": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_failfast": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_hier_util": {
+       "allowed" : true
+    },
+    "xilinx::designutils::report_parts": {
+       "allowed" : true
+    },
+    "xilinx::designutils::source_path": {
+       "allowed" : true
+    },
+    "xilinx::designutils::timing_report_to_verilog": {
+       "allowed" : true
+    },
+    "xilinx::designutils::verilog2int": {
+       "allowed" : true
+    },
+    "xilinx::designutils::write_ip_integrator_testbench": {
+       "allowed" : true
+    },
+    "xilinx::designutils::write_loc_constraints": {
+       "allowed" : true
+    },
+    "xilinx::designutils::write_slr_pblock_xdc": {
+       "allowed" : true
+    },
+    "xilinx::designutils::write_template": {
+       "allowed" : true
+    },
+    "xilinx::ies::register_options": {
+       "allowed" : true
+    },
+    "xilinx::ies::setup": {
+       "allowed" : true
+    },
+    "xilinx::ies::usf_create_options": {
+       "allowed" : true
+    },
+    "xilinx::modelsim::register_options": {
+       "allowed" : true
+    },
+    "xilinx::modelsim::setup": {
+       "allowed" : true
+    },
+    "xilinx::modelsim::usf_create_options": {
+       "allowed" : true
+    },
+    "xilinx::questa::register_options": {
+       "allowed" : true
+    },
+    "xilinx::questa::setup": {
+       "allowed" : true
+    },
+    "xilinx::questa::usf_create_options": {
+       "allowed" : true
+    },
+    "xilinx::vcs::register_options": {
+       "allowed" : true
+    },
+    "xilinx::vcs::setup": {
+       "allowed" : true
+    },
+    "xilinx::vcs::usf_create_options": {
+       "allowed" : true
+    },
+    "xilinx::xcelium::register_options": {
+       "allowed" : true
+    },
+    "xilinx::xcelium::setup": {
+       "allowed" : true
+    },
+    "xilinx::xcelium::usf_create_options": {
+       "allowed" : true
+    },
+    "xilinx::xsim::register_options": {
+       "allowed" : true
+    },
+    "xilinx::xsim::setup": {
+       "allowed" : true
+    },
+    "xilinx::xsim::usf_create_options": {
+       "allowed" : true
+    },
+    "xp::hybrid": {
+       "allowed" : true
+    },
+    "xphy::generate_constraints": {
+       "allowed" : true
+    }
+  }
+}

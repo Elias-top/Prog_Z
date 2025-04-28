@@ -1,0 +1,81 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+
+export VIMAGE_PID=$$
+if [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  echo CALLING "$0.bat" "$@"
+  "$0.bat" "$@"
+  exit $?
+fi
+if [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$RDI_BINROOT/$0.bat" "$@"
+  exit $?
+fi
+if [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$RDI_BINROOT/$0.bat" "$@"
+  exit $?
+fi
+
+. "`dirname \"$0\"`/setupEnv.sh"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+tempArgSize=0
+RDI_TEMP_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -version|--version)
+      RDI_ONLY_PRINT_VERSION=1
+      shift
+      ;;
+    *)
+      RDI_TEMP_ARGS[$tempArgSize]="$1"
+      tempArgSize=$(($tempArgSize + 1))
+      shift
+      ;;
+  esac
+done
+
+
+
+XILINX_VERSION_VITIS=UnknownVersion
+if [ -e "$RDI_APPROOT/data/version.sh" ]; then
+    . "$RDI_APPROOT/data/version.sh"
+fi
+export _VITIS_VERSION=$XILINX_VERSION_VITIS
+
+
+export VITIS_DAILY_LATEST=/proj/xbuilds/${_VITIS_VERSION}_daily_latest/installs/lin64/Vitis/$_VITIS_VERSION
+export VITIS_DAILY_LATEST_ROOT=/proj/xbuilds/${_VITIS_VERSION}_daily_latest/installs/lin64
+
+if [ -z "$XILINX_VIVADO" ]; then
+  export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+
+export PATH=$XILINX_VIVADO/bin:$PATH
+
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+export XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+export RDI_NO_JRE=1
+RDI_PROG=$RDI_BASEROOT/vivado/bin/vivado
+
+if [ "$RDI_ONLY_PRINT_VERSION" == "1" ]; then
+  "$RDI_BINROOT"/loader -print_version create_sc_xo
+else
+   exec $RDI_BASEROOT/../Vivado/${_VITIS_VERSION}/bin/vivado -mode batch -source ${RDI_APPROOT}/data/emulation/scripts/systemc2xo.tcl -tclargs "${RDI_TEMP_ARGS[@]}"
+   #"$RDI_BINROOT"/loader -exec /proj/xbuilds/${_VITIS_VERSION}_daily_latest/installs/lin64/Vivado/$_VITIS_VERSION/bin/vivado -mode batch -source ${RDI_APPROOT}/data/emulation/scripts/systemc2xo.tcl --tclargs "${RDI_TEMP_ARGS[@]}"
+fi
+

@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# Vivado Lab Edition v2024.2 (64-bit)
+# SW Build (by xbuild) on Sun Nov 10 11:20:03 MST 2024
+# 
+# 
+# Start of session at: Sun Nov 10 13:40:57 2024
+# Process ID         : 188759
+# Current directory  : /wrk/ci/prod/2024.2/vitis_product/continuous/449/2024.2/product_components/vitis/build/prep/rdi/vitis/bin
+# Command line       : vivado_lab -mode tcl
+# Log file           : /wrk/ci/prod/2024.2/vitis_product/continuous/449/2024.2/product_components/vitis/build/prep/rdi/vitis/bin/vivado_lab.log
+# Journal file       : /wrk/ci/prod/2024.2/vitis_product/continuous/449/2024.2/product_components/vitis/build/prep/rdi/vitis/bin/vivado_lab.jou
+# Running On         : xcordevl143
+# Platform           : CentOS
+# Operating System   : CentOS Linux release 7.4.1708 (Core)
+# Processor Detail   : Intel(R) Xeon(R) CPU E5-2690 v4 @ 2.60GHz
+# CPU Frequency      : 3327.796 MHz
+# CPU Physical cores : 28
+# CPU Logical cores  : 56
+# Host memory        : 270190 MB
+# Swap memory        : 34359 MB
+# Total Virtual      : 304550 MB
+# Available Virtual  : 169506 MB
+#-----------------------------------------------------------
+exit
+INFO: [Common 17-206] Exiting vivado_lab at Sun Nov 10 13:41:04 2024...

@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 2015 Xilinx, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+if [[ "`uname`" == windows32* ]] || [[ "`uname`" == CYGWIN* ]] ; then
+  trap "" INT
+  "$0.bat" "$@"
+  exit $?
+fi
+
+. "`dirname \"$0\"`/setupEnv.sh"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+export RDI_VERBOSE=False
+export RDI_NO_JRE=1
+export XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+RDI_PROG=tclsh8.6
+"$RDI_BINROOT"/loader -exec $RDI_PROG "$@"

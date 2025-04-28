@@ -1,0 +1,315 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Math-Engine Constraints Specification",
+  "id": "http://www.xilinx.com/AIEConstrSchema-0.1",
+  "definitions": {
+    "SrcInfoDef": {
+      "type": "object",
+      "properties": {
+        "file": { "type": "string" },
+        "line": { "type": "integer", "minimum":-1 },
+        "column": { "type": "integer", "minimum":-1 }
+      }
+    },
+    "SoftConstrInfoDef": {
+      "type": "object",
+      "properties": {
+        "issoft": { "type": "boolean" }
+      }
+    },
+    "ArrayStringSoftConstr": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { "$ref": "#/definitions/SoftConstrInfoDef" }
+        ]
+      }
+    },
+    "ArrayString": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "AddressInfo": {
+      "type": "object",
+      "properties": {
+        "row": { "type": "integer", "minimum": -1 },
+        "column": { "type": "integer", "minimum": -1 },
+        "bankId": { "type": "integer", "minimum": 0 },
+        "offset": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "DMAFIFODef": {
+      "type": "object",
+      "properties": {
+        "tile_type": { 
+          "type": "string",
+          "enum": ["core", "shim", "mem"]
+        },
+        "row": { "type": "integer", "minimum": -1 },
+        "column": { "type": "integer", "minimum": -1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "offset": { "type": "integer", "minimum": 0 },
+        "bankId": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "StreamFIFODef": {
+      "type": "object",
+      "properties": {
+        "tile_type": { 
+          "type": "string",
+          "enum": ["core", "shim", "mem"]
+        },
+        "row": { "type": "integer", "minimum": -1 },
+        "column": { "type": "integer", "minimum": -1 },
+        "channel": { "type": "integer", "minimum": -1 }
+      },
+      "additionalProperties": false
+    },
+    "FIFOLocationsRecordsDef": {
+      "type": "object",
+      "properties": {
+        "dma_fifos": { "$ref": "#/definitions/DMAFIFODef" },
+        "stream_fifos": { "$ref": "#/definitions/StreamFIFODef" }
+      },
+      "additionalProperties": false
+    },
+    "ArrayAddressInfo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref": "#/definitions/AddressInfo"
+      }
+    },
+    "TileConstraint": {
+      "type": "object",
+      "properties": {
+        "tile_type": { 
+          "type": "string",
+          "enum": ["core", "shim", "mem"]
+        },
+        "name": { "type": "string" },
+        "row": { "type": "integer", "minimum": 0 },
+        "column": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "MemConstraint": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "row": { "type": "integer", "minimum": 0 },
+        "column": { "type": "integer", "minimum": 0 },
+        "bankId": { "type": "integer", "minimum": 0 },
+        "offset": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "ShimConstraint": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "column": { "type": "integer", "minimum": -1 },
+        "channel": { "type": "integer", "minimum": -1 }
+      },
+      "additionalProperties": false
+    },
+    "PortLocConstraint": {
+      "type": "object",
+      "properties": {
+        "tile_type": { 
+          "type": "string",
+          "enum": ["core", "shim", "mem"]
+        },
+        "name": { "type": "string" },
+        "column": { "type": "integer", "minimum": -1 },
+        "row": { "type": "integer", "minimum": -1 },
+        "channel": { "type": "integer", "minimum": -1 }
+      },
+      "additionalProperties": false
+    },
+    "StreamChannelConstraint": {
+      "type": "object",
+      "properties": {
+        "column": { "type": "integer", "minimum": -1 },
+        "row": { "type": "integer", "minimum": -1 },
+        "offset": { "type": "integer", "minimum": -1 },
+        "direction": { "type": "string", "enum": [ "East", "West", "North", "South" ] },
+        "channel": { "type": "integer", "minimum": -1 }
+      },
+      "additionalProperties": false
+    },
+    "XYCoordinate": {
+      "type": "object",
+      "items": [
+        { "type": "integer", "minimum": 0 },
+        { "type": "integer", "minimum": 0 }
+      ]         
+    },
+    "AreaGroupCoordinate": {
+      "type": "object",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer", "minimum": 0 },
+          { "$ref": "#/definitions/XYCoordinate" }
+        ]
+      }
+    },
+    "AreaGroupRange": {
+      "type": "array",
+      "items": [
+        { "$ref": "#/definitions/AreaGroupCoordinate" },
+        { "$ref": "#/definitions/AreaGroupCoordinate" }
+      ]
+    },
+    "AreaGroupValue": {
+      "type": "object",
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "integer", "minimum": 0 },
+          { "$ref": "#/definitions/AreaGroupRange" }
+        ]
+      }
+    },
+    "ArrayAreaGroupValue": {
+      "type": "array",
+      "minItems": 1,
+      "$ref": "#/definitions/AreaGroupValue"
+    },
+    "AreaGroupConstraint": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "exclude": { "type": "boolean" },
+        "issoft": { "type": "boolean" },
+        "contain_routing": { "type": "boolean" },
+        "exclusive_routing": { "type": "boolean" },
+        "exclusive_placement": { "type": "boolean" },
+        "nodeGroup": { "$ref": "#/definitions/ArrayString" },
+        "tileGroup": { "$ref": "#/definitions/ArrayAreaGroupValue" },
+        "memGroup": { "$ref": "#/definitions/ArrayAreaGroupValue" },
+        "shimGroup": { "$ref": "#/definitions/ArrayAreaGroupValue" },
+        "srcInfo": { "$ref": "#/definitions/SrcInfoDef" }
+      },
+      "additionalProperties": false
+    },
+    "InstGroupConstraint": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "isisomorphic": { "type": "boolean" },
+        "nodeGroup": { "$ref": "#/definitions/ArrayString" },
+        "srcInfo": { "$ref": "#/definitions/SrcInfoDef" }
+      },
+      "additionalProperties": false
+    },
+    "DependentRoutingGroupConstraint": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "nodeGroup": { "$ref": "#/definitions/ArrayString" },
+        "srcInfo": { "$ref": "#/definitions/SrcInfoDef" }
+      },
+      "additionalProperties": false
+    },
+    "IsomorphicGraphGroupConstraint": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "referenceGraph": { "type": "string" },
+        "stampedGraphs": { "$ref": "#/definitions/ArrayString" },
+        "srcInfo": { "$ref": "#/definitions/SrcInfoDef" }
+      },
+      "additionalProperties": false
+    },
+    "NodeConstraintsDef": {
+      "type": "object",
+      "properties": {
+        "tile": { "$ref": "#/definitions/TileConstraint" },
+        "mem": { "$ref": "#/definitions/ArrayAddressInfo" },
+        "shim": { "$ref": "#/definitions/ShimConstraint" },
+        "runtime": {"type": "number", "minimum":0.0 },
+        "reserved_memory": { "$ref": "#/definitions/AddressInfo" },
+        "colocated_nodes": { "$ref": "#/definitions/ArrayStringSoftConstr" },
+        "not_colocated_nodes": { "$ref": "#/definitions/ArrayStringSoftConstr" },
+        "colocated_reserved_memories": {"$ref": "#/definitions/ArrayStringSoftConstr"},
+        "not_colocated_reserved_memories": {"$ref": "#/definitions/ArrayStringSoftConstr"}
+      },
+      "additionalProperties": true
+    },
+    "PortConstraintsDef": {
+      "type": "object",
+      "properties": {
+        "utilization": { "type": "number", "minimum":0.0 },
+        "buffers": {"$ref": "#/definitions/ArrayAddressInfo"},
+        "colocated_nodes": { "$ref": "#/definitions/ArrayStringSoftConstr" },
+        "not_colocated_nodes": { "$ref": "#/definitions/ArrayStringSoftConstr" },
+        "colocated_ports": {"$ref": "#/definitions/ArrayStringSoftConstr"},
+        "not_colocated_ports": {"$ref": "#/definitions/ArrayStringSoftConstr"},
+        "exclusive_colocated_ports": {"$ref": "#/definitions/ArrayStringSoftConstr"},
+        "colocated_reserved_memories": {"$ref": "#/definitions/ArrayStringSoftConstr"},
+        "not_colocated_reserved_memories": {"$ref": "#/definitions/ArrayStringSoftConstr"},
+        "colocated_dma": {"$ref": "#/definitions/ArrayString"},
+        "stream_channel": {"$ref": "#/definitions/StreamChannelConstraint"},
+        "fifo_locations": {"$ref": "#/definitions/ArrayString"},
+        "fifo_locations_records": {"$ref": "#/definitions/FIFOLocationsRecordsDef"},
+        "loc": { "$ref": "#/definitions/PortLocConstraint" }
+      },
+      "additionalProperties": true
+    },
+    "NetConstraintsDef": {
+      "type": "object",
+      "properties": {
+        "buffer_count": { "type": "integer", "minimum": 1 },
+        "margin": { "type": "integer", "minimum": 1 },
+        "fifo_depth": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": true
+    },
+    "GlobalConstraintDef": {
+      "type": "object",
+      "properties": {
+        "areaGroup": {"$ref": "#/definitions/AreaGroupConstraint"},
+        "instGroup": {"$ref": "#/definitions/InstGroupConstraint"},
+        "dependentRoutingGroup": {"$ref": "#/definitions/DependentRoutingGroupConstraint"},
+        "isomorphicGraphGroup": {"$ref": "#/definitions/IsomorphicGraphGroupConstraint"}
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "appId"    : { "type": "string" },
+    "schema"   : { "type": "string" },
+    "device"   : { "type": "string" },
+    "platform" : { "type": "string" },
+    "NodeConstraints": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/NodeConstraintsDef"
+      }
+    },
+    "PortConstraints": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/PortConstraintsDef"
+      }
+    },
+    "NetConstraints": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/NetConstraintsDef"
+      }
+    },
+    "GlobalConstraints": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/GlobalConstraintDef"
+      }
+    }
+    
+  }
+}

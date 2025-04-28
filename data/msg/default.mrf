@@ -1,0 +1,38 @@
+#################################################################################
+# This is the default messaging rules for xocc in SDX.
+# 
+# Syntax of commands is:
+# promote_from_all : means promote messages from all levels of the run hierarchy to 
+# the output of xocc.
+# promote -severity <severity> : promote messages with the given severity, either
+# info, warning, critical_warning, or error.
+# promote -id <id> : promote messages with the given message id, for example "17-35".
+# suppress -severity <severity> : suppress from the output of xocc all messages with 
+# the given severity.
+# suppress -id <id> : suppress from the output of xocc all messages with the given id.
+#################################################################################
+#
+promote_from_all
+promote -severity error
+# Promote INFO message 17-86, which warns of almost expired licenses, CR871609
+promote -id 17-86
+# Promote HLS message 204-69, CR969403.
+promote -id 204-69
+# Promote HLS message 204-61, CR967618.
+promote -id 204-61
+# Promote HLS message 200-789, CR-1044831
+promote -id 200-789
+# Promote HLS message 200-790, CR-1044831
+promote -id 200-790
+# Promote HLS message 200-1470 (new ID for 204-61), CR-1060352
+# Promote HLS message 200-882  (new ID for 204-69), CR-1060352
+# Promote HLS message 200-884  (new ID for 204-69), CR-1060352
+# Promote HLS message 200-885  (new ID for 204-69), CR-1060352
+promote -id 200-1470
+promote -id 200-882
+promote -id 200-884
+promote -id 200-885
+# CR-1044282
+promote -id xilinx.com:bd_rule:clkrst-102
+# CR-1093594 : Promote profiling monitor insertion issues during build
+promote -id DPA-44

@@ -1,0 +1,109 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2011 Xilinx, Inc. All Rights Reserved.
+#
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+# Set XILINX_VIVADO
+XILINX_VIVADO=`dirname "$RDI_BINROOT"`
+export XILINX_VIVADO
+
+#---------------------------------------------------------------------------------------------------------------
+# We need to hack up the locales if they are set to ASCII. Click, which is a cs_server dependency, will not
+# start if it detects locale is ASCII. Python 3.7+ has two PEPs 538 and 540, that seem to address the ASCII
+# locale setting, but it doesn't work in the case of frozen cs_server.
+# Based on some experiments that we ran, it seems like lack of "official" support from PyInstaller for 
+# freezing Python 3.8 apps is the issue and we are hoping that a future update, that will add official support 
+# for Python 3.8, will render the need for this hack obsolete.
+#---------------------------------------------------------------------------------------------------------------
+
+if [[ ! $LC_ALL =~ .*[utf,UTF]-{0,1}8.* ]]; then
+    # echo "LC_ALL doesn't have UTF-8"
+
+    NEW_LC_ALL=""
+    unset $LC_ALL
+
+    if [[ ! $LC_CTYPE =~ .*[utf,UTF]-{0,1}8.* ]]; then
+
+        # Check if en_US is available in list of locales
+        for locale_name in $(locale -a); do
+            if [[ $locale_name =~ en_US.+[utf,UTF]-{0,1}8.* ]]; then
+                # echo "en_US locale available in list of locales - $locale_name"
+                
+                NEW_LC_ALL=$locale_name
+                break
+            fi
+        done
+
+        # If en_US was found in for loop above, this condition will be false
+        if [[ "$NEW_LC_ALL" = "" ]]; then
+
+            # Since the list of locales didn't have en_US, try to get the system locale using localectl status
+            SYSTEM_LOCALE=$(localectl status | awk -F= '/System Locale:.*LANG/ {print $2}')
+
+            # echo "System locale - $SYSTEM_LOCALE"
+
+            # Only if SYSTEM_LOCALE has UTF-8 in it, use it. Else throw error and exit
+            if [[ $SYSTEM_LOCALE =~ .*[utf,UTF]-{0,1}8.* ]]; then
+                # echo "System locale is UTF-8 based"
+                
+                NEW_LC_ALL=$SYSTEM_LOCALE
+            else
+                echo "ERROR! Invalid locale settings detected."
+                exit -1
+            fi
+        fi
+
+    else
+        NEW_LC_ALL=$LC_CTYPE
+    fi
+
+    LC_ALL=$NEW_LC_ALL
+    export LC_ALL
+
+    # echo "--> Set LC_ALL to $LC_ALL"
+
+# else
+#     echo "LC_ALL has UTF-8"
+fi
+#---------------------------------------------------------------------------------------------------------------
+
+
+
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+RDI_PROG=`basename "$0"`
+if [ ! -z "$CS_SERVER_NO_PYTCF" ]; then
+    if [ "$CS_SERVER_NO_PYTCF" != "1" ]; then
+        RDI_PROG+="_pytcf"
+    fi
+fi
+
+RDI_NO_JRE=yes
+export RDI_NO_JRE
+"$RDI_BINROOT"/loader -exec $RDI_PROG "$@"

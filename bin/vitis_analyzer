@@ -1,0 +1,119 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-1999, 2001-2012 Xilinx, Inc. All Rights Reserved.
+#
+
+##
+# Setup default environmental variables
+##
+# RDI_BINROOT - Directory *this* script exists in
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test/Install/bin
+#
+# RDI_APPROOT - One directory above RDI_BINROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_APPROOT=/usr/Test/Install
+#
+# RDI_BASEROOT - One directory above RDI_APPROOT
+#  E.x. 
+#    /usr/Test/Install/bin/example
+#    RDI_BINROOT=/usr/Test
+##
+. "`dirname \"$0\"`/setupEnv.sh"
+
+if [ -z "$XILINX_VIVADO" ]; then
+  export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+if [ -z "$XILINX_VIVADO_HLS" ]; then
+  export XILINX_VIVADO_HLS="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+
+# Set XILINX_VITIS
+if [ -z "$XILINX_VITIS" ]; then
+  export XILINX_VITIS=`dirname "$RDI_BINROOT"`
+fi
+
+if [ -z "$XILINX_XRT" ]; then
+  XBB_DIR="$( (cd -L "$XILINX_VITIS/../../../../xbb" && pwd -L) 2> /dev/null )"
+  if [ -e "/opt/xilinx/xrt/setup.sh" ] ; then
+    . "/opt/xilinx/xrt/setup.sh"
+  elif [ -e "$XBB_DIR/xrt/packages/setenv.sh" ]; then
+    . "$XBB_DIR/xrt/packages/setenv.sh"
+  fi
+fi
+
+export PATH=$XILINX_VIVADO_HLS/bin:$PATH
+export PATH=$XILINX_VITIS/bin:$PATH
+
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+
+launchRigel=1
+POSITIONAL_ARGS=()
+
+DEFAULT_ANALYZE_ARG="--analyze"
+FILE_ANALYZE_ARG="--analyze"
+
+for ((index=1; index<=$#; index++));
+do
+  i=${@:$index:1}
+  case $i in
+    -classic|--classic)
+      FILE_ANALYZE_ARG=""
+    ;;
+  esac
+done
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -classic|--classic)
+      launchRigel=0
+      shift
+      ;;
+    -help|--help|-h)
+      launchRigel=0
+      POSITIONAL_ARGS+=("$1")
+      shift
+      ;;
+    -*)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+    *)
+      # prefix every file arg with --analyze
+      POSITIONAL_ARGS+=(${FILE_ANALYZE_ARG} "$1") # save positional arg
+      DEFAULT_ANALYZE_ARG=""
+      shift # past argument
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters  
+
+if [ $launchRigel == 1 ]; then
+  echo 
+  echo "Launching the new GUI for Vitis Analyzer."
+  echo "If you wish to switch back, please run vitis_analyzer --classic."
+  echo
+  $XILINX_VITIS/bin/vitis ${DEFAULT_ANALYZE_ARG} "${@:1}"
+else
+  RDI_PROG=`basename "$0"`
+  export RDI_EXECCLASS="ui/Frank"
+  export _RDI_NEEDS_PYTHON=True
+  export RDI_USE_JDK21=1
+
+# CR-1074520: Disable bmalloc memory allocator and use the system default one 
+#   instead. This prevents WebKit from overindulging in virtual memory on high
+#   memory machines. https://trac.webkit.org/wiki/EnvironmentVariables
+  export Malloc=1
+
+  "$RDI_BINROOT"/loader -exec $RDI_PROG "$@"
+fi

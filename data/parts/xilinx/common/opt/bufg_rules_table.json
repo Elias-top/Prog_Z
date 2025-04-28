@@ -1,0 +1,236 @@
+{"Devices BUFG Rules Table" :
+	{"How To Use" :
+        	[       
+                {"#1": "Don't leave space when calling rules with two arguments. For example, r7(driver,6), there is no space between arguments, 'driver,6'."},
+                {"#2": "match conditions, i.e.,logical checks are written in 'sum of products'. (A && B || C && D)" }
+		], 
+	
+	"Device_Sub_Rules" : 
+		[
+		{"rule": "r1", "funcName": "isInHDIO", "Predicator": "" , "Comment" : "to determine HDIO region."},
+		{"rule": "r3", "funcName": "instanceHasLOC","Predicator":"", "Comment" : "check load instance LOC values"},
+		{"rule": "r5", "funcName": "load_driver_adjClockRegions", "Predicator":"", "Comment" : "check load/driver in adjClockRegions"},
+		{"rule": "r6", "funcName": "load_driver_sameClockRegions", "Predicator":"", "Comment" : "check load/driver in sameClockRegions"},
+		{"rule": "r7", "funcName": "getLoadsMatching", "Predicator": "# (calling argument)" ,"Comment" : "check number of load instances > #, drivers matching regEx."},
+		{"rule": "r8", "funcName": "cdrMatch", "Predicator": "ALL" ,"Comment" : "check all cdrMatch conditions, (FALSE, SAME_ROW, SAME_CMT_ROW, ANY_REGION, ANY_CMT_REGION) "},
+		{"rule": "r12", "funcName": "regMatch", "Predicator": "driverPinPath" ,"Comment" : "use this for driver pin path match."},
+		{"rule": "r14", "funcName": "isInHSR", "Predicator": "" ,"Comment" : "check whether HSR region "},
+		{"rule": "r15", "funcName": "load_driver_differentClockRegions", "Predicator":"", "Comment" : "check load/driver in different ClockRegions"},
+	  	{"rule": "r16", "funcName": "load_driver_nonAdjClockRegions", "Predicator":"", "Comment" : "check load/driver in non adjClockRegions"},
+		{"rule": "r17", "funcName": "getCellviewType", "Predicator":"", "Comment" : "check load instance type"},
+		{"rule": "r18", "funcName": "sameDriverLoad", "Predicator":"", "Comment" : "driver load the same instance"},
+		{"rule": "r20", "funcName": "isDDRMCUseCase", "Predicator":"", "Comment" : "check load isDDRMCUseCase"}	
+		],
+
+	"Everest_Insertion_Rules" : 
+		[
+		{"RuleName": "case 1-a/b/c", "driver":"^IBUF.*", "load":"(XPLL|X5PLL).*?CLKIN.*", 
+			"AdditionalCheck": 
+				[
+					{"matches":"r3(load) && r3(driver) && r16 && r15", "Result": true , "Enabled":true},
+				       	{"matches":"!r3(load) && r8(driver,ALL)|| !r3(driver) && r8(driver,ALL)", "Result": true, "Enabled":true},
+					{"matches":"r1(driver)", "Result": true, "Enabled":true},
+					{"matches":"!r7(driver,6)", "Result": false, "Enabled":true},
+					{"matches":"r7(driver,6)", "Result": true, "Enabled":true}
+				]
+		}, 
+
+                {"RuleName": "case 2-c/b", "driver":"^IBUF.*", "load":"DPLL.*?CLKIN.*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"!r12(driver,IBUFDS_GTM?E5*) && r15", "Result": true, "Enabled":true},
+					{"matches":"!r12(driver,IBUFDS_GTM?E5*) && r8(driver,ALL)", "Result": true, "Enabled":true},
+					{"matches":"!r12(driver,IBUFDS_GTM?E5*) && r7(driver,1)", "Result": true, "Enabled":true}
+                                ]
+                },
+
+                {"RuleName": "case 3-c/b", "driver":"^IBUF.*", "load":"MMCM.*?CLKIN.*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"r15", "Result": true, "Enabled":true},
+                                        {"matches":"r8(driver,ALL)", "Result": true, "Enabled":true},
+                                        {"matches":"r7(driver,1)", "Result": true, "Enabled":true}
+                                ]
+                },
+
+                
+		{"RuleName": "case 4-f", "driver":"(XPLL|X5PLL).*?CLKOUT.*", "load":"DDRMC.*?(DMC_CLK|DBG_PLL1_CLK).*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"", "Result": false, "Enabled":true}
+                                ]
+                },
+                  
+                {"RuleName": "case 4-h", "driver":"(XPLL|X5PLL).*?CLKOUT.*", "load":"(XPLL|X5PLL).*?CLKIN[1-2]_DESKEW",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"r18", "Result": false, "Enabled":true}
+                                ]
+                },
+	        
+		{"RuleName": "case 4-a/b/c", "driver":"(XPLL|X5PLL).*?CLKOUT0", "load":"(XPLL|X5PLL).*?CLKIN.*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"r16", "Result": true, "Enabled":true},
+					{"matches":"r8(driver,ALL)", "Result": true, "Enabled":true},
+					{"matches":"!r7(driver,4) || r5", "Result": false, "Enabled":true},
+					{"matches":"r7(driver,5)", "Result": true, "Enabled":true}	
+                                ]
+                },
+                {"RuleName": "case 4-g", "driver":"(XPLL|X5PLL).*?CLKOUT2", "load":"XPHY.*?FIFO_RD_CLK",
+                        "AdditionalCheck":
+                                [ 
+                                        {"matches":"!r20(load)", "Result": true, "Enabled":true},
+                                        {"matches":"", "Result": false, "Enabled":true}
+
+                                ]
+                },
+                {"RuleName": "case 4-d", "driver":"(XPLL|X5PLL).*?CLKOUT.*", "load":".*",
+                        "AdditionalCheck":
+                                [        
+					{"matches":"r12(load,BUFGCE_DIV.*)", "Result": false, "Enabled":true},
+                                        {"matches":"!r12(driver,X5?PLL.*?CLKOUTPHY.*)", "Result": true, "Enabled":true}
+                                ]
+                },
+
+                {"RuleName": "case 6-a/b", "driver":"(IBUF|DPLL).*", "load":"(BUFGCE_DIV|BUFGCTRL).*",
+                        "AdditionalCheck":
+                                [ 
+                                        {"matches":"r12(driver,DPLL.*) && r14(driver)", "Result": false, "Enabled":false},
+                                        {"matches":"r15", "Result": true, "Enabled":true},
+                                        {"matches":"r1", "Result": true, "Enabled":true},
+                                        {"matches":"r8(driver,ALL)", "Result": true, "Enabled":true},
+                                        {"matches":"", "Result": false, "Enabled":true}
+                                ]
+                },
+                {"RuleName": "case 6-c/d", "driver":"(MMCM).*?CLKFBOUT.*", "load":".*",
+                        "AdditionalCheck":
+                                [ 
+                                       	{"matches":"r12(load,MMCM.*?CLKIN[1-2]?_DESKEW) && r18", "Result": false, "Enabled":true},
+                                        {"matches":"", "Result": true, "Enabled":true}
+                                ]
+                },
+                    
+		{"RuleName": "case 5-a/b/c/5", "driver":"(MMCM|DPLL).*?CLKOUT.*", "load":".*",
+                        "AdditionalCheck":
+
+                                [
+					{"matches":"r17(load,HDNTCellviewLib::MBUFG_GT) || r17(load,HDNTCellviewLib::BUFG_GT)", "Result": false, "Enabled":true},
+                                        {"matches":"r17(load,HDNTCellviewLib::BUFG_GT_SYNC)", "Result": false, "Enabled":true},
+					{"matches":"r12(load,MMCM.*?CLKIN[1-2]?_DESKEW) && r18", "Result": false, "Enabled":true},
+					{"matches":"r12(load,DPLL.*?CLKIN[1-2]?_DESKEW) && r18", "Result": false, "Enabled":true},
+					{"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,VDU.*?VDUCORECLK)", "Result": false, "Enabled":true},
+				        {"matches":"r12(driver,DPLL.*?CLKOUT[3]) && r12(load,VDU.*?VDUMCUCLK)", "Result": false, "Enabled":true},
+                                    {"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,VCU.*?VCU2DECCLK)", "Result": false, "Enabled":true},
+                                    {"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,VCU.*?VCU2ENCCLK)", "Result": false, "Enabled":true},
+				    {"matches":"r12(driver,DPLL.*?CLKOUT[3]) && r12(load,VCU.*?VCU2AXISLAVECLK)", "Result": false, "Enabled":true},
+                                    {"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,ISP2.*?DPLLISPCLK0)", "Result": false, "Enabled":true},
+				    {"matches":"r12(driver,DPLL.*?CLKOUT[3]) && r12(load,ISP2.*?DPLLISPCLK1)", "Result": false, "Enabled":true},
+                                        {"matches":"r12(driver,MMCM.*?CLKOUT.*) && r12(load,BUFGCE_DIV.*)", "Result": false, "Enabled":true},
+                                        {"matches":"r12(driver,MMCM.*?CLKOUT.*) && r12(load,BUFGCTRL.*)", "Result": false, "Enabled":true},
+					{"matches":"", "Result": true, "Enabled":true}
+	
+                                ]
+                },
+          
+		{"RuleName": "case 7-a", "driver":".*", "load":"XPHY.*?CTRL_CLK",
+                        "AdditionalCheck":
+                                [
+                                        {"matches": "!r12(driver,DDRMC.*)", "Result": true, "Enabled":true}
+                                ]
+                },
+                {"RuleName": "case 8-", "driver":"^IBUF.*", "load":"^IDDRE1/C",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"", "Result": true, "Enabled":true}
+                                ]
+                },
+                {"RuleName": "case 8-", "driver":"^IBUF.*", "load":"^IDDRE1/CB",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"", "Result": true, "Enabled":true}
+                                ]
+                },
+		{"RuleName": "case 10", "driver":"PS9.*(LPDRCLKCLK|PMCRCLKCLK).*", "load":".*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"", "Result": true, "Enabled":true}
+                                ]
+                },
+                {"RuleName": "case 11", "driver":"XPHY.*?FIFO_WR_CLK.*", "load":".*",
+                        "AdditionalCheck":
+                                [
+
+                                        {"matches":"r12(load,XPLL.*?CLKIN.*) && !r15", "Result": false, "Enabled":true},
+                                        {"matches":"r12(load,XPLL.*?CLKIN1_DESKEW.*) && !r15", "Result": false, "Enabled":true},
+                                        {"matches":"r12(load,XPLL.*?CLKIN2_DESKEW.*) && !r15", "Result": false, "Enabled":true},
+                                        {"matches":"", "Result": true, "Enabled":true}
+                                ]
+                },
+                {"RuleName": "case 12", "driver":"X5PLL.*(CLKOUT0|CLKOUT1|CLKOUT2).*", "load":".*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"", "Result": true, "Enabled":true}
+                                ]
+                }   
+
+		],
+
+	"Everest_Splitting_Rules" : 
+		[
+		 {"RuleName": "case 2d", "driver":"IBUFDS_GTM?E5.*", "load":"DPLL.*?CLKIN.*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches": "", "Result": false, "Enabled":true} 
+                                ]
+                },	
+                 {"RuleName": "case 4e", "driver":"(XPLL|X5PLL).*?CLKOUTPHY.*", "load":".*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches": "", "Result": false, "Enabled":true}
+                                ]
+                },
+                 {"RuleName": "case 4f", "driver":"(XPLL|X5PLL).*?CLKOUT.*", "load":"DDRMC.*?DMC_CLK",
+                        "AdditionalCheck":
+                                [
+                                        {"matches": "", "Result": false, "Enabled":true}
+                                ]
+                },
+                 {"RuleName": "case 5a", "driver":"(MMCM|DPLL).*?CLKOUT.*", "load":".*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches": "r17(load,HDNTCellviewLib::MBUFG_GT) || r17(load,HDNTCellviewLib::BUFG_GT)", "Result": false, "Enabled":true},
+				        {"matches": "r17(load,HDNTCellviewLib::BUFG_GT_SYNC) ", "Result": false, "Enabled":true},
+                                    {"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,VCU.*?VCU2DECCLK)", "Result": false, "Enabled":true},
+                                    {"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,VCU.*?VCU2ENCCLK)", "Result": false, "Enabled":true},
+				    {"matches":"r12(driver,DPLL.*?CLKOUT[3]) && r12(load,VCU.*?VCU2AXISLAVECLK)", "Result": false, "Enabled":true},
+                                    {"matches":"r12(driver,DPLL.*?CLKOUT[2]) && r12(load,ISP2.*?DPLLISPCLK0)", "Result": false, "Enabled":true},
+				    {"matches":"r12(driver,DPLL.*?CLKOUT[3]) && r12(load,ISP2.*?DPLLISPCLK1)", "Result": false, "Enabled":true}
+                                    
+                                ]
+                },
+		{"RuleName": "case 6b", "driver":"(IBUF|DPLL).*", "load":"(BUFGCE_DIV|BUFGCTRL).*",
+                        "AdditionalCheck":
+                                [	
+					{"matches": "r12(driver,DPLL.*) && r14(driver) ", "Result": false, "Enabled":true},
+                                        {"matches": "", "Result": true, "Enabled":true} 
+                                ]
+                }, 
+                {"RuleName": "case 9: IBUF -> XPHY ", "driver":"IBUF.*", "load":"XPHY.*?DATAIN.*",
+                        "AdditionalCheck":
+                                [
+                                        {"matches":"", "Result":false, "Enabled":true}
+                                ]
+                }
+
+
+		],
+
+	"Device2_Insertion_Rules" : [
+		],
+
+	"Device2_Splitting_Rules" : [
+		]
+	}
+}
+

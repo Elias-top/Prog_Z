@@ -1,0 +1,93 @@
+#!/bin/bash
+#
+# COPYRIGHT NOTICE
+# Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+#
+
+# Detect a Windows environment and automatically switch to the .bat file
+
+export VIMAGE_PID=$$
+if [[ "`uname`" == windows32* ]]; then
+  trap "" INT
+  echo CALLING "$0.bat" "$@"
+  "$0.bat" "$@"
+  exit $?
+fi
+if [[ "`uname`" == CYGWIN* ]]; then
+  trap "" INT
+  "$RDI_BINROOT/$0.bat" "$@"
+  exit $?
+fi
+if [[ "`uname`" == MINGW*NT* ]]; then
+  trap "" INT
+  cmd //c "$RDI_BINROOT/$0.bat" "$@"
+  exit $?
+fi
+
+. "`dirname \"$0\"`/setupEnv.sh"
+
+export _RDI_DONT_SET_XILINX_AS_PATH=True
+tempArgSize=0
+RDI_TEMP_ARGS=()
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -version|--version)
+      RDI_ONLY_PRINT_VERSION=1
+      shift
+      ;;
+    *)
+      RDI_TEMP_ARGS[$tempArgSize]="$1"
+      tempArgSize=$(($tempArgSize + 1))
+      shift
+      ;;
+  esac
+done
+
+
+
+XILINX_VERSION_VITIS=UnknownVersion
+if [ -e "$RDI_APPROOT/data/version.sh" ]; then
+    . "$RDI_APPROOT/data/version.sh"
+fi
+export _VITIS_VERSION=$XILINX_VERSION_VITIS
+
+
+export VITIS_DAILY_LATEST=/proj/xbuilds/${_VITIS_VERSION}_daily_latest/installs/lin64/Vitis/$_VITIS_VERSION
+export VITIS_DAILY_LATEST_ROOT=/proj/xbuilds/${_VITIS_VERSION}_daily_latest/installs/lin64
+
+if [ -z "$XILINX_VIVADO" ]; then
+  export XILINX_VIVADO="$RDI_INSTALLROOT/Vivado/$RDI_INSTALLVER"
+fi
+if [ -z "$XILINX_VITIS" ]; then
+  export XILINX_VITIS="$RDI_INSTALLROOT/Vitis/$RDI_INSTALLVER"
+fi
+
+#export PATH=$XILINX_VIVADO/bin:$PATH
+#export LD_LIBRARY_PATH=/tools/batonroot/rodin/devkits/lnx64/python-3.8.3/python-3.8.3/lib/:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/tools/batonroot/rodin/devkits/lnx64/python-3.8.3/python-3.8.3/lib/:$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=$XILINX_VITIS/tps/lnx64/python-3.8.3/lib:$XILINX_VITIS/lib/lnx64.o/:$XILINX_VIVADO/data/emulation/cpp/lib/:$XILINX_VIVADO/lib/lnx64.o/Default/:$LD_LIBRARY_PATH
+
+export PATH=$XILINX_VIVADO/bin:$XILINX_VITIS/tps/lnx64/python-3.8.3/bin:$PATH
+
+
+export PYTHONPATH=$XILINX_VITIS/tps/lnx64/python-3.8.3/lib/python3.8/site-packages
+##
+# Launch the loader and specify the executable to launch
+##
+#
+# Loader arguments:
+#   -exec   -- Name of executable to launch
+##
+export XIL_SUPPRESS_OVERRIDE_WARNINGS=1
+export RDI_NO_JRE=1
+#RDI_PROG=tclsh8.5
+#RDI_PROG=python3
+
+if [ "$RDI_ONLY_PRINT_VERSION" == "1" ]; then
+  "$RDI_BINROOT"/loader -print_version launch_emulator
+else
+  #"$RDI_BINROOT"/loader -exec $RDI_PROG ${RDI_APPROOT}/data/emulation/scripts/launch_emulator.tcl "${RDI_TEMP_ARGS[@]}"
+  "$RDI_BINROOT"/loader -exec ../../../tps/lnx64/python-3.8.3/bin/python3 -u ${XILINX_VITIS}/bin/launch_emulator.py "${RDI_TEMP_ARGS[@]}"
+fi
+

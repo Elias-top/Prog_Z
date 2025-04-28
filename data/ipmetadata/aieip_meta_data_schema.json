@@ -1,0 +1,300 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"id": "aieip_meta_data_schema-0.1",
+	"description": "IP Meta data",
+	"type": "object",
+	"properties": {
+		"ip_name": {
+			"description": "The name of the IP.",
+			"type": "string"
+		},
+		"schema": {
+			"description": "The schema.",
+			"type": "string"
+		},
+		"parameters": {
+			"description": "The parameters that need to be set for configuring the IP.",
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "#/definitions/parameter"
+			}
+		},
+		"parameter_expressions": {
+			"description": "A set of named expressions over the parameters of the IP. The value of the parameter_expression is computed by meta data helper of this IP.",
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "#/definitions/parameter_expression"
+			}
+		},
+		"constraints": {
+			"description": "Constraints that parameters need to comply with.",
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "#/definitions/constraint"
+			}
+		},
+		"cost_metrics": {
+			"description": "Cost metrics for the IP.",
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "#/definitions/cost_metric"
+			}
+		},
+		"performance_metrics": {
+			"description": "The performance metrics of this IP.",
+			"type": "object",
+			"additionalProperties": {
+				"$ref": "#/definitions/performance_metric"
+			}
+		}
+	},
+	"required": [
+		"ip_name",
+		"parameters"
+	],
+	"additionalProperties": false,
+	"definitions": {
+		"array_type": {
+			"description": "An array type whose size is a constant",
+			"type": "object",
+			"properties": {
+				"element_type": {
+					"type": "object",
+					"additionalItems": false,
+					"additionalProperties": false,
+					"$ref": "#/definitions/basic_or_dependent_type"
+				},
+				"size": {
+					"description": "Number of array elements",
+					"type": "integer"
+				},
+				"type_kind": {
+					"type": "string",
+					"enum": [
+						"array_type"
+					]
+				}
+			},
+			"required": [
+				"element_type",
+				"size",
+				"type_kind"
+			],
+			"additionalProperties": false
+		},
+		"basic_or_dependent_type": {
+			"oneOf": [
+				{
+					"$ref": "#/definitions/basic_type"
+				},
+				{
+					"$ref": "#/definitions/dependent_type"
+				}
+			]
+		},
+		"basic_type": {
+			"description": "An basic type",
+			"type": "object",
+			"properties": {
+				"type_kind": {
+					"description": "This property serves as a tag to discriminate types.",
+					"type": "string",
+					"enum": [
+						"basic_type"
+					]
+				},
+				"basic_type_kind": {
+					"description": "Specifies the basic type kind.",
+					"type": "string",
+					"enum": [
+						"int16",
+						"int32",
+						"float",
+						"cint16",
+						"cint32",
+						"cfloat"
+					]
+				}
+			},
+			"required": [
+				"type_kind",
+				"basic_type_kind"
+			],
+			"additionalProperties": false
+		},
+		"dependent_sized_array_type": {
+			"description": "An array type whose size depends on a (template) parameter",
+			"type": "object",
+			"properties": {
+				"type_kind": {
+					"type": "string",
+					"enum": [
+						"dependent_sized_array_type"
+					]
+				},
+				"size": {
+					"description": "A C expression over the names of the template parameters that evaluates to a positive integer",
+					"type": "string"
+				},
+				"element_type": {
+					"type": "object",
+					"additionalItems": false,
+					"additionalProperties": false,
+					"$ref": "#/definitions/basic_or_dependent_type"
+				}
+			},
+			"required": [
+				"type_kind",
+				"size",
+				"element_type"
+			],
+			"additionalProperties": false
+		},
+		"dependent_type": {
+			"description": "A type specified by a (template) parameter",
+			"type": "object",
+			"properties": {
+				"type_kind": {
+					"type": "string",
+					"enum": [
+						"dependent_type"
+					]
+				},
+				"typename": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"type_kind",
+				"typename"
+			],
+			"additionalItems": false,
+			"additionalProperties": false
+		},
+		"any_type": {
+			"oneOf": [
+				{
+					"$ref": "#/definitions/basic_type"
+				},
+				{
+					"$ref": "#/definitions/dependent_type"
+				},
+				{
+					"$ref": "#/definitions/array_type"
+				},
+				{
+					"$ref": "#/definitions/dependent_sized_array_type"
+				}
+			]
+		},
+		"constraint": {
+			"description": "A constraint over the parameters of the IP. The actual constraint is evaluated in the meta data helper.",
+			"type": "object",
+			"properties": {
+				"description": {
+					"description": "A short description of the constraint in plain English.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"description"
+			],
+			"additionalProperties": false
+		},
+		"cost_metric": {
+			"type": "object",
+			"properties": {
+				"description": {
+					"description": "The description of the cost metric. The actual metric is computed by the meta data helper.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"description"
+			],
+			"additionalProperties": false
+		},
+		"performance_metric": {
+			"type": "object",
+			"properties": {
+				"description": {
+					"description": "The description of the performance metric. The actual metric is computed by the meta data helper.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"description"
+			],
+			"additionalProperties": false
+		},
+		"parameter_expression": {
+			"description": "A parameter expression is an expression over the parameters of the IP that is evaluated in the meta data helper.",
+			"type": "object",
+			"properties": {
+				"type": {
+					"$ref": "#/definitions/parameter_expression_type"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"type"
+			],
+			"additionalProperties": false
+		},
+		"parameter_expression_type": {
+			"description": "The type of the parameter expression.",
+			"type": "string",
+			"enum": [
+				"bool",
+				"int",
+				"double",
+				"string"
+			]
+		},
+		"parameter": {
+			"description": "This describes the attributes of a parameter of the IP.",
+			"type": "object",
+			"properties": {
+				"description": {
+					"description": "Description of the parameter.",
+					"type": "string"
+				},
+				"type": {
+					"description": "The type of the parameter. For int/int64 the legal values can be restricted via the minimum and maximum attributes of the parameter.  For 'name' parameters, the legal set can be restricted via the 'enum' attribute of the parameter. A 'vector' parameter can be restricted via the 'vector_length' and 'element_type' attributes.",
+					"type": "string"
+				},
+				"minimum": {
+					"description": "Specifies the minimum value for a int or int64 parameter.",
+					"type": "integer"
+				},
+				"maximum": {
+					"description": "Specifies the maxiumum value for a int or int64 parameter.",
+					"type": "integer"
+				},
+				"enum": {
+					"description": "Specifies the set of legal values for a name parameter.",
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"minItems": 1
+				},
+				"vector_length": {
+					"description": "Specifies the vector length for a vector parameter.",
+					"type": "string"
+				},
+				"element_type": {
+					"description": "Specifies the element type for a vector parameter.",
+					"type": "string"
+				}
+			},
+			"required": [
+				"description",
+				"type"
+			],
+			"additionalProperties": false
+		}
+	}
+}

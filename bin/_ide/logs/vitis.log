@@ -1,0 +1,203 @@
+17:22:20 INFO  : updated workspace path: 
+17:22:22 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya5235264008883775495
+17:22:22 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya17215461131460226346 -r C:\Temp\rigel_lopper_Ilya5235264008883775495\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:22:22 INFO  : Embedded Template List generated successfully
+17:22:22 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:22:24 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya15966719817113096457
+17:22:24 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya15029637743467820209 -r C:\Temp\rigel_lopper_Ilya15966719817113096457\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:22:24 INFO  : Embedded Template List generated successfully
+17:25:35 INFO  : Found no platform with name 'design_1_wrapper' in install repositories
+17:25:38 INFO  : Using sdt generation script from D:\Xilinx\Vitis\2024.2\vitis-server\scripts\platformutil.tcl
+17:25:38 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && xsct.bat D:\Xilinx\Vitis\2024.2\vitis-server\scripts\platformutil.tcl C:\Users\Ilya\Downloads\Telegram Desktop\design_1_wrapper.xsa C:\Temp\rigel_lopper_temp_platformIlya9332719732900097696\design_1_wrapper\hw\sdt && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:25:39 INFO  : SDT generated successfully
+17:25:39 ERROR : InValid Platform,System DTS File does not exist in 'C:\Temp\rigel_lopper_temp_platformIlya9332719732900097696\design_1_wrapper\hw\sdt\system-top.dts'.
+17:26:25 INFO  : Found no platform with name 'design_1_wrapper (4)' in install repositories
+17:26:25 INFO  : Using sdt generation script from D:\Xilinx\Vitis\2024.2\vitis-server\scripts\platformutil.tcl
+17:26:25 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && xsct.bat D:\Xilinx\Vitis\2024.2\vitis-server\scripts\platformutil.tcl C:\Users\Ilya\Downloads\Telegram Desktop\design_1_wrapper (4).xsa C:\Temp\rigel_lopper_temp_platformIlya11351507083346856795\design_1_wrapper (4)\hw\sdt && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:26:25 INFO  : Непредвиденное появление: \hw\sdt:DESKTOP-SF3J4LF-03.01.2025_17-26-25.
+17:26:25 ERROR : Error in generating SDT for given XSA 'C:\Users\Ilya\Downloads\Telegram Desktop\design_1_wrapper (4).xsa'.
+17:26:25 ERROR : Error in generating SDT for given XSA 'C:\Users\Ilya\Downloads\Telegram Desktop\design_1_wrapper (4).xsa'.
+17:26:44 INFO  : Found no platform with name 'zed' in install repositories
+17:26:44 INFO  : Install SDT for given XSA copied Successfully
+17:26:44 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya1499745788010336413 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya12124531095156664926\zed\hw\sdt\system-top.dts
+17:26:44 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya1499745788010336413 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya12124531095156664926\zed\hw\sdt\system-top.dts && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:26:46 INFO  : CPU List generated successfully
+17:26:57 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:26:58 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya4485884599585993778
+17:26:58 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya2375266749839597497 -r C:\Temp\rigel_lopper_Ilya4485884599585993778\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:26:58 INFO  : Embedded Template List generated successfully
+17:27:21 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:27:21 INFO  : updated workspace path: 
+17:27:22 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya12769224159790366303
+17:27:22 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya5535495825669029150 -r C:\Temp\rigel_lopper_Ilya12769224159790366303\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:27:22 INFO  : Embedded Template List generated successfully
+17:27:22 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:27:23 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya3280077185697213569
+17:27:23 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya11031892405825578507 -r C:\Temp\rigel_lopper_Ilya3280077185697213569\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:27:23 INFO  : Embedded Template List generated successfully
+17:28:09 INFO  : Found no platform with name 'zed' in install repositories
+17:28:09 INFO  : Install SDT for given XSA copied Successfully
+17:28:09 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya13486659038715853751 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya10152620544649690452\zed\hw\sdt\system-top.dts
+17:28:09 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya13486659038715853751 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya10152620544649690452\zed\hw\sdt\system-top.dts && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:10 INFO  : CPU List generated successfully
+17:28:18 INFO  : Platform platform creation started.
+17:28:18 INFO  : Found no platform with name 'zed' in install repositories
+17:28:18 INFO  : Install SDT for given XSA copied Successfully
+17:28:18 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya2990814417000343093 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts D:\Xilinx_projects\platform\hw\sdt\system-top.dts
+17:28:18 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya2990814417000343093 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts D:\Xilinx_projects\platform\hw\sdt\system-top.dts && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:18 INFO  : CPU List generated successfully
+17:28:18 INFO  : SDT generated successfully.
+17:28:18 INFO  : created .gitignore file for the project D:\Xilinx_projects\platform
+17:28:18 INFO  : ZYNQ: Using the QEMU args from install at  : D:\Xilinx\Vitis\2024.2\data\emulation\platforms\zynq\sw\a9_linux\qemu\qemu_args.txt
+17:28:18 INFO  : ZYNQ: Using the QEMU args from install at  : D:\Xilinx\Vitis\2024.2\data\emulation\platforms\zynq\sw\a9_standalone\qemu\qemu_args.txt
+17:28:18 INFO  : ZYNQ: Using the QEMU args from install at  : D:\Xilinx\Vitis\2024.2\data\emulation\platforms\zynq\sw\a9_standalone\qemu\qemu_args.txt
+17:28:18 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:19 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya7698360794766271624
+17:28:19 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:19 INFO  : lopper command to generate BSP :python D:\Xilinx\Vitis\2024.2\data\embeddedsw/scripts/pyesw//create_bsp.py -w D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform\hw\sdt\system-top.dts -t zynq_fsbl -r C:\Temp\rigel_lopper_Ilya7698360794766271624\.repo.yaml
+17:28:19 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\create_bsp.py -w D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform\hw\sdt\system-top.dts -t zynq_fsbl -r C:\Temp\rigel_lopper_Ilya7698360794766271624\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:20 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya13236456089630004030
+17:28:20 INFO  : lopper command to generate BSP :python D:\Xilinx\Vitis\2024.2\data\embeddedsw/scripts/pyesw//create_bsp.py -w D:\Xilinx_projects\platform\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform\hw\sdt\system-top.dts -t empty_application -r C:\Temp\rigel_lopper_Ilya13236456089630004030\.repo.yaml
+17:28:20 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\create_bsp.py -w D:\Xilinx_projects\platform\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform\hw\sdt\system-top.dts -t empty_application -r C:\Temp\rigel_lopper_Ilya13236456089630004030\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:31 INFO  : Successfully created Domain at D:\Xilinx_projects\platform\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp
+17:28:31 INFO  : Successfully Generated Domain D:\Xilinx_projects\platform\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp
+17:28:31 INFO  : Domain standalone_ps7_cortexa9_0 added successfully.
+17:28:31 INFO  : Successfully created Domain at D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp
+17:28:31 INFO  : Successfully Generated Domain D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp
+17:28:31 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:32 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya8453624268541300838
+17:28:32 INFO  : lopper command to create baremetal application :python D:\Xilinx\Vitis\2024.2\data\embeddedsw/scripts/pyesw//create_app.py -s D:\Xilinx_projects\platform\zynq_fsbl -t zynq_fsbl -d D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp -n fsbl -r C:\Temp\rigel_lopper_Ilya8453624268541300838\.repo.yaml
+17:28:32 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:33 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya12810406713498945324
+17:28:33 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\validate_bsp.py -t zynq_fsbl -d D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp -r C:\Temp\rigel_lopper_Ilya12810406713498945324\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:34 INFO  : Successfully validated template zynq_fsbl
+17:28:34 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\create_app.py -s D:\Xilinx_projects\platform\zynq_fsbl -t zynq_fsbl -d D:\Xilinx_projects\platform\zynq_fsbl\zynq_fsbl_bsp -n fsbl -r C:\Temp\rigel_lopper_Ilya8453624268541300838\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:28:35 INFO  : Successfully Created Application sources at D:/Xilinx_projects/platform/zynq_fsbl
+17:28:35 INFO  : Successfully created Application D:\Xilinx_projects\platform\zynq_fsbl
+17:28:35 INFO  : Platform FSBL Boot domain added successfully.
+17:28:35 INFO  : Platform creation finished successfully.
+17:28:35 INFO  : Platform Quick Build initiated.
+17:28:35 INFO  : Generating Export directory
+17:28:35 INFO  : Generated platform metadata for creating application(s) based on platform platform.
+17:31:42 INFO  : Found no platform with name 'zed' in install repositories
+17:31:43 INFO  : Install SDT for given XSA copied Successfully
+17:31:43 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya11937674791488252655 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya154870623439208909\zed\hw\sdt\system-top.dts
+17:31:43 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya11937674791488252655 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya154870623439208909\zed\hw\sdt\system-top.dts && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:43 INFO  : CPU List generated successfully
+17:31:45 INFO  : Platform platform_app creation started.
+17:31:45 INFO  : Found no platform with name 'zed' in install repositories
+17:31:45 INFO  : Install SDT for given XSA copied Successfully
+17:31:45 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya13973627538066080827 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts D:\Xilinx_projects\platform_app\hw\sdt\system-top.dts
+17:31:45 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya13973627538066080827 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts D:\Xilinx_projects\platform_app\hw\sdt\system-top.dts && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:45 INFO  : CPU List generated successfully
+17:31:45 INFO  : SDT generated successfully.
+17:31:45 INFO  : created .gitignore file for the project D:\Xilinx_projects\platform_app
+17:31:45 INFO  : ZYNQ: Using the QEMU args from install at  : D:\Xilinx\Vitis\2024.2\data\emulation\platforms\zynq\sw\a9_linux\qemu\qemu_args.txt
+17:31:45 INFO  : ZYNQ: Using the QEMU args from install at  : D:\Xilinx\Vitis\2024.2\data\emulation\platforms\zynq\sw\a9_standalone\qemu\qemu_args.txt
+17:31:45 INFO  : ZYNQ: Using the QEMU args from install at  : D:\Xilinx\Vitis\2024.2\data\emulation\platforms\zynq\sw\a9_standalone\qemu\qemu_args.txt
+17:31:45 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:46 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya5414029778043375413
+17:31:46 INFO  : lopper command to generate BSP :python D:\Xilinx\Vitis\2024.2\data\embeddedsw/scripts/pyesw//create_bsp.py -w D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform_app\hw\sdt\system-top.dts -t zynq_fsbl -r C:\Temp\rigel_lopper_Ilya5414029778043375413\.repo.yaml
+17:31:46 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\create_bsp.py -w D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform_app\hw\sdt\system-top.dts -t zynq_fsbl -r C:\Temp\rigel_lopper_Ilya5414029778043375413\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:46 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:48 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya8485528313835365645
+17:31:48 INFO  : lopper command to generate BSP :python D:\Xilinx\Vitis\2024.2\data\embeddedsw/scripts/pyesw//create_bsp.py -w D:\Xilinx_projects\platform_app\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform_app\hw\sdt\system-top.dts -t empty_application -r C:\Temp\rigel_lopper_Ilya8485528313835365645\.repo.yaml
+17:31:48 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\create_bsp.py -w D:\Xilinx_projects\platform_app\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp -p ps7_cortexa9_0 -o standalone -s D:\Xilinx_projects\platform_app\hw\sdt\system-top.dts -t empty_application -r C:\Temp\rigel_lopper_Ilya8485528313835365645\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:52 INFO  : Successfully created Domain at D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp
+17:31:52 INFO  : Successfully Generated Domain D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp
+17:31:52 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:53 INFO  : Successfully created Domain at D:\Xilinx_projects\platform_app\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp
+17:31:53 INFO  : Successfully Generated Domain D:\Xilinx_projects\platform_app\ps7_cortexa9_0\standalone_ps7_cortexa9_0\bsp
+17:31:53 INFO  : Domain standalone_ps7_cortexa9_0 added successfully.
+17:31:53 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya8953921640642778298
+17:31:53 INFO  : lopper command to create baremetal application :python D:\Xilinx\Vitis\2024.2\data\embeddedsw/scripts/pyesw//create_app.py -s D:\Xilinx_projects\platform_app\zynq_fsbl -t zynq_fsbl -d D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp -n fsbl -r C:\Temp\rigel_lopper_Ilya8953921640642778298\.repo.yaml
+17:31:53 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:54 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya3632803326567026138
+17:31:54 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\validate_bsp.py -t zynq_fsbl -d D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp -r C:\Temp\rigel_lopper_Ilya3632803326567026138\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:55 INFO  : Successfully validated template zynq_fsbl
+17:31:55 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\create_app.py -s D:\Xilinx_projects\platform_app\zynq_fsbl -t zynq_fsbl -d D:\Xilinx_projects\platform_app\zynq_fsbl\zynq_fsbl_bsp -n fsbl -r C:\Temp\rigel_lopper_Ilya8953921640642778298\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:31:56 INFO  : Successfully Created Application sources at D:/Xilinx_projects/platform_app/zynq_fsbl
+17:31:56 INFO  : Successfully created Application D:\Xilinx_projects\platform_app\zynq_fsbl
+17:31:56 INFO  : Platform FSBL Boot domain added successfully.
+17:31:56 INFO  : Platform creation finished successfully.
+17:31:56 INFO  : Platform Quick Build initiated.
+17:31:56 INFO  : Generating Export directory
+17:31:57 INFO  : Generated platform metadata for creating application(s) based on platform platform_app.
+17:34:43 INFO  : Vitis Unified CLI: Embedded Repository data: 
+17:34:43 INFO  : Vitis Unified CLI: Embedded Repository data: 
+17:38:21 INFO  : connection terminated
+17:38:21 INFO  : connection terminated
+17:38:21 INFO  : scheduling shutdown timer for 2 seconds ...
+17:38:23 INFO  : Terminating Vitis C++ Server
+17:38:23 INFO  : Vitis C++ Server terminated
+17:38:29 INFO  : updated workspace path: 
+17:38:30 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya6539116336886678116
+17:38:30 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya14897422336579904432 -r C:\Temp\rigel_lopper_Ilya6539116336886678116\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:38:30 INFO  : Embedded Template List generated successfully
+17:38:30 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:38:31 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya7625436425929252558
+17:38:31 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya2506875143914410276 -r C:\Temp\rigel_lopper_Ilya7625436425929252558\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:38:32 INFO  : Embedded Template List generated successfully
+17:39:07 INFO  : Found no platform with name 'zed' in install repositories
+17:39:10 INFO  : Install SDT for given XSA copied Successfully
+17:39:10 INFO  : Lopper command for cpu List generation: lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya13999228953056910192 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya1828029343133863567\zed\hw\sdt\system-top.dts
+17:39:10 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && lopper --enhanced --werror -f -O C:\Temp\rigel_lopper_Ilya13999228953056910192 -i D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Lib\site-packages\lopper\lops\lop-cpu-oslist.dts C:\Temp\rigel_lopper_temp_platformIlya1828029343133863567\zed\hw\sdt\system-top.dts && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:39:10 INFO  : CPU List generated successfully
+17:39:34 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:39:35 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya17896649040847691972
+17:39:35 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya16644549384894369850 -r C:\Temp\rigel_lopper_Ilya17896649040847691972\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:39:35 INFO  : Embedded Template List generated successfully
+17:40:06 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:40:06 INFO  : created .gitignore file for the project D:\new_projects_xilinx
+17:40:57 INFO  : updated workspace path: 
+17:40:58 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya9241975070838613808
+17:40:58 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya14391514138223741482 -r C:\Temp\rigel_lopper_Ilya9241975070838613808\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:40:58 INFO  : Embedded Template List generated successfully
+17:40:58 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:40:59 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya5217096925566871481
+17:40:59 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya8688733459944928821 -r C:\Temp\rigel_lopper_Ilya5217096925566871481\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:40:59 INFO  : Embedded Template List generated successfully
+17:41:19 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+17:41:19 INFO  : created .gitignore file for the project D:\new_projects_xilinx
+18:05:27 INFO  : updated workspace path: 
+18:05:28 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya14117350191986446067
+18:05:28 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya2754595110193137318 -r C:\Temp\rigel_lopper_Ilya14117350191986446067\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+18:05:28 INFO  : Embedded Template List generated successfully
+18:05:28 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+18:05:29 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya13917427697357622386
+18:05:29 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya11512347546261565518 -r C:\Temp\rigel_lopper_Ilya13917427697357622386\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+18:05:30 INFO  : Embedded Template List generated successfully
+18:05:51 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+19:51:18 INFO  : updated workspace path: 
+19:51:20 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya10987724191170592049
+19:51:20 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya3655081265816521130 -r C:\Temp\rigel_lopper_Ilya10987724191170592049\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+19:51:21 INFO  : Embedded Template List generated successfully
+19:51:21 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+19:51:22 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya9900559887557923184
+19:51:22 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya15692197321750402231 -r C:\Temp\rigel_lopper_Ilya9900559887557923184\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+19:51:22 INFO  : Embedded Template List generated successfully
+19:51:29 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+19:51:29 INFO  : created .gitignore file for the project D:\Xilinx_prj
+16:46:55 INFO  : updated workspace path: 
+16:46:57 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya3645456580809507928
+16:46:57 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya16848975382214041724 -r C:\Temp\rigel_lopper_Ilya3645456580809507928\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:46:58 INFO  : Embedded Template List generated successfully
+16:46:58 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:46:59 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya11688794344546087698
+16:46:59 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya7937934539489919385 -r C:\Temp\rigel_lopper_Ilya11688794344546087698\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:46:59 INFO  : Embedded Template List generated successfully
+16:47:07 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+16:47:07 INFO  : created .gitignore file for the project D:\Xilinx_prj
+20:46:41 INFO  : updated workspace path: 
+20:46:42 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya1276509752831483162
+20:46:42 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya7607962474022405670 -r C:\Temp\rigel_lopper_Ilya1276509752831483162\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+20:46:43 INFO  : Embedded Template List generated successfully
+20:46:43 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\repo.py -st  D:\Xilinx\Vitis\2024.2\data\embeddedsw && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+20:46:44 INFO  : Successfully created repository data at C:\Temp\rigel_lopper_Ilya6524484020787151361
+20:46:44 INFO  : cmd.exe, /C, D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\activate.bat && python D:\Xilinx\Vitis\2024.2\data\embeddedsw\scripts\pyesw\\get_template_data.py -d C:\Temp\rigel_lopper_Ilya11464417300173028724 -r C:\Temp\rigel_lopper_Ilya6524484020787151361\.repo.yaml && D:\Xilinx\Vitis\2024.2\tps\win64\lopper-1.1.0\env\Scripts\deactivate.bat
+20:46:44 INFO  : Embedded Template List generated successfully
+20:46:52 INFO  : connection terminated
+20:46:52 INFO  : connection terminated
+20:46:52 INFO  : scheduling shutdown timer for 2 seconds ...
+20:46:54 INFO  : Terminating Vitis C++ Server
+20:46:54 INFO  : Vitis C++ Server terminated

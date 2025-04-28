@@ -1,0 +1,4 @@
+include_manifests = [ "versal/timingManifests/xcvm2152_eval_v1/s_series/es/bel.manifest", "versal/timingManifests/xcvm2152_eval_v1/s_series/es/net.manifest" ];
+default_queries_file = "versal/data/timingdata/default.v1.cfg";
+arch_nonlib_paspd = "versal/data/timingdata/arch/paspd/versal.nonlib.v160.paspd";
+arch_nonlib_quadparam_paspd = "versal/data/timingdata/arch/paspd/versal.quadParam.v3.paspd";

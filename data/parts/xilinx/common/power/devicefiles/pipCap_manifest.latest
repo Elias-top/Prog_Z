@@ -1,0 +1,19 @@
+# Architecture : Ultrascale+
+# Iteration : See comments
+# Vivado Target Build : tbd
+# Capture Type : POWER_PIP_CAP
+# CRS : CR-1159158 :: Generated on Fri Mar 31 18:20:34 2023
+# DT : CR-1159158 :: Generated on Fri Mar 31 18:20:34 2023
+
+kintexuplus:artixuplusc
+{
+	CLK_NODE_PATTERN_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/DATA/artixuplusc_kintexuplus_CLK_NodePatternDB"];
+	CLK_PIP_CONTEXT_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/DATA/artixuplusc_kintexuplus_CLK_PipContextDB"];
+	CLK_PIP_CAP_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/OUTPUT/pipcap_artixuplusc_kintexuplus_CLK"];
+	INT_NODE_PATTERN_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/DATA/artixuplusc_kintexuplus_INT_NodePatternDB"];
+	INT_PIP_CONTEXT_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/DATA/artixuplusc_kintexuplus_INT_PipContextDB"];
+	INT_PIP_CAP_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/OUTPUT/pipcap_artixuplusc_kintexuplus_INT"];
+	INTF_NODE_PATTERN_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/DATA/artixuplusc_kintexuplus_INTF_NodePatternDB"];
+	INTF_PIP_CONTEXT_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/DATA/artixuplusc_kintexuplus_INTF_PipContextDB"];
+	INTF_PIP_CAP_DB = ["/proj/xsjvorpal/users/vorpal1_zubair/xcau7p_signal_power_update/OUTPUT/pipcap_artixuplusc_kintexuplus_INTF"];
+}
